@@ -2,9 +2,14 @@
   "name": "parcel-app",
   "private": true,
   "source": "src/index.html",
+  "targets": {
+    "default": {
+      "distDir": "./public"
+    }
+  }
   "scripts": {
     "start": "parcel",
-    "build": "parcel build --output public"
+    "build": "parcel build"
   },
   "devDependencies": {
     "parcel": "^2.0.0"
