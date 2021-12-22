@@ -6,7 +6,7 @@
     "default": {
       "distDir": "./public"
     }
-  }
+  },
   "scripts": {
     "start": "parcel",
     "build": "parcel build"
