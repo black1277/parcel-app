@@ -5,3 +5,4 @@ dist
 .pnp.js
 .DS_Store
 .vercel
+.idea
