@@ -5,6 +5,8 @@ document.addEventListener("DOMContentLoaded", ()=>{
   init(dom)
 })
 
+
+
 function init(el){
   el.innerHTML = head()
 }

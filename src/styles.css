@@ -2,17 +2,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Philosopher&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Literata&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lora&display=swap');
-.source {
+@import url('https://fonts.googleapis.com/css2?family=Vollkorn&display=swap');
+.source, .source input {
   font-family: 'Source Sans Pro', sans-serif;
 }
-.lora {
+.lora, .lora input {
   font-family: 'Lora', serif;
 }
-.philosopher {
+.philosopher, .philosopher input {
   font-family: 'Philosopher', sans-serif;
 }
-.literata {
+.literata, .literata input {
   font-family: 'Literata', serif;
+}
+.vollkorn, .vollkorn input {
+  font-family: 'Vollkorn', serif;
 }
 * {
   padding: 0;
@@ -24,9 +28,10 @@ html, body {
 }
 body {
   background: #ccffd3;
-  padding: 5px 20px;
-  font-size: 24px;
+  padding: 5px 12px;
+  font-size: 22px;
 }
+
 .center {
   text-align: center;
 }
@@ -34,6 +39,11 @@ h1 {
   color: #de250d;
   font-family: cursive;
   font-size: 55px;
+}
+h3 {
+  color: #de250d;
+  font-family: cursive;
+  font-size: 36px;
 }
 
 p {
@@ -48,31 +58,54 @@ a {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   border: 1px solid #0d8300;
   border-radius: 10px;
 }
 .el {
+  position: relative;
   display: flex;
   justify-content: space-between;
-  width: 90%;
-  padding: 4px 10px;
-  margin: 2px auto;
+  width: 98%;
+  padding: 2px 2px 3px 8px;
+  margin: 1px auto;
   border: 1px dotted grey;
   border-radius: 5px;
-  font-family: 'Source Sans Pro', sans-serif;
+}
+.el span {
+  position: relative;
+  display: flex;
+  align-items: center;
+  user-select: none;
+  max-width: 54%;
 }
 .el input {
-  width: 50%;
-  font-family: 'Source Sans Pro', sans-serif;
-  font-size: 22px;
+  position: relative;
+  width: 45%;
+  min-height: 36px;
+  font-family: inherit;
+  font-size: 20px;
   outline: none;
-  padding: 3px;
-  border: 1px solid black;
+  padding: 2px 10px;
+  border: 1px solid #2c2c2c;
+  border-radius: 4px;
 }
 .el input:focus {
   border: 1px solid red;
+}
+.el:before {
+  position: absolute;
+  background: #92dd9c;
+  border-radius: 20px;
+  font-size: 16px;
+  padding: 2px 8px;
+  left: 52%;
+  top: 50%;
+  transform: translateY(-50%);
+  counter-increment: list1; /* Увеличиваем значение счетчика */
+  content: counter(list1); /* Выводим число */
+  opacity: .6;
 }
 .done {
   background: #69fe48;
@@ -158,7 +191,7 @@ a {
   transition: all 0.3s ease-in-out;
 }
 .flexrow li label:hover {
-
+  box-shadow: 1px 1px 2px #2c2c2c;
   border: 1px dotted #343434;
   border-radius: 6px;
   background: #c0f9c7;
@@ -168,6 +201,57 @@ a {
 }
 .flexrow li input:checked~ label{
   background: #74ff86;
+  box-shadow: 1px 1px 2px #2c2c2c;
+  border: 1px solid #820000;
   border-radius: 6px;
   font-size: 1.4rem;
+}
+@media (max-width: 760px) {
+  .flexrow {
+    flex-wrap: wrap;
+  }
+}
+.link-page {
+  margin: 5px 1px 2px;
+  padding: 2px 9px;
+  text-decoration: none;
+  background: #a6dcff;
+  border-radius: 5px;
+  color: #7b0505;
+  font-family: Verdana, sans-serif;
+  font-size: 16px;
+  cursor: pointer;
+  /*pointer-events: none;*/
+}
+.link-page:hover:not(.active) {
+  outline: 1px solid #6c0000;
+}
+#panel {
+  position: relative;
+  width: 100%;
+  counter-reset: list1;
+}
+#links {
+  width: 96%;
+  margin: 5px auto;
+  flex-wrap: wrap;
+}
+a.active {
+  color: #fff873;
+  background: #e20b0b;
+  cursor: default;
+}
+@media (max-width: 600px) {
+  body {
+    padding: 0;
+    background: #ccf1ff;
+    font-size: 16px;
+  }
+  .el {
+    width: 100%;
+  }
+  .el input {
+    font-size: 15px;
+    padding: 2px;
+  }
 }
