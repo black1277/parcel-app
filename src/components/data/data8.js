@@ -1,4 +1,5 @@
-const data8 = [
+// 01-05 > 1.2 > 5
+const data = [
   {
     rus: 'Он знает каждую красивую девушку здесь',
     eng: 'He knows every beautiful girl here'
@@ -21,11 +22,13 @@ const data8 = [
   },
   {
     rus: 'Мы знаем такой интересный фильм!',
-    eng: 'We know such an interesting film!'
+    eng: 'We know such an interesting film!',
+    regEng: '/(?:We know such an interesting (?:film|movie)!)/gm'
   },
   {
     rus: 'Эти женщины редко носят такие брюки',
-    eng: 'These women rarely wear such trousers'
+    eng: 'These women rarely wear such trousers',
+    regEng: '/(?:These women (?:rarely|seldom) wear such (?:trousers|pants))/gm'
   }
 ]
-export default data8
+export default data

@@ -1,11 +1,13 @@
-const data2 = [
+const data = [
   {
     rus: 'Этот человек редко играет в футбол',
-    eng: 'This person rarely plays football'
+    eng: 'This person rarely plays football',
+    regEng: '/This person (?:rarely|seldom) plays football/gm'
   },
   {
     rus: 'Эти люди редко играют в футбол',
-    eng: 'These people rarely play football'
+    eng: 'These people rarely play football',
+    regEng: '/These people (?:rarely|seldom) play football/gm'
   },
   {
     rus: 'Эта женщина никогда не носит таких коротких юбок',
@@ -41,11 +43,13 @@ const data2 = [
   },
   {
     rus: 'Ваш ребёнок часто слушает эту песню',
-    eng: 'Your child often listens to this song'
+    eng: 'Your child often listens to this song',
+    regEng: '/Your (?:child|kid) often listens to this song/gm'
   },
   {
     rus: 'Ваши дети часто слушают эти песни',
-    eng: 'Your children often listen to these songs'
+    eng: 'Your children often listen to these songs',
+    regEng: '/Your (?:children|kids) often listen to these songs/gm'
   }
 ]
-export default data2
+export default data

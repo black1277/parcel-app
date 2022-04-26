@@ -1,7 +1,9 @@
-const data9 = [
+// 01-05 > 1.2 > 6
+const data = [
   {
     rus: 'Мои дети никогда не смотрят телевизор',
-    eng: 'My children never watch TV'
+    eng: 'My children never watch TV',
+    regEng: '/(?:My (?:children|kids) never watch TV)/gm'
   },
   {
     rus: 'Они никогда не слушают меня',
@@ -32,4 +34,4 @@ const data9 = [
     eng: 'He likes to be a good person'
   }
 ]
-export default data9
+export default data

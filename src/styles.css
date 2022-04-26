@@ -87,12 +87,13 @@ a {
   font-family: inherit;
   font-size: 20px;
   outline: none;
-  padding: 2px 10px;
+  padding: 2px 8px;
   border: 1px solid #2c2c2c;
   border-radius: 4px;
 }
 .el input:focus {
-  border: 1px solid red;
+  border: 1px solid rgba(0, 183, 168, 0.46);
+  outline: 3px solid rgba(0, 183, 168, 0.46);
 }
 .el:before {
   position: absolute;

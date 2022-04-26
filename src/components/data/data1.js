@@ -1,4 +1,4 @@
-const data1 = [
+const data = [
   {
     rus: 'Эта женщина иногда смотрит телевизор',
     eng: 'This woman sometimes watches TV'
@@ -9,11 +9,13 @@ const data1 = [
   },
   {
     rus: 'Её ребёнок всегда слушает её',
-    eng: 'Her child always listens to her'
+    eng: 'Her child always listens to her',
+    regEng: '/Her (?:child|kid) always listens to her/gm'
   },
   {
     rus: 'Её дети всегда слушают её',
-    eng: 'Her children always listen to her'
+    eng: 'Her children always listen to her',
+    regEng: '/Her (?:children|kids) always listens to her/gm'
   },
   {
     rus: 'Тот мужчина никогда не играет в видео игры',
@@ -48,4 +50,4 @@ const data1 = [
     eng: 'Those men usually buy expensive suits'
   }
 ]
-export default data1
+export default data

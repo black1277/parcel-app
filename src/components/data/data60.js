@@ -1,7 +1,9 @@
+// 01-05 > 2.1 > 4
 const data = [
   {
     rus: '',
-    eng: ''
+    eng: '(?:children|kids)',
+    regEng: '/(?:)/gm'
   },
   {
     rus: '',
