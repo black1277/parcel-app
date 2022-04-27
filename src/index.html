@@ -1,53 +1,16 @@
 <!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8"/>
-    <title>Loader</title>
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="app.js"></script>
-  </head>
-  <body>
-  <div id="sbm">No js text</div>
-  <section>
-  <div class="loader">
-    <svg>
-      <filter id="gooey">
-        <feGaussianBlur in="SourceGraphic" stdDeviation="10"/>
-        <feColorMatrix values="
-          1 0 0 0 0
-          0 1 0 0 0
-          0 0 1 0 0
-          1 0 0 20 -10
-        "/>
-      </filter>
-    </svg>
-    <span style="--i:1;"></span>
-    <span style="--i:2;"></span>
-    <span style="--i:3;"></span>
-    <span style="--i:4;"></span>
-    <span style="--i:5;"></span>
-    <span style="--i:6;"></span>
-    <span style="--i:7;"></span>
-    <span style="--i:8;"></span>
-    <span class="rotate" style="--j:0;"></span>
-    <span class="rotate" style="--j:1;"></span>
-    <span class="rotate" style="--j:2;"></span>
-    <span class="rotate" style="--j:3;"></span>
-    <span class="rotate" style="--j:4;"></span>
-  </div>
-</section>
-  <svg width="336" height="336" viewBox="0 0 336 336" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <g id="triangles">
-      <rect width="336" height="336" fill="#ae0000"/>
-      <path id="light" d="M49.5907 118.91C49.5907 115.061 53.7574 112.656 57.0907 114.58L141.841 163.511C145.174 165.435 145.174 170.246 141.841 172.171L57.0907 221.101C53.7574 223.026 49.5907 220.62 49.5907 216.771L49.5907 118.91Z"
-            fill-opacity="0.6"/>
-      <g id="darkGroup">
-        <path id="dark1" d="M81.5907 118.91C81.5907 115.061 85.7574 112.656 89.0907 114.58L173.841 163.511C177.174 165.435 177.174 170.246 173.841 172.171L89.0907 221.101C85.7574 223.026 81.5907 220.62 81.5907 216.771L81.5907 118.91Z"
-              fill-opacity="0.8"/>
-        <path id="dark2" d="M49.5907 118.91C49.5907 115.061 53.7574 112.656 57.0907 114.58L141.841 163.511C145.174 165.435 145.174 170.246 141.841 172.171L57.0907 221.101C53.7574 223.026 49.5907 220.62 49.5907 216.771L49.5907 118.91Z"
-              fill-opacity="0.8"/>
-      </g>
-    </g>
-  </svg>
-  </body>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="css/index.css">
+  <script type="module" src="app.js"></script>
+</head>
+<body>
+<noscript>У Вас отключен JavaScript!</noscript>
+<div id="main"></div>
+</body>
 </html>
