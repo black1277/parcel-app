@@ -1,4 +1,3 @@
-import param from './js/index'
 import {head} from './components/header.js'
 
 document.addEventListener("DOMContentLoaded", ()=>{
@@ -10,7 +9,4 @@ document.addEventListener("DOMContentLoaded", ()=>{
 
 function init(el){
   el.innerHTML = head()
-  const audi = document.getElementsByTagName('audio')[0]
-  audi.currentTime = 60
-  console.log(audi)
 }
