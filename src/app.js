@@ -1,4 +1,3 @@
-import param from './js/index'
 import {head} from './components/header.js'
 
 document.addEventListener("DOMContentLoaded", ()=>{
