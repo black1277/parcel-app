@@ -1,34 +1,14 @@
-This is a vanilla web app built with [Parcel](https://parceljs.org).
+![black1277](https://img.shields.io/badge/developer-black1277-success)
 
-## Getting Started
+[Demo](http://parcel-app-lac.vercel.app/ "open") на vercel.app
 
-Run the dev server:
+## Изучение английского
 
-```bash
-yarn start
-# or
-npm start
-```
+1. Для устранения привыкания к шрифту - меняйте шрифт перед повторением пройденного
+2. Для устранения привыкания к порядку предложений - активируйте опцию "перемешать"
+3. Правильно введенный ответ (независимо от регистра) - подсвечивается зеленым
+4. Двойной щелчок по предложению - выдает правильный ответ
+5. Для сравнения правильного ответа со своим вариантом - наведите мышь на ответ
+6. Меняйте местами русские и английские предложения - для изучения перевода в обе стороны
 
-And open [localhost:1234](http://localhost:1234) in your browser!
-
-As you make changes, you should see your app automatically update in the browser without even refreshing the page!
-
-## Learn More
-
-- [Getting started guide](https://parceljs.org/getting-started/webapp/)
-- [Documentation](https://parceljs.org/docs/)
-
-## Deploy Your Own
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/vercel/tree/main/examples/parcel&template=parcel)
-
-_Live Example: https://parcel.examples.vercel.com_
-
-### Deploying From Your Terminal
-
-You can deploy your new Parcel project with a single command from your terminal using [Vercel CLI](https://vercel.com/download):
-
-```shell
-$ vercel
-```
+--------------------------------------

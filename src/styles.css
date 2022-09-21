@@ -1,0 +1,258 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Philosopher&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Literata&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lora&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Vollkorn&display=swap');
+.source, .source input {
+  font-family: 'Source Sans Pro', sans-serif;
+}
+.lora, .lora input {
+  font-family: 'Lora', serif;
+}
+.philosopher, .philosopher input {
+  font-family: 'Philosopher', sans-serif;
+}
+.literata, .literata input {
+  font-family: 'Literata', serif;
+}
+.vollkorn, .vollkorn input {
+  font-family: 'Vollkorn', serif;
+}
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+html, body {
+  min-height: 100vh;
+}
+body {
+  background: #ccffd3;
+  padding: 5px 12px;
+  font-size: 22px;
+}
+
+.center {
+  text-align: center;
+}
+h1 {
+  color: #de250d;
+  font-family: cursive;
+  font-size: 55px;
+}
+h3 {
+  color: #de250d;
+  font-family: cursive;
+  font-size: 36px;
+}
+
+p {
+  font-family: Helvetica, Arial, sans-serif;
+  line-height: 1.5em;
+}
+
+a {
+  color: dodgerblue;
+}
+#main {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  border: 1px solid #0d8300;
+  border-radius: 10px;
+}
+.el {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  width: 98%;
+  padding: 2px 2px 3px 8px;
+  margin: 1px auto;
+  border: 1px dotted grey;
+  border-radius: 5px;
+}
+.el span {
+  position: relative;
+  display: flex;
+  align-items: center;
+  user-select: none;
+  max-width: 54%;
+}
+.el input {
+  position: relative;
+  width: 45%;
+  min-height: 36px;
+  font-family: inherit;
+  font-size: 20px;
+  outline: none;
+  padding: 2px 8px;
+  border: 1px solid #2c2c2c;
+  border-radius: 4px;
+}
+.el input:focus {
+  border: 1px solid rgba(0, 183, 168, 0.46);
+  outline: 3px solid rgba(0, 183, 168, 0.46);
+}
+.el:before {
+  position: absolute;
+  background: #92dd9c;
+  border-radius: 20px;
+  font-size: 16px;
+  padding: 2px 8px;
+  left: 52%;
+  top: 50%;
+  transform: translateY(-50%);
+  counter-increment: list1; /* Увеличиваем значение счетчика */
+  content: counter(list1); /* Выводим число */
+  opacity: .6;
+}
+.done {
+  background: #69fe48;
+}
+.err {
+  background: #fed448;
+}
+
+.toggle-bg{
+  background: #222; /* Вам понадобится видеть область с тумблером, но не стесняйтесь изменить цвет */
+  display: block; /* ...Чтобы можно было установить высоту и ширину */
+  float: left; /* ...Чтобы он не занимал всю ширину страницы */
+  height: 7px; /* Если хотите, можно это попозже изменить */
+  position: relative; /* Требуется, чтобы тумблер мог передвигаться */
+  width: 26px; /* Это тоже можно позже изменить */
+  border-radius: 8px;
+}
+.toggle-bg input{
+  height: 28px;
+  left: 0;
+  margin: 0; /* Сбросьте поля и отступ */
+  opacity: 0; /* Невидим! */
+  padding: 0;
+  position: absolute;
+  top: -10px; /* Сдвиньте по вертикали */
+  width: 36px;
+  z-index: 2; /* Нам нужно, чтобы вход input находился сверху span.switch, которому мы назначим z-index в 1 */
+}
+.switch{
+  background: #ccc;
+  display: block;
+  float: left;
+  height: 14px;
+  left: -1px; /* Это – начальная точка. При добавлении border radius немного виден фон, если использовать left: 0;, поэтому лучше всего применить -1px.*/
+  position: relative;
+  top: -4px; /* ...Чтобы отцентрировать его по вертикали */
+  width: 14px;
+  border-radius: 8px;
+  z-index: 1; /* Помните, он должен быть под невидимыми input-ами */
+  transition: left .2s ease;
+  background: radial-gradient(ellipse at center, #faff6c 0%, #6d68fb 50%, #5e86ff 51%, #03006c 100%);
+  box-shadow: 0 1px 1px #65727b, 0 0 1px #b6bdc2;
+}
+.toggle-bg input:checked~.switch{ left: -1px; } /* Исходная позиция тумблера */
+.toggle-bg input~:checked~.switch{ left: 13px;
+  background: radial-gradient(ellipse at center, #14ff00 0%, #e35757 50%, #ff8686 51%, #8c0000 100%)
+} /*окончательная относительная позиция переключателя */
+.toggle-bg input:checked{ z-index: 0; }
+.blk {
+  display: block;
+}
+.flexrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.flexrow .blk {
+  padding: 10px;
+}
+.flexcol {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.flexrow li {
+  list-style: none;
+  margin: 4px 3px;
+  font-size: 1rem;
+  transition: all .3s ease-in-out;
+}
+.flexrow li:hover {
+  font-size: 1.4rem;
+}
+.flexrow li label {
+  min-width: 140px;
+  min-height: 36px;
+
+  border: 1px dotted grey;
+  border-radius: 15px;
+  background: #9fbea3;
+  text-align: center;
+  transition: all 0.3s ease-in-out;
+}
+.flexrow li label:hover {
+  box-shadow: 1px 1px 2px #2c2c2c;
+  border: 1px dotted #343434;
+  border-radius: 6px;
+  background: #c0f9c7;
+}
+.flexrow li input {
+  display: none;
+}
+.flexrow li input:checked~ label{
+  background: #74ff86;
+  box-shadow: 1px 1px 2px #2c2c2c;
+  border: 1px solid #820000;
+  border-radius: 6px;
+  font-size: 1.4rem;
+}
+@media (max-width: 760px) {
+  .flexrow {
+    flex-wrap: wrap;
+  }
+}
+.link-page {
+  margin: 5px 1px 2px;
+  padding: 2px 9px;
+  text-decoration: none;
+  background: #a6dcff;
+  border-radius: 5px;
+  color: #7b0505;
+  font-family: Verdana, sans-serif;
+  font-size: 16px;
+  cursor: pointer;
+  /*pointer-events: none;*/
+}
+.link-page:hover:not(.active) {
+  outline: 1px solid #6c0000;
+}
+#panel {
+  position: relative;
+  width: 100%;
+  counter-reset: list1;
+}
+#links {
+  width: 96%;
+  margin: 5px auto;
+  flex-wrap: wrap;
+}
+a.active {
+  color: #fff873;
+  background: #e20b0b;
+  cursor: default;
+}
+@media (max-width: 600px) {
+  body {
+    padding: 0;
+    background: #ccf1ff;
+    font-size: 16px;
+  }
+  .el {
+    width: 100%;
+  }
+  .el input {
+    font-size: 15px;
+    padding: 2px;
+  }
+}

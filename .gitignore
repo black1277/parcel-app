@@ -1,6 +1,7 @@
 node_modules
 .parcel-cache
 dist
+public
 /.pnp
 .pnp.js
 .DS_Store

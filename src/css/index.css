@@ -1,9 +1,0 @@
-@import "main.scss";
-
-noscript {
-    text-align: center;
-    font-size: 1.6rem;
-    color: darkred;
-    margin: 15px auto;
-    padding: 15px;
-}

@@ -1,12 +1,16 @@
 import param from './js/index'
+import {head} from './components/header.js'
 
-console.log('Hello world!');
 document.addEventListener("DOMContentLoaded", ()=>{
   const dom = document.getElementById('main')
   init(dom)
 })
+
+
+
 function init(el){
-  el.innerHTML = 'All ok! ' + param[1].name +
-    '<hr/><button class="squreBtn philosopher">BUTTON</button>' +
-    '<hr/><button class="squreBtn vollkorn">BUTTON</button>'
+  el.innerHTML = head()
+  const audi = document.getElementsByTagName('audio')[0]
+  audi.currentTime = 60
+  console.log(audi)
 }
