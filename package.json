@@ -4,12 +4,12 @@
   "source": "src/index.html",
   "targets": {
     "default": {
-      "distDir": "./public"
+      "distDir": "./dist"
     }
   },
   "scripts": {
     "start": "parcel",
-    "build": "parcel build --output public"
+    "build": "parcel build --output dist"
   },
   "devDependencies": {
     "parcel": "^2.0.0"
