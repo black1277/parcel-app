@@ -10,21 +10,10 @@ const state = {
 }
 
 export function head() {
-  return get_audio(state.currentPage)
-    + get_langToggle()
+  return get_langToggle()
     + get_fontToggle(fonts)
-    + '<div class="flexcol source" id="panel">'
-    + get_row(data, 1)
-    + '</div>'
+    + get_panel()
     + get_links(data.length)
-}
-
-function get_audio() {
-  return `
- <div class="flexrow">
-
-</div> 
- `
 }
 
 function get_langToggle() {
@@ -34,13 +23,16 @@ function get_langToggle() {
   <div class="flexcol">
    <span class="toggle-bg" id="langToggles">
      <input type="radio" name="toggle" value="rus" id="rus" onchange="prx.lang='rus'">
-     <input type="radio" name="toggle" value="eng" id="eng" onchange="prx.lang='eng'"> 
+     <input type="radio" name="toggle" value="eng" id="eng" onchange="prx.lang='eng'">
      <span class="switch"></span>
    </span>
   </div>
   <span class="blk"><label for="eng">eng</label></span>
   <span class="blk">
     <label for="mix">перемешать </label><input type="checkbox" id="mix" onchange="prx.mix=this.checked">
+  </span>
+  <span class="blk">
+    <input value="показать" type="button" id="show" onclick="show()">
   </span>
  </div>`
 }
@@ -62,6 +54,11 @@ ${li}
 </div>`
 }
 
+function get_panel() {
+  let rw = get_row(data, 1)
+  return `<div class="flexcol source" id="panel">${rw}</div>`
+}
+
 function get_row(arr, page = 0) {
   let stranica = page > 0
     ? page - 1
@@ -72,6 +69,20 @@ function get_row(arr, page = 0) {
   if (state.lang === 'rus') return part.map(ob => make_row(ob.rus, ob.eng, ob.regEng ? ob.regEng : null)).join('')
   else return part.map(ob => make_row(ob.eng, ob.rus, ob.regRus ? ob.regRus : null)).join('')
 }
+
+function show() {
+  let elm = document.querySelectorAll('div.el span')
+  let event = new MouseEvent('dblclick', {
+    'view': window,
+    'bubbles': true,
+    'cancelable': true
+  })
+  for (let i = 0; i < elm.length; i++) {
+    elm[i].dispatchEvent(event)
+  }
+}
+
+window.show = show
 
 function make_row(vis, answer, pattern) {
   let pt = ''
@@ -94,7 +105,8 @@ function chHandler(el) {
     el.classList.remove('err')
     return
   } // если инпут пустой
-  const input = el.value.trim().toLowerCase()
+  let input = el.value.trim().toLowerCase()
+  input = input.replace(/\s+/g, ' ')
   if (el.parentNode.dataset.pattern) { // если есть шаблон работаем с ним
     let reg = el.parentNode.dataset.pattern.split('/')[1] // берем выражение между //
     reg = reg.trim().toLowerCase().replaceAll('’', '`') // меняем проклятый апостроф на нормальный

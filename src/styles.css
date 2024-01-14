@@ -41,6 +41,9 @@ h1 {
   font-size: 55px;
 }
 h3 {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0%);
   color: #de250d;
   font-family: cursive;
   font-size: 36px;
@@ -54,8 +57,18 @@ p {
 a {
   color: dodgerblue;
 }
+#show {
+  padding: 4px 10px 4px 10px;
+  font-size: 16px;
+  background: #92dd9c;
+  border-radius: 8px;
+}
+#show:hover {
+  background: #98f6a4;
+  color: rgb(43, 43, 43);
+}
 #main {
-  min-height: 100vh;
+  min-height: calc(100vh - 100px);
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -107,6 +120,9 @@ a {
   counter-increment: list1; /* Увеличиваем значение счетчика */
   content: counter(list1); /* Выводим число */
   opacity: .6;
+}
+@media (max-width: 760px) {
+
 }
 .done {
   background: #69fe48;
@@ -184,7 +200,6 @@ a {
 .flexrow li label {
   min-width: 140px;
   min-height: 36px;
-
   border: 1px dotted grey;
   border-radius: 15px;
   background: #9fbea3;
@@ -208,8 +223,43 @@ a {
   font-size: 1.4rem;
 }
 @media (max-width: 760px) {
+  h3 {
+    position: relative;
+    font-size: 24px;
+  }
+  .el:before {
+    display: none;
+  }
   .flexrow {
     flex-wrap: wrap;
+  }
+  .flexrow li {
+    list-style: none;
+    margin: 2px;
+    font-size: .8rem;
+    transition: all .3s ease-in-out;
+  }
+  .flexrow li:hover {
+    font-size: .85rem;
+  }
+  .flexrow li label {
+    min-width: 90px;
+    min-height: 20px;
+  }
+  .flexrow li input:checked~ label{
+    font-size: .85rem;
+  }
+    .el {
+    width: 100%;
+    flex-direction: column;
+  }
+  .el span {
+    max-width: 95%;
+  }
+  .el input {
+    font-size: 15px;
+    padding: 2px;
+    width: 95%;
   }
 }
 .link-page {
@@ -248,11 +298,47 @@ a.active {
     background: #ccf1ff;
     font-size: 16px;
   }
-  .el {
-    width: 100%;
-  }
   .el input {
-    font-size: 15px;
-    padding: 2px;
+    font-size: 12px;
+    padding: 0;
   }
+}
+.spoiler {
+  border: 1px solid #e0e0e0;
+  padding: 0 0.6em;
+}
+.spoiler details {
+  padding: 1em 0;
+}
+.spoiler details + details {
+  border-top: 1px solid #e0e0e0;
+}
+.spoiler summary {
+  color: #4d5895;
+  font-size: 1.3rem;
+}
+.spoiler details div {
+  overflow: hidden;
+  padding: 1em 1em 0;
+}
+.spoiler details[open] div {
+  animation: spoiler 1s;
+}
+@keyframes spoiler {
+  0%   {max-height: 0;}
+  100% {max-height: 30em;}
+}
+.spoiler li {
+	padding: 3px 10px;
+	margin: 3px 0 0 5px;
+}
+a.repo {
+  position: absolute;
+  top: 8px;
+  right: 14px;
+}
+a.repo img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
 }

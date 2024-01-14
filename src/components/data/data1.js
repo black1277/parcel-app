@@ -15,7 +15,7 @@ const data = [
   {
     rus: 'Её дети всегда слушают её',
     eng: 'Her children always listen to her',
-    regEng: '/Her (?:children|kids) always listens to her/gm'
+    regEng: '/Her (?:children|kids) always listen to her/gm'
   },
   {
     rus: 'Тот мужчина никогда не играет в видео игры',
