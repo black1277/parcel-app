@@ -1,35 +1,40 @@
 const data = [
   {
-    rus: '',
-    eng: ''
+    rus: 'Я хороший человек',
+    eng: 'I am a good person',
+    regEng: '/(?:(?:I am|I’m) a (?:good|nice) person)/gm'
   },
   {
-    rus: '',
-    eng: ''
+    rus: 'Я не плохой человек',
+    eng: 'I am not a bad person',
+    regEng: '/(?:(?:I am|I’m) not a bad person)/gm'
   },
   {
-    rus: '',
-    eng: ''
+    rus: 'Хороший ли я человек?',
+    eng: 'Am I a good person?',
+    regEng: '/(?:Am I a (?:good|nice) person\\?)/gm'
   },
   {
-    rus: '',
-    eng: ''
+    rus: 'Кто я?',
+    eng: 'Who am I?'
   },
   {
-    rus: '',
-    eng: ''
+    rus: 'Вы опоздали в понедельник',
+    eng: 'You were late on Monday',
+    regEng: '/(?:You were late on Monday)|(?:On Monday you were late)/gm'
   },
   {
-    rus: '',
-    eng: ''
+    rus: 'Вы не опоздали в понедельник',
+    eng: 'You were not late on Monday',
+    regEng: '/(?:You (?:were not|weren’t) late on Monday)|(?:On Monday You (?:were not|weren’t) late)/gm'
   },
   {
-    rus: '',
-    eng: ''
+    rus: 'Опоздали ли вы в понедельник?',
+    eng: 'Were you late on Monday?'
   },
   {
-    rus: '',
-    eng: ''
+    rus: 'Когда вы опоздали?',
+    eng: 'When were you late?'
   }
 ]
 export default data

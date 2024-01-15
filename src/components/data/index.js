@@ -59,7 +59,7 @@ import data56 from './data56'
 import data57 from './data57'
 import data58 from './data58'
 import data59 from './data59'
-
+import data60 from './data60'
 
 
 data.push(data1)
@@ -121,5 +121,6 @@ data.push(data56)
 data.push(data57)
 data.push(data58)
 data.push(data59)
+data.push(data60)
 
 export default data
