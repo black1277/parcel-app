@@ -164,3 +164,23 @@ const prx = new Proxy(state, {
   }
 })
 window.prx = prx
+
+let arrayPages = Array.from({ length: data.length }, (_, i) => i + 1)
+
+function getRandomPage() {// возвращает рандом номер страницы
+  if (arrayPages.length < 2) arrayPages = Array.from({ length: data.length }, (_, i) => i + 1)
+  return Math.floor(Math.random() * arrayPages.length)
+}
+document.addEventListener('keydown', function (event) {
+  if (event.ctrlKey){
+    if (event.key === 'ArrowLeft') {
+      if (prx.currentPage > 1) prx.currentPage--
+    } else if (event.key === 'ArrowRight') {
+      if (prx.currentPage < data.length) prx.currentPage++
+    } else if (event.code === 'Space'){
+      let pg = getRandomPage()
+      prx.currentPage = arrayPages[pg]
+      arrayPages.splice(pg, 1) // страницы не должны повторяться
+    }
+  }
+})
