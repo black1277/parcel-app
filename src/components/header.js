@@ -151,7 +151,7 @@ const prx = new Proxy(state, {
     if (key === 'font') {
       panel.classList.remove(...fonts)
       panel.classList.add(val)
-      return
+      return true
     }
 
     panel.innerHTML = get_row(data, target.currentPage)
@@ -160,7 +160,7 @@ const prx = new Proxy(state, {
       const lnk = document.getElementById('links')
       lnk.innerHTML = get_links(data.length)
     }
-
+    return true
   }
 })
 window.prx = prx
