@@ -8,7 +8,7 @@ const data = [
   {
     rus: 'Они не готовы начать через минуту',
     eng: 'They are not ready to start in a minute',
-    regEng: '(?:In a minute (?:they are|they’re) not ready to (?:start|begin)|(?:They are|They’re) not ready to (?:start|begin) in a minute)'
+    regEng: '/(?:In a minute (?:they are|they’re) not ready to (?:start|begin)|(?:They are|They’re) not ready to (?:start|begin) in a minute)/gm'
   },
   {
     rus: 'Готовы ли они начать через минуту?',

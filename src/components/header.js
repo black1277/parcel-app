@@ -172,7 +172,7 @@ function getRandomPage() {// возвращает рандом номер стр
   return Math.floor(Math.random() * arrayPages.length)
 }
 document.addEventListener('keydown', function (event) {
-  if (event.ctrlKey){
+  if (event.ctrlKey && event.altKey){
     if (event.key === 'ArrowLeft') {
       if (prx.currentPage > 1) prx.currentPage--
     } else if (event.key === 'ArrowRight') {
