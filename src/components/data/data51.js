@@ -5,7 +5,8 @@ const data = [
   },
   {
     rus: 'Они играют в теннис каждый день',
-    eng: 'They play tennis every day'
+    eng: 'They play tennis every day',
+    regEng: '/(?:They play tennis every day)|(?:Every day they play tennis)/gm'
   },
   {
     rus: 'Он хочет прочитать эту книгу',
@@ -21,7 +22,8 @@ const data = [
   },
   {
     rus: 'Вчера она купила новое платье',
-    eng: 'Yesterday she bought a new dress'
+    eng: 'Yesterday she bought a new dress',
+    regEng: '/(?:Yesterday she bought a new dress)|(?:She bought a new dress yesterday)/gm'
   },
   {
     rus: 'У нас хорошие друзья',
@@ -29,7 +31,8 @@ const data = [
   },
   {
     rus: 'Я позвоню тебе в понедельник',
-    eng: 'I will call you on Monday'
+    eng: 'I will call you on Monday',
+    regEng: '/(?:(?:I will|I’ll) call you on Monday)|(?:On Monday (?:I will|I’ll) call you)/gm'
   },
   {
     rus: 'Они хотят, чтобы я помог им',
@@ -37,7 +40,8 @@ const data = [
   },
   {
     rus: 'Мы закончили этот проект в прошлом месяце',
-    eng: 'We finished this project last month'
+    eng: 'We finished this project last month',
+    regEng: '/(?:We finished this project last month)|(?:Last month we finished this project)/gm'
   },
   {
     rus: 'Мне нужно, чтобы вы написали мне сообщение',
@@ -45,7 +49,8 @@ const data = [
   },
   {
     rus: 'Вчера она поехала в школу на автобусе',
-    eng: 'Yesterday she went to school by bus'
+    eng: 'Yesterday she went to school by bus',
+    regEng: '/(?:Yesterday she went to school by bus)|(?:She went to school by bus yesterday)/gm'
   },
   {
     rus: 'Мы обычно ездим на работу на машине',
@@ -53,7 +58,8 @@ const data = [
   },
   {
     rus: 'Они видели его здесь в среду',
-    eng: 'They saw him here on Wednesday'
+    eng: 'They saw him here on Wednesday',
+    regEng: '/(?:They saw him here on Wednesday)|(?:On Wednesday they saw him here)/gm'
   },
   {
     rus: 'Я люблю свою чудесную жизнь!',

@@ -1,11 +1,13 @@
 const data = [
   {
     rus: 'Они иногда обедают здесь во вторник',
-    eng: 'They sometimes have lunch here on Tuesday'
+    eng: 'They sometimes have lunch here on Tuesday',
+    regEng: '/(?:They sometimes have lunch here on Tuesday)|(?:On Tuesday they sometimes have lunch here)/gm'
   },
   {
     rus: 'Они не обедают здесь во вторник',
-    eng: 'They do not have lunch here on Tuesday'
+    eng: 'They do not have lunch here on Tuesday',
+    regEng: '/(?:They (?:do not|don’t) have lunch here on Tuesday)|(?:On Tuesday they (?:do not|don’t) have lunch here)/gm'
   },
   {
     rus: 'Обедают ли они иногда здесь во вторник?',
@@ -21,7 +23,8 @@ const data = [
   },
   {
     rus: 'Он не часто ужинает там в понедельник',
-    eng: 'He does not often have dinner there on Monday'
+    eng: 'He does not often have dinner there on Monday',
+    regEng: '/(?:He (?:does not|doesn’t) often have dinner there on Monday)|(?:On Monday he (?:does not|doesn’t) often have dinner there)/gm'
   },
   {
     rus: 'Ужинает ли он там часто в понедельник?',
