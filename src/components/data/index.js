@@ -68,5 +68,7 @@ import data65 from './data65'; data.push(data65)
 import data66 from './data66'; data.push(data66)
 import data67 from './data67'; data.push(data67)
 import data68 from './data68'; data.push(data68)
+import data69 from './data69'; data.push(data69)
+import data70 from './data70'; data.push(data70)
 
 export default data
