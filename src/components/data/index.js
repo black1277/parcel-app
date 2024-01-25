@@ -70,5 +70,10 @@ import data67 from './data67'; data.push(data67)
 import data68 from './data68'; data.push(data68)
 import data69 from './data69'; data.push(data69)
 import data70 from './data70'; data.push(data70)
+import data71 from './data71'; data.push(data71)
+import data72 from './data72'; data.push(data72)
+import data73 from './data73'; data.push(data73)
+import data74 from './data74'; data.push(data74)
+import data75 from './data75'; data.push(data75)
 
 export default data
