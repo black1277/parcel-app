@@ -1,6 +1,6 @@
 import data from './data'
 
-const fonts = ['source', 'lora', 'philosopher', 'literata', 'vollkorn']
+const fonts = ['source', 'lora', 'philosopher', 'literata', 'vollkorn', 'firacode']
 
 const state = {
   lang: 'rus',

@@ -79,5 +79,10 @@ import data76 from './data76'; data.push(data76)
 import data77 from './data77'; data.push(data77)
 import data78 from './data78'; data.push(data78)
 import data79 from './data79'; data.push(data79)
+import data80 from './data80'; data.push(data80)
+import data81 from './data81'; data.push(data81)
+import data82 from './data82'; data.push(data82)
+import data83 from './data83'; data.push(data83)
+import data84 from './data84'; data.push(data84)
 
 export default data
