@@ -125,23 +125,19 @@ a {
   content: counter(list1); /* Выводим число */
   opacity: .6;
 }
-@media (max-width: 760px) {
-
-}
 .done {
   background: #69fe48;
 }
 .err {
   background: #fed448;
 }
-
 .toggle-bg{
-  background: #222; /* Вам понадобится видеть область с тумблером, но не стесняйтесь изменить цвет */
+  background: #222;
   display: block; /* ...Чтобы можно было установить высоту и ширину */
   float: left; /* ...Чтобы он не занимал всю ширину страницы */
-  height: 7px; /* Если хотите, можно это попозже изменить */
+  height: 7px; 
   position: relative; /* Требуется, чтобы тумблер мог передвигаться */
-  width: 26px; /* Это тоже можно позже изменить */
+  width: 26px; 
   border-radius: 8px;
 }
 .toggle-bg input{
