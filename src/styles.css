@@ -135,9 +135,9 @@ a {
   background: #222;
   display: block; /* ...Чтобы можно было установить высоту и ширину */
   float: left; /* ...Чтобы он не занимал всю ширину страницы */
-  height: 7px; 
+  height: 7px;
   position: relative; /* Требуется, чтобы тумблер мог передвигаться */
-  width: 26px; 
+  width: 26px;
   border-radius: 8px;
 }
 .toggle-bg input{
@@ -341,4 +341,24 @@ a.repo img {
   width: 40px;
   height: 40px;
   border-radius: 50%;
+}
+.w100 {
+  width: 100%;
+}
+.search {
+  width: 50%;
+  font-size: 1.3rem;
+  padding: 2px 8px 4px;
+  outline: none;
+}
+.search:active, .search:focus {
+  outline: grey dotted 2px;
+}
+.go {
+  padding: 4px 10px;
+  font-size: 1.15rem;
+  color:darkgreen;
+}
+.grey {
+  color: grey;
 }

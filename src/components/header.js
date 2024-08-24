@@ -11,6 +11,7 @@ const state = {
 
 export function head() {
   return get_langToggle()
+    + get_searchPanel()
     + get_fontToggle(fonts)
     + get_panel()
     + get_links(data.length)
@@ -35,6 +36,56 @@ function get_langToggle() {
     <input value="показать" type="button" id="show" onclick="show()">
   </span>
  </div>`
+}
+
+function get_searchPanel() {
+  return `<div class="flexrow w100">
+  <input type="text" name="search" id="search" class="search"><button class="go" onclick="goHandler()">GO</button></div>
+  `
+}
+
+function goHandler() {
+  const input = document.getElementById('search')
+  const panel = document.getElementById('panel')
+  let txt = input.value.trim()
+  if (txt.length < 3) {
+    panel.innerHTML = 'Нужно минимум 3 символа для поиска!'
+    return
+  }
+  let answ = filterByString(data, input.value, prx.lang)
+  if (!answ.length) {
+    panel.innerHTML = 'Ничего не найдено!'
+    return
+  }
+  let dt = []
+  dt.push(answ)
+  panel.innerHTML = get_row(dt)
+  enableDisable(true)
+}
+window.goHandler = goHandler
+
+function enableDisable(booln) {
+  const rus = document.getElementById('rus')
+  const eng = document.getElementById('eng')
+  const mix = document.getElementById('mix')
+  const blk = document.getElementsByClassName('blk')
+  if(booln)
+    for(let i = 0; i<=2; i++){
+      blk[i].classList.add('grey')
+    }
+  else
+    for (let i = 0; i <= 2; i++) {
+      blk[i].classList.remove('grey')
+    }
+  rus.disabled = booln
+  eng.disabled = booln
+  mix.disabled = booln
+}
+
+function filterByString(array, searchString, lang) {
+  return array
+    .map(innerArray => innerArray.filter(item => item[lang].includes(searchString)))
+    .flat()
 }
 
 function get_fontToggle(fnt) {
@@ -96,6 +147,7 @@ function dblHandler(el, ans) {
   const thElement = el.parentNode.getElementsByTagName('input')[0]
   thElement.title = thElement.value
   thElement.value = ans
+  thElement.readOnly = true
 }
 
 window.dblHandler = dblHandler
@@ -155,7 +207,7 @@ const prx = new Proxy(state, {
     }
 
     panel.innerHTML = get_row(data, target.currentPage)
-
+    enableDisable(false)
     if (key === 'currentPage') {
       const lnk = document.getElementById('links')
       lnk.innerHTML = get_links(data.length)
