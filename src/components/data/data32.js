@@ -5,7 +5,8 @@ const data32 = [
   },
   {
     rus: 'Ты не смотришь телевизор после работы',
-    eng: 'You do not watch TV after work'
+    eng: 'You do not watch TV after work',
+    regEng: '/(?:You (?:do not|don’t) watch TV after work)/gm'
   },
   {
     rus: 'Смотришь ли ты телевизор после работы?',
@@ -21,7 +22,8 @@ const data32 = [
   },
   {
     rus: 'Она не читает книгу после школы',
-    eng: 'She does not read a book after school'
+    eng: 'She does not read a book after school',
+    regEng: '/(?:She (?:does not|doesn’t) read a book after school)/gm'
   },
   {
     rus: 'Читает ли она  книгу после школы?',
