@@ -304,6 +304,9 @@ a.active {
     padding: 0;
     background: #ccf1ff;
   }
+  #progress{
+    display: none;
+  }
   .el {
     padding: 1px;
   }
@@ -313,6 +316,9 @@ a.active {
   }
   .el span {
     max-width: 99%;
+  }
+  .spoiler li:nth-child(7), .spoiler li:nth-child(8) {
+    display: none;
   }
 }
 .spoiler {
@@ -379,7 +385,7 @@ a.repo img {
   font-size: 2rem;
   position: absolute;
   left: 50%;
-  top: 30%;
+  top: 40%;
   background: #f0dda5;
   text-align: center;
   padding: 2.5rem 1rem;
