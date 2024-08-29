@@ -84,5 +84,6 @@ import data81 from './data81'; data.push(data81)
 import data82 from './data82'; data.push(data82)
 import data83 from './data83'; data.push(data83)
 import data84 from './data84'; data.push(data84)
+import data85 from './data85'; data.push(data85)
 
 export default data

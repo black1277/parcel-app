@@ -45,9 +45,11 @@ function get_searchPanel() {
 }
 
 function goHandler() {
+  console.log('goHandler');
   const input = document.getElementById('search')
   const panel = document.getElementById('panel')
   let txt = input.value.trim()
+  input.focus()
   if (txt.length < 3) {
     panel.innerHTML = 'Нужно минимум 3 символа для поиска!'
     return
@@ -83,8 +85,9 @@ function enableDisable(booln) {
 }
 
 function filterByString(array, searchString, lang) {
+  let str=searchString.toLowerCase()
   return array
-    .map(innerArray => innerArray.filter(item => item[lang].includes(searchString)))
+    .map(innerArray => innerArray.filter(item => item[lang].toLowerCase().includes(str)))
     .flat()
 }
 
@@ -122,6 +125,7 @@ function get_row(arr, page = 0) {
 }
 
 function show() {
+  console.log('show');
   let elm = document.querySelectorAll('div.el span')
   let event = new MouseEvent('dblclick', {
     'view': window,
@@ -147,7 +151,7 @@ function dblHandler(el, ans) {
   const thElement = el.parentNode.getElementsByTagName('input')[0]
   thElement.title = thElement.value
   thElement.value = ans
-  thElement.readOnly = true
+  //thElement.readOnly = true
 }
 
 window.dblHandler = dblHandler
@@ -220,7 +224,7 @@ window.prx = prx
 let arrayPages = Array.from({ length: data.length }, (_, i) => i + 1)
 
 function getRandomPage() {// возвращает рандом номер страницы
-  if (arrayPages.length < 2) arrayPages = Array.from({ length: data.length }, (_, i) => i + 1)
+  if (arrayPages.length < 1) arrayPages = Array.from({ length: data.length }, (_, i) => i + 1)
   return Math.floor(Math.random() * arrayPages.length)
 }
 document.addEventListener('keydown', function (event) {
@@ -230,9 +234,20 @@ document.addEventListener('keydown', function (event) {
     } else if (event.key === 'ArrowRight') {
       if (prx.currentPage < data.length) prx.currentPage++
     } else if (event.code === 'Space'){
+      event.preventDefault()// нужно - иначе пробелом нажимаются кнопки в фокусе
       let pg = getRandomPage()
       prx.currentPage = arrayPages[pg]
       arrayPages.splice(pg, 1) // страницы не должны повторяться
+      showProgress()
     }
   }
 })
+function showProgress(){
+  const el = document.getElementById("progress")
+  el.classList.remove('fadeOpacity')
+  // Важно: принудительно перерисовать элемент, чтобы удалить предыдущую анимацию
+  void el.offsetWidth;
+  let str = data.length - arrayPages.length + "/" + data.length
+  el.innerHTML = "<span>Random progress:</span><br>" + str
+  el.classList.add('fadeOpacity')
+}

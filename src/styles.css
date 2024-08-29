@@ -22,18 +22,35 @@
 .firacode, .firacode input {
   font-family: 'Fira Code', monospace;
 }
+:root {
+  --min_size: 12;
+  --max_size: 20;
+  --minimum_size: calc(1px * var(--min_size));
+  --maximum_size: calc(1px * var(--max_size));
+  --minimum_viewport_width: 320;
+  --maximum_viewport_width: 1800;
+  --delta_size: calc(var(--max_size) - var(--min_size));
+  --delta_viewport: calc(var(--maximum_viewport_width) - var(--minimum_viewport_width));
+  --scale_factor: calc((100vw - (1px * var(--minimum_viewport_width))) / var(--delta_viewport));
+  --result: clamp(var(--minimum_size), calc(var(--minimum_size) + var(--delta_size) * var(--scale_factor)), var(--maximum_size));
+}
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
 }
+
+html {
+  font-size: var(--result);
+}
 html, body {
   min-height: 100vh;
 }
+
 body {
   background: #ccffd3;
   padding: 5px 12px;
-  font-size: 22px;
+  font-size: 1.3rem;
 }
 
 .center {
@@ -42,7 +59,7 @@ body {
 h1 {
   color: #de250d;
   font-family: cursive;
-  font-size: 55px;
+  font-size: 3.5rem;
 }
 h3 {
   position: absolute;
@@ -50,7 +67,7 @@ h3 {
   transform: translate(-50%, 0%);
   color: #de250d;
   font-family: cursive;
-  font-size: 36px;
+  font-size: 2.25rem;
 }
 
 p {
@@ -63,7 +80,7 @@ a {
 }
 #show {
   padding: 4px 10px 4px 10px;
-  font-size: 16px;
+  font-size: 1rem;
   background: #92dd9c;
   border-radius: 8px;
 }
@@ -72,13 +89,15 @@ a {
   color: rgb(43, 43, 43);
 }
 #main {
-  min-height: calc(100vh - 100px);
+  min-height: calc(100vh - 180px);
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
   border: 1px solid #0d8300;
   border-radius: 10px;
+  max-width: 1800px;
+  margin: 5px auto;
 }
 .el {
   position: relative;
@@ -100,9 +119,9 @@ a {
 .el input {
   position: relative;
   width: 45%;
-  min-height: 36px;
+  min-height: 1.63rem;
   font-family: inherit;
-  font-size: 20px;
+  font-size: 1.25rem;
   outline: none;
   padding: 2px 8px;
   border: 1px solid #2c2c2c;
@@ -116,7 +135,7 @@ a {
   position: absolute;
   background: #92dd9c;
   border-radius: 20px;
-  font-size: 16px;
+  font-size: 1rem;
   padding: 2px 8px;
   left: 52%;
   top: 50%;
@@ -178,9 +197,10 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
 }
 .flexrow .blk {
-  padding: 10px;
+  padding: .5rem;
 }
 .flexcol {
   display: flex;
@@ -198,8 +218,8 @@ a {
   font-size: 1.4rem;
 }
 .flexrow li label {
-  min-width: 140px;
-  min-height: 36px;
+  min-width: 8.75rem;
+  min-height: 2.25rem;
   border: 1px dotted grey;
   border-radius: 15px;
   background: #9fbea3;
@@ -225,41 +245,28 @@ a {
 @media (max-width: 760px) {
   h3 {
     position: relative;
-    font-size: 24px;
+    font-size: 1.5rem;
   }
   .el:before {
     display: none;
   }
-  .flexrow {
-    flex-wrap: wrap;
-  }
   .flexrow li {
     list-style: none;
     margin: 2px;
-    font-size: .8rem;
     transition: all .3s ease-in-out;
   }
-  .flexrow li:hover {
-    font-size: .85rem;
-  }
-  .flexrow li label {
-    min-width: 90px;
-    min-height: 20px;
-  }
-  .flexrow li input:checked~ label{
-    font-size: .85rem;
-  }
-    .el {
+  .el {
     width: 100%;
     flex-direction: column;
   }
   .el span {
-    max-width: 95%;
+    max-width: 99%;
+    padding: 4px;
   }
   .el input {
-    font-size: 15px;
     padding: 2px;
-    width: 95%;
+    width: 99%;
+    min-height: 2.1rem;
   }
 }
 .link-page {
@@ -270,7 +277,7 @@ a {
   border-radius: 5px;
   color: #7b0505;
   font-family: Verdana, sans-serif;
-  font-size: 16px;
+  font-size: 1rem;
   cursor: pointer;
   /*pointer-events: none;*/
 }
@@ -296,11 +303,16 @@ a.active {
   body {
     padding: 0;
     background: #ccf1ff;
-    font-size: 16px;
+  }
+  .el {
+    padding: 1px;
   }
   .el input {
-    font-size: 12px;
+    width: 99%;
     padding: 0;
+  }
+  .el span {
+    max-width: 99%;
   }
 }
 .spoiler {
@@ -361,4 +373,43 @@ a.repo img {
 }
 .grey {
   color: grey;
+}
+#progress{
+  width: 12rem;
+  font-size: 2rem;
+  position: absolute;
+  left: 50%;
+  top: 30%;
+  background: #f0dda5;
+  text-align: center;
+  padding: 2.5rem 1rem;
+  border: 3px outset #dbac7a;
+  border-radius: 8px;
+  opacity: 0;
+  transform: translate(-50%, 0%);
+}
+#progress span {
+  color: green;
+  font-size: 1rem;
+}
+.fadeOpacity {
+  opacity: .8;
+  animation: fadeOut 2.2s forwards;
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: .8;
+    visibility: visible;
+  }
+  40% {
+    opacity: .8;
+  }
+  99% {
+    visibility: visible;
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
 }
