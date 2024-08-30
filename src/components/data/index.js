@@ -85,5 +85,7 @@ import data82 from './data82'; data.push(data82)
 import data83 from './data83'; data.push(data83)
 import data84 from './data84'; data.push(data84)
 import data85 from './data85'; data.push(data85)
+import data86 from './data86'; data.push(data86)
+import data87 from './data87'; data.push(data87)
 
 export default data

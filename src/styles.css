@@ -419,3 +419,19 @@ a.repo img {
     visibility: hidden;
   }
 }
+.animated {
+  animation-duration: 1s;
+  animation-fill-mode: both;
+  animation-name: fadeInDown;
+}
+@keyframes fadeInDown {
+0% {
+  opacity: 0;
+  transform: translate3d(-50%, -100%, 0px);
+}
+100% {
+  opacity: 1;
+  transform: translateZ(0px);
+  transform: translate(-50%);
+}
+}

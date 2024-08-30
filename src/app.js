@@ -1,4 +1,4 @@
-import {head} from './components/header.js'
+import {main} from './components/header.js'
 
 document.addEventListener("DOMContentLoaded", ()=>{
   const dom = document.getElementById('main')
@@ -6,5 +6,5 @@ document.addEventListener("DOMContentLoaded", ()=>{
 })
 
 function init(el){
-  el.innerHTML = head()
+  el.innerHTML = main()
 }
