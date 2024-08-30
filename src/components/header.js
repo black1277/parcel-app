@@ -45,7 +45,6 @@ function get_searchPanel() {
 }
 
 function goHandler() {
-  console.log('goHandler');
   const input = document.getElementById('search')
   const panel = document.getElementById('panel')
   let txt = input.value.trim()
@@ -109,7 +108,9 @@ ${li}
 }
 
 function get_panel() {
-  let rw = get_row(data, 1)
+  let page = Number(PackData.getData('page')) ?? 1
+  state.currentPage = page;
+  let rw = get_row(data, page)
   return `<div class="flexcol source" id="panel">${rw}</div>`
 }
 
@@ -125,7 +126,6 @@ function get_row(arr, page = 0) {
 }
 
 function show() {
-  console.log('show');
   let elm = document.querySelectorAll('div.el span')
   let event = new MouseEvent('dblclick', {
     'view': window,
@@ -211,6 +211,7 @@ const prx = new Proxy(state, {
     }
 
     panel.innerHTML = get_row(data, target.currentPage)
+    PackData.setData('page', target.currentPage)
     enableDisable(false)
     if (key === 'currentPage') {
       const lnk = document.getElementById('links')
@@ -250,4 +251,34 @@ function showProgress(){
   let str = data.length - arrayPages.length + "/" + data.length
   el.innerHTML = "<span>Random progress:</span><br>" + str
   el.classList.add('fadeOpacity')
+}
+class PackData {
+  static userDataKey = 'userData'
+  static setData(key, val) {
+    let data
+    if (!localStorage.getItem(PackData.userDataKey)){
+      data = { [key]: val }
+    } else {
+      let strData = localStorage.getItem(PackData.userDataKey)
+      data = JSON.parse(strData)
+      data[key] = val
+    }
+    try {
+      localStorage.setItem(PackData.userDataKey, JSON.stringify(data));
+    } catch (error) {
+      console.log('Error! localStorage not complete!');
+    }
+  }
+  static getData(key) {
+    const storedData = localStorage.getItem(PackData.userDataKey);
+    if (!storedData) return false;
+
+    try {
+      const data = JSON.parse(storedData);
+      return key in data ? data[key] : false;
+    } catch (error) {
+      console.error('Error parsing JSON from localStorage:', error);
+      return false;
+    }
+  }
 }
