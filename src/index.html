@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="styles.css" />
     <script type="module" src="app.js"></script>
   </head>
-<body>
+<body style="background-color: #ccffd3">
   <h3 class="center animated">Английский язык</h3>
   <div class="spoiler">
     <details>
@@ -34,5 +34,36 @@
   <div id="main"></div>
   <a class="repo" href="https://github.com/black1277/parcel-app" target="_blank" title="github"><img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub Logo"></a>
   <div id="progress"></div>
+<input type="checkbox" id="side-checkbox" />
+<div class="side-panel">
+    <label class="side-button-2" for="side-checkbox">+</label>
+    <div class="side-title">Настройки</div>
+    <div><label><input type="checkbox" name="showSearch" id="showSearch" checked /> : Поиск<label></div>
+    <div><label><input type="checkbox" name="showFonts" id="showFonts" checked /> : Шрифты<label></div>
+    <div><button class="icon-button upfont green" id="increaseFont">+FontSize</button><span id="fsize" class="num">20</span><button
+      class="icon-button upfont red" id="decreaseFont">-FontSize</button></div>
+    <div class="slider-container">
+        <label for="hue" class="slider-label">H:</label>
+        <input type="range" id="hue" min="0" max="360">
+        <span class="num" id="hueVal">20</span>
+    </div>
+    <div class="slider-container">
+        <label for="saturation" class="slider-label">S:</label>
+        <input type="range" id="saturation" min="0" max="100">
+        <span class="num" id="saturationVal">30</span>
+    </div>
+    <div class="slider-container">
+        <label for="lightness" class="slider-label">L:</label>
+        <input type="range" id="lightness" min="0" max="100">
+        <span class="num" id="lightnessVal">40</span>
+    </div>
+</div>
+<div class="side-button-1-wr">
+    <label class="icon-button" for="side-checkbox">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M19.14 12.94c.04-.31.06-.63.06-.94s-.02-.63-.06-.94l2.03-1.58c.18-.14.23-.38.12-.57l-1.92-3.32c-.12-.2-.37-.27-.58-.2l-2.39.96a7.007 7.007 0 0 0-1.62-.94l-.36-2.54c-.05-.23-.25-.4-.49-.4h-3.84c-.24 0-.44.17-.49.4l-.36 2.54c-.57.23-1.11.53-1.62.94l-2.39-.96a.503.503 0 0 0-.58.2l-1.92 3.32c-.12.2-.07.44.12.57l2.03 1.58c-.04.31-.06.63-.06.94s.02.63.06.94l-2.03 1.58c-.18.14-.23.38-.12.57l1.92 3.32c.12.2.37.27.58.2l2.39-.96c.5.4 1.05.71 1.62.94l.36 2.54c.05.23.25.4.49.4h3.84c.24 0 .44-.17.49-.4l.36-2.54c.57-.23 1.11-.53 1.62-.94l2.39.96c.21.08.45 0 .58-.2l1.92-3.32a.503.503 0 0 0-.12-.57l-2.03-1.58zm-7.14 2.06c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z"/>
+        </svg>
+    </label>
+</div>
 </body>
 </html>

@@ -9,7 +9,10 @@ function getRandomPage() {// возвращает рандом номер стр
   if (arrayPages.length < 1) arrayPages = Array.from({ length: data.length }, (_, i) => i + 1)
   return Math.floor(Math.random() * arrayPages.length)
 }
-
+function countObjects(arrays) {
+  return arrays.reduce((total, array) => total + array.length, 0);
+}
+console.log('Всего', countObjects(data), ' выражений')
 const state = {
   lang: 'rus',
   font: PackData.getData('font') ?? fonts[0],
@@ -73,7 +76,10 @@ function get_langToggle() {
 }
 
 function get_searchPanel() {
-  return `<div class="flexrow w100">
+  let flag = PackData.getData('showSearch')
+  let style = 'style="display: flex"'
+  if(flag === false) style = 'style="display: none"'
+  return `<div class="flexrow w100" ${style}>
   <input type="text" name="search" id="search" class="search"><button class="go"
   onclick="goHandler()">GO</button></div>`
 }
@@ -99,6 +105,9 @@ function goHandler() {
 }
 
 function get_fontToggle(fnt) {
+  let flag = PackData.getData('showFonts')
+  let style = 'style="display: flex"'
+  if (flag === false) style = 'style="display: none"'
   const li = fnt.map((el) => {
     const ch = el === state.font ? 'checked' : ''
     return `
@@ -108,7 +117,7 @@ function get_fontToggle(fnt) {
   }).join('')
 
   return `
-<div class="flexcol" id="fontToggles">
+<div class="flexcol" id="fontToggles" ${style}>
  <ul class="flexrow">
 ${li}
  </ul>
@@ -116,8 +125,9 @@ ${li}
 }
 
 function get_panel() {
-  let page = Number(PackData.getData('page')) ?? 1 // номер страницы из локалсторадж или 1
-  state.currentPage = page;
+  let page = PackData.getData('page') ?? 1 // номер страницы из локалсторадж или 1
+  state.currentPage = Number(page)
+  console.log(page);
   let rw = get_rows(data, page)
   let font = prx.font
   return `<div class="flexcol ${font}" id="panel">${rw}</div>`
@@ -130,7 +140,7 @@ function get_rows(arr, page = 0) {
   if (stranica > arr.length || arr.length < 1) return `<div>Нет страницы или данных</div>`
   const part = [...arr[stranica]]
   let btnShow = document.getElementById('show')
-  if(btnShow) btnShow.disabled = false   
+  if(btnShow) btnShow.disabled = false
   if (state.mix) mixArr(part)
   if (state.lang === 'rus') return part.map(ob => make_row(ob.rus, ob.eng, ob.regEng ? ob.regEng : null)).join('')
   else return part.map(ob => make_row(ob.eng, ob.rus, ob.regRus ? ob.regRus : null)).join('')
@@ -148,6 +158,7 @@ function dblHandler(el, ans) {
   const thElement = el.parentNode.getElementsByTagName('input')[0]
   thElement.title = thElement.value
   thElement.value = ans
+  chHandler(thElement)
   //thElement.readOnly = true
 }
 

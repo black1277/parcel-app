@@ -17,14 +17,14 @@ class PackData {
   }
   static getData(key) {
     const storedData = localStorage.getItem(PackData.userDataKey);
-    if (!storedData) return false;
+    if (!storedData) return undefined;
 
     try {
       const data = JSON.parse(storedData);
-      return key in data ? data[key] : false;
+      return key in data ? data[key] : undefined;
     } catch (error) {
       console.error('Error parsing JSON from localStorage:', error);
-      return false;
+      return undefined;
     }
   }
 }
