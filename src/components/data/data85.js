@@ -27,7 +27,7 @@ const data = [
   },
   {
     rus: 'Чья это сумка? Это сумка моей сестры',
-    eng: 'Whose bag is this? This is my sister’s bag',
+    eng: 'Whose bag is this? This is my sister`s bag',
     regEng: ''
   },
   {

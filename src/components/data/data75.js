@@ -32,7 +32,7 @@ const data = [
   },
   {
     rus: 'То были книги моего дяди?',
-    eng: 'Were those my uncle’s books?',
+    eng: 'Were those my uncle`s books?',
     regEng: ''
   },
   {

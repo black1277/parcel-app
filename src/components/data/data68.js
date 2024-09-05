@@ -2,7 +2,7 @@
 const data = [
   {
     rus: 'Это машина твоего друга',
-    eng: 'This is your friend’s car',
+    eng: 'This is your friend`s car',
     regEng: ''
   },
   {
@@ -12,7 +12,7 @@ const data = [
   },
   {
     rus: 'Это машина твоего друга?',
-    eng: 'Is this your friend’s car?',
+    eng: 'Is this your friend`s car?',
     regEng: ''
   },
   {
@@ -22,7 +22,7 @@ const data = [
   },
   {
     rus: 'Это туфли моей сестры',
-    eng: 'These are my sister’s shoes',
+    eng: 'These are my sister`s shoes',
     regEng: ''
   },
   {
@@ -32,7 +32,7 @@ const data = [
   },
   {
     rus: 'Это туфли моей сестры?',
-    eng: 'Are these my sister’s shoes?',
+    eng: 'Are these my sister`s shoes?',
     regEng: ''
   },
   {

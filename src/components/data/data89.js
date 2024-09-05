@@ -17,7 +17,7 @@ const data = [
   },
   {
     rus: 'Лицо её матери красивее, чем её',
-    eng: 'Her mother’s face is more beautiful than hers',
+    eng: 'Her mother`s face is more beautiful than hers',
     regEng: '/(?:Her (?:mother’s|mom’s|mum’s) face is (?:more beautiful|prettier) than hers)/gm'
   },
   {

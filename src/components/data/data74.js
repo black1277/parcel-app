@@ -12,7 +12,7 @@ const data = [
   },
   {
     rus: 'Это сумка вашей тёти?',
-    eng: 'Is this your aunt’s bag?',
+    eng: 'Is this your aunt`s bag?',
     regEng: ''
   },
   {
