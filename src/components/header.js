@@ -127,7 +127,7 @@ ${li}
 function get_panel() {
   let page = PackData.getData('page') ?? 1 // номер страницы из локалсторадж или 1
   state.currentPage = Number(page)
-  console.log(page);
+
   let rw = get_rows(data, page)
   let font = prx.font
   return `<div class="flexcol ${font}" id="panel">${rw}</div>`

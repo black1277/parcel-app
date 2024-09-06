@@ -597,6 +597,8 @@ a.repo img {
     display: flex;
     align-items: center;
     margin-bottom: 10px;
+    background-color: #1412424f;
+    border-radius: 5px;
 }
 .slider-label {
     width: 30px;
@@ -614,4 +616,7 @@ svg {
 }
 .red {
   background-color: rgb(255, 133, 133);
+}
+.yellow {
+  background-color: #ffea76;
 }

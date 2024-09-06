@@ -17,7 +17,7 @@ function init(el){
   showSearch.addEventListener('input', (e) => {
     search.parentNode.style.display = e.target.checked ? 'flex' : 'none'
     PackData.setData('showSearch', e.target.checked)
-    console.log(PackData.getData('font'));
+    
   })
 
   showFonts.addEventListener('input', (e) => {
@@ -43,7 +43,7 @@ function init(el){
     //   console.log('start', bodyRule.style.fontSize, change, parseFloat(bodyRule.style.fontSize));
     //   const newSize = (parseFloat(bodyRule.style.fontSize) + change) + 'rem';
     //   bodyRule.style.fontSize = newSize;
-    //   console.log('end', newSize);
+
     // }
   }
 
@@ -83,13 +83,13 @@ function init(el){
     h = Math.round(h * 360);
     s = Math.round(s * 100);
     l = Math.round(l * 100);
-    console.log('function', bgColor, h, s, l);
+
     return { h, s, l };
   }
 
   // Устанавливаем начальные значения ползунков из текущего цвета фона
   const { h, s, l } = PackData.getData('bgColor') ?? getCurrentHSL()
-console.log(h, s, l);
+
   const hueSlider = document.getElementById('hue');
   const saturationSlider = document.getElementById('saturation');
   const lightnessSlider = document.getElementById('lightness');
@@ -119,4 +119,9 @@ console.log(h, s, l);
   hueSlider.addEventListener('input', SaveColor);
   saturationSlider.addEventListener('input', SaveColor);
   lightnessSlider.addEventListener('input', SaveColor);
+  document.querySelector('button[title="Delete"]').addEventListener('click', ()=>{
+    PackData.clearData()
+    location. reload()
+  })
+  
 }

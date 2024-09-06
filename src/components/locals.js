@@ -27,6 +27,13 @@ class PackData {
       return undefined;
     }
   }
+  static clearData() {
+    try {
+      localStorage.removeItem(PackData.userDataKey)
+    } catch (error) {
+      console.error('Error parsing JSON from localStorage:', error);
+    }
+  }
 }
 
 export default PackData
