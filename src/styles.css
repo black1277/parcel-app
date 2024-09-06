@@ -329,7 +329,7 @@ a.active {
   padding: 0 0.6em;
 }
 .spoiler details {
-  padding: 1em 0;
+  padding: .9rem 0;
 }
 .spoiler details + details {
   border-top: 1px solid #e0e0e0;
