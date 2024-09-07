@@ -10,9 +10,11 @@
   },
   "scripts": {
     "start": "parcel",
-    "build": "parcel build"
+    "build": "parcel build",
+    "cy:open": "cypress open"
   },
   "devDependencies": {
+    "cypress": "^13.14.2",
     "parcel": "^2.5.0"
   }
 }
