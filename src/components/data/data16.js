@@ -13,7 +13,7 @@ const data = [
   {
     rus: 'Завтра она купит новое платье',
     eng: 'Tomorrow she will buy a new dress',
-    regEng: 'Tomorrow (?:she will|she’ll) buy a new dress'
+    regEng: '/(?:Tomorrow (?:she will|she’ll) buy a new dress)/gm'
   },
   {
     rus: 'Мы читаем интересные газеты каждую неделю',

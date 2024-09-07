@@ -28,7 +28,7 @@ const data = [
   {
     rus: 'они закончат свою работу следующим летом',
     eng: 'They will finish their work next summer',
-    regEng: '/(?:(?:They will|They’ll) finish their work next summer)|(?:Next summer (?:(?:they will|they’ll) finish their work)/gm'
+    regEng: '/(?:(?:They will|They’ll) finish their work next summer)|(?:Next summer (?:they will|they’ll) finish their work)/gm'
   }
 ]
 export default data

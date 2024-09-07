@@ -20,7 +20,7 @@ const data = [
   {
     rus: 'Она хочет, чтобы я позвонил тому человеку',
     eng: 'She wants me to call that person',
-    regEng: '/(?:She wants me to call(?:call|phone) that person)/gm'
+    regEng: '/(?:She wants me to (?:call|phone) that person)/gm'
   },
   {
     rus: 'Я хочу, чтобы они помыли свои ступни',
