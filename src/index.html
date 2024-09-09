@@ -42,6 +42,7 @@
     <div><label><input type="checkbox" name="showFonts" id="showFonts" checked /> : Шрифты<label></div>
     <div><button class="icon-button upfont green" id="increaseFont"><svg xmlns="http://www.w3.org/2000/svg" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd" viewBox="0 0 512 423.65"><path fill-rule="nonzero" d="M274.89 336.65H121.85l-29.09 87H0L157.6 0h80.94l158.6 423.65h-92.86l-29.39-87zm181.37-226.22v55.74h-54.69v-55.74h-55.75V55.74h55.75V0h54.69v55.74H512v54.69h-55.74zM145.39 265.74h105.96l-53.23-158.69-52.73 158.69z"/></svg></button><span id="fsize" class="num">20</span><button
       class="icon-button upfont red" id="decreaseFont"><svg xmlns="http://www.w3.org/2000/svg" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd" viewBox="0 0 512 423.65"><path fill-rule="nonzero" d="M274.89 336.65H121.85l-29.09 87H0L157.6 0h80.94l158.6 423.65h-92.86l-29.39-87zm70.93-226.22V55.74H512v54.69H345.82zM145.39 265.74h105.96l-53.23-158.69-52.73 158.69z"/></svg></button></div>
+    <div class="side-title">Цвет фона</div>
     <div class="slider-container">
         <label for="hue" class="slider-label">H:</label>
         <input type="range" id="hue" min="0" max="360">
@@ -57,11 +58,18 @@
         <input type="range" id="lightness" min="0" max="100">
         <span class="num" id="lightnessVal">40</span>
     </div>
-    <div><button class="icon-button yellow" title="Delete">
+    <div><div class="side-title">Выберите свой шрифт</div>
+      <textarea id="fontUrlInput" name="" id="" cols="36" rows="4" placeholder="Введите ссылку на шрифт Google Fonts, например, https://fonts.googleapis.com/css2?family=Neucha">
+      </textarea>
+      <button id="applyFontUrl" class="icon-button yellow">Применить шрифт</button>
+    </div>
+    <div><div class="side-title">Удалить настройки</div>
+      <button class="icon-button yellow" title="Delete">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                 <path d="M16 9v10H8V9h8m-1.5-6h-5l-1 1H5v2h14V4h-3.5l-1-1zM18 9H6v12c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V9z"/>
             </svg>
-        </button></div>
+      </button>
+    </div>
 </div>
 <div class="side-button-1-wr">
     <label class="icon-button" for="side-checkbox">

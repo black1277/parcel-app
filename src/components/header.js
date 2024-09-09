@@ -29,13 +29,18 @@ const prx = new Proxy(state, {
     const panel = document.getElementById('panel')
 
     if (key === 'font') {
-      panel.classList.remove(...fonts)
+      panel.classList.remove(...fonts, 'userfont')
       panel.classList.add(val)
       PackData.setData('font', val)
       return true
     }
-
-    panel.innerHTML = get_rows(data, target.currentPage)
+const body = document.querySelector('body')
+body.classList.add('hide')
+setTimeout(function(){
+  panel.innerHTML = get_rows(data, target.currentPage)
+  body.classList.remove('hide')
+}, 180);
+    
     PackData.setData('page', target.currentPage)
     enableDisable(false)
     if (key === 'currentPage') {

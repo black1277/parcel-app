@@ -17,7 +17,7 @@ function init(el){
   showSearch.addEventListener('input', (e) => {
     search.parentNode.style.display = e.target.checked ? 'flex' : 'none'
     PackData.setData('showSearch', e.target.checked)
-    
+
   })
 
   showFonts.addEventListener('input', (e) => {
@@ -123,5 +123,65 @@ function init(el){
     PackData.clearData()
     location. reload()
   })
-  
+
+}
+
+// Функция для применения шрифта по ссылке Google Fonts
+function applyFontFromUrl(fontUrl) {
+  if (!isValidGoogleFontUrl(fontUrl)) return
+  let fontLink = document.getElementById('googleFontLink');
+  if (!fontLink) {
+    fontLink = document.createElement('link');
+    fontLink.id = 'googleFontLink';
+    fontLink.rel = 'stylesheet';
+    document.head.appendChild(fontLink);
+  }
+  fontLink.href = fontUrl;
+
+  // Извлекаем имя шрифта из ссылки
+  const fontName = extractFontName(fontUrl);
+
+  // Применяем шрифт к элементам
+  const panel = document.getElementById('panel')
+  const fonts = ['source', 'lora', 'philosopher', 'literata', 'vollkorn', 'firacode']
+  panel.classList.remove(...fonts)
+  // https://fonts.googleapis.com/css2?family=Balsamiq+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Protest+Guerrilla&display=swap
+  // https://fonts.googleapis.com/css2?family=Shantell+Sans:ital,wght@0,300..800;1,300..800&display=swap
+  // https://fonts.googleapis.com/css2?family=Neucha&display=swap
+
+  const styleSheet = document.styleSheets[0]; // Первая таблица стилей
+  const bodyRule = Array.from(styleSheet.cssRules).find(rule => rule.selectorText === '.userfont');
+  if (bodyRule) bodyRule.style.fontFamily = fontName
+  panel.classList.add('userfont')
+  document.querySelectorAll('input[type="radio"]').forEach(radio => {
+    radio.checked = false;
+  });
+
+}
+
+// Функция для извлечения имени шрифта из ссылки Google Fonts
+function extractFontName(fontUrl) {
+  const url = new URL(fontUrl);
+  const familyParam = url.searchParams.get('family');
+  return familyParam ? familyParam.split(':')[0].replace(/\+/g, ' ') : 'sans-serif';
+}
+
+// Обработчик применения шрифта по ссылке
+document.getElementById('applyFontUrl').addEventListener('click', function () {
+  const fontUrl = document.getElementById('fontUrlInput').value;
+  if (fontUrl) {
+    applyFontFromUrl(fontUrl);
+  }
+});
+
+function isValidGoogleFontUrl(url) {
+  // Регулярное выражение для проверки валидности URL на шрифт Google Fonts
+  const googleFontsRegex = /^https:\/\/fonts\.googleapis\.com\/css2\?family=[A-Za-z+:\&=\d,%\s\-]+$/;
+
+  // Проверяем, является ли URL строкой и соответствует ли он шаблону
+  if (typeof url !== 'string') {
+    return false;
+  }
+
+  return googleFontsRegex.test(url);
 }
