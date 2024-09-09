@@ -39,7 +39,7 @@ body.classList.add('hide')
 setTimeout(function(){
   panel.innerHTML = get_rows(data, target.currentPage)
   body.classList.remove('hide')
-}, 180);
+}, 145);
     
     PackData.setData('page', target.currentPage)
     enableDisable(false)

@@ -48,7 +48,7 @@ html, body {
 }
 
 body {
-  transition: .18s opacity ease-in-out;
+  transition: .15s opacity ease-in-out;
   padding: 5px 12px;
   font-size: 1.3rem;
 }
