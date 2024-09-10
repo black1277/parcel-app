@@ -94,10 +94,11 @@ a {
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  border: 1px solid #0d8300;
+  border: calc(var(--scale_factor) * 4) outset #808080;
   border-radius: 10px;
   max-width: 1800px;
   margin: 5px auto;
+  background: #80808025;
 }
 .el {
   position: relative;

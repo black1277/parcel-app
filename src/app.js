@@ -129,6 +129,7 @@ function init(el){
 // Функция для применения шрифта по ссылке Google Fonts
 function applyFontFromUrl(fontUrl) {
   if (!isValidGoogleFontUrl(fontUrl)) return
+  PackData.setData('urlFonts', fontUrl)
   let fontLink = document.getElementById('googleFontLink');
   if (!fontLink) {
     fontLink = document.createElement('link');
@@ -140,23 +141,26 @@ function applyFontFromUrl(fontUrl) {
 
   // Извлекаем имя шрифта из ссылки
   const fontName = extractFontName(fontUrl);
+  applyUserFont(fontName)
+}
 
+function applyUserFont(userFont){
   // Применяем шрифт к элементам
   const panel = document.getElementById('panel')
   const fonts = ['source', 'lora', 'philosopher', 'literata', 'vollkorn', 'firacode']
   panel.classList.remove(...fonts)
+  // https://fonts.googleapis.com/css2?family=Marmelad
   // https://fonts.googleapis.com/css2?family=Balsamiq+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Protest+Guerrilla&display=swap
   // https://fonts.googleapis.com/css2?family=Shantell+Sans:ital,wght@0,300..800;1,300..800&display=swap
   // https://fonts.googleapis.com/css2?family=Neucha&display=swap
 
   const styleSheet = document.styleSheets[0]; // Первая таблица стилей
   const bodyRule = Array.from(styleSheet.cssRules).find(rule => rule.selectorText === '.userfont');
-  if (bodyRule) bodyRule.style.fontFamily = fontName
+  if (bodyRule) bodyRule.style.fontFamily = userFont
   panel.classList.add('userfont')
   document.querySelectorAll('input[type="radio"]').forEach(radio => {
     radio.checked = false;
   });
-
 }
 
 // Функция для извлечения имени шрифта из ссылки Google Fonts
@@ -165,7 +169,7 @@ function extractFontName(fontUrl) {
   const familyParam = url.searchParams.get('family');
   return familyParam ? familyParam.split(':')[0].replace(/\+/g, ' ') : 'sans-serif';
 }
-
+document.getElementById('fontUrlInput').value = PackData.getData('urlFonts') ?? ""
 // Обработчик применения шрифта по ссылке
 document.getElementById('applyFontUrl').addEventListener('click', function () {
   const fontUrl = document.getElementById('fontUrlInput').value;
@@ -185,3 +189,58 @@ function isValidGoogleFontUrl(url) {
 
   return googleFontsRegex.test(url);
 }
+
+// Функция для применения локального файла шрифта
+function applyCustomFont(fontFile, fontName) {
+      applyUserFont(fontName)
+    // Проверяем, существует ли уже шрифт с таким fontName
+    if (fontExists(fontName)) {
+        console.log(`Шрифт ${fontName} уже добавлен`);
+        return;
+    }
+    const fontUrl = URL.createObjectURL(fontFile);
+
+    const style = document.createElement('style');
+    style.textContent = `
+        @font-face {
+            font-family: '${fontName}';
+            src: url('${fontUrl}');
+        }
+    `;
+    document.head.appendChild(style);
+}
+function fontExists(fontName) {
+    // Регулярное выражение для извлечения значения font-family из cssText
+    const fontFamilyRegex = /font-family\s*:\s*['"]?([^'";]+)['"]?/;
+
+    // Перебираем все стили на странице
+    for (let sheet of document.styleSheets) {
+        try {
+            // Перебираем все правила в каждом стиле
+            for (let rule of sheet.cssRules) {
+                // Проверяем, является ли это правилом @font-face
+                if (rule instanceof CSSFontFaceRule) {
+                    const cssText = rule.cssText;
+
+                    // Ищем в правиле font-family
+                    const match = cssText.match(fontFamilyRegex);
+                    if (match && match[1] === fontName) {
+                        return true;
+                    }
+                }
+            }
+        } catch (e) {
+            // Некоторые стили могут не поддерживать доступ из-за политики безопасности
+            console.warn('Не удается получить доступ к стилю:', sheet.href);
+        }
+    }
+    return false;
+}
+// Обработчик загрузки файла шрифта
+document.getElementById('fontUpload').addEventListener('change', function(event) {
+    const file = event.target.files[0];
+    if (file) {
+        const fontName = file.name.split('.')[0];
+        applyCustomFont(file, fontName);
+    }
+});
