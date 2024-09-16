@@ -99,5 +99,8 @@ import data96 from './data96'; data.push(data96)
 import data97 from './data97'; data.push(data97)
 import data98 from './data98'; data.push(data98)
 import data99 from './data99'; data.push(data99)
+import data100 from './data100'; data.push(data100)
+import data101 from './data101'; data.push(data101)
+import data102 from './data102'; data.push(data102)
 
 export default data
