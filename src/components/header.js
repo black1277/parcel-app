@@ -147,8 +147,10 @@ function get_rows(arr, page = 0) {
   let btnShow = document.getElementById('show')
   if(btnShow) btnShow.disabled = false
   if (state.mix) mixArr(part)
-  if (state.lang === 'rus') return part.map(ob => make_row(ob.rus, ob.eng, ob.regEng ? ob.regEng : null)).join('')
-  else return part.map(ob => make_row(ob.eng, ob.rus, ob.regRus ? ob.regRus : null)).join('')
+
+  return state.lang === 'rus'
+    ? part.map(ob => make_row(ob.rus, ob.eng, ob.regEng ? ob.regEng : null)).join('')
+    : part.map(ob => make_row(ob.eng, ob.rus, ob.regRus ? ob.regRus : null)).join('');
 }
 
 function make_row(vis, answer, pattern) {

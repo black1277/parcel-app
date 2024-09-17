@@ -30,21 +30,13 @@ function init(el){
 
   // Функция для изменения размера шрифта в rem на body
   function adjustBodyFontSize(change) {
+    const MIN_FONT_SIZE = 12;
+    const MAX_FONT_SIZE = 30;
     const oldVal = getComputedStyle(document.documentElement).getPropertyValue('--max_size')
     let res = Number(oldVal) + change
-    if (res < 12 || res > 30) return
+    if (res < MIN_FONT_SIZE || res > MAX_FONT_SIZE) return;
     document.documentElement.style.setProperty('--max_size', Number(oldVal) + change);
     document.getElementById('fsize').innerHTML = Number(oldVal) + change
-    // const styleSheet = document.styleSheets[0]; // Первая таблица стилей
-    // const bodyRule = Array.from(styleSheet.cssRules).find(rule => rule.selectorText === 'body');
-
-    // if (bodyRule) {
-    //   //const currentSize = parseFloat(getComputedStyle(document.body).fontSize) / 16; // Преобразуем px в rem
-    //   console.log('start', bodyRule.style.fontSize, change, parseFloat(bodyRule.style.fontSize));
-    //   const newSize = (parseFloat(bodyRule.style.fontSize) + change) + 'rem';
-    //   bodyRule.style.fontSize = newSize;
-
-    // }
   }
 
   // Обработчики событий для кнопок
