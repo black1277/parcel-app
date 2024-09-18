@@ -104,5 +104,8 @@ import data101 from './data101'; data.push(data101)
 import data102 from './data102'; data.push(data102)
 import data103 from './data103'; data.push(data103)
 import data104 from './data104'; data.push(data104)
+import data105 from './data105'; data.push(data105)
+import data106 from './data106'; data.push(data106)
+
 
 export default data
