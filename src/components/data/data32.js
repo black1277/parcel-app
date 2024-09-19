@@ -26,7 +26,7 @@ const data32 = [
     regEng: '/(?:She (?:does not|doesn’t) read a book after school)/gm'
   },
   {
-    rus: 'Читает ли она  книгу после школы?',
+    rus: 'Читает ли она книгу после школы?',
     eng: 'Does she read a book after school?'
   },
   {

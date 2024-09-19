@@ -1,6 +1,6 @@
 {
   "name": "parcel-app",
-  "private": true,
+  "private": "true",
   "source": "src/index.html",
   "targets": {
     "default": {

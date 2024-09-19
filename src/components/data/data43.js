@@ -17,7 +17,7 @@ const data = [
   {
     rus: 'С кем он поговорит через неделю?',
     eng: 'Who will he talk to in a week?',
-    regEng: '/(?:Whom? will he (?:talk|speak) (?:to|with) in a week\\?)|(?:)/gm'
+    regEng: '/(?:Whom? will he (?:talk|speak) (?:to|with) in a week\\?)/gm'
   },
   {
     rus: 'Мы подумаем об этой идее через неделю',
