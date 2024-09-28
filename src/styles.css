@@ -600,6 +600,9 @@ a.repo img {
   font-size: large;
   font-weight: 600;
 }
+.bold {
+  font-weight: bold;
+}
 .slider-container {
     display: flex;
     align-items: center;
@@ -638,4 +641,13 @@ textarea {
 }
 .visible {
   opacity: 1;
+}
+.gfonts {
+  display: inline-block;
+  background-color: #ffea76;
+  border-radius: 8px;
+  line-height: 0;
+}
+.gfonts svg{
+  margin: 0;
 }
