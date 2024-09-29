@@ -13,6 +13,7 @@ function countObjects(arrays) {
   return arrays.reduce((total, array) => total + array.length, 0);
 }
 console.log('Всего', countObjects(data), ' выражений')
+let GlobalHistory = true
 const state = {
   lang: 'rus',
   font: PackData.getData('font') ?? fonts[0],
@@ -40,12 +41,16 @@ setTimeout(function(){
   panel.innerHTML = get_rows(data, target.currentPage)
   body.classList.remove('hide')
 }, 145);
-    
+
     PackData.setData('page', target.currentPage)
     enableDisable(false)
     if (key === 'currentPage') {
       const lnk = document.getElementById('links')
       lnk.innerHTML = get_links(data.length)
+      if (GlobalHistory) {
+        history.pushState({ page: target.currentPage }, "", "#" + target.currentPage)
+      }
+      GlobalHistory = true
     }
     return true
   }
@@ -221,3 +226,9 @@ window.show = show
 window.dblHandler = dblHandler
 window.chHandler = chHandler
 window.prx = prx
+window.onpopstate = function (event) {
+  if (event.state && event.state.page) {
+    GlobalHistory = false // чтобы не добавлять в историю еще раз
+    prx.currentPage = event.state.page
+  }
+}
