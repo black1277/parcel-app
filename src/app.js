@@ -10,6 +10,11 @@ function init(el){
   el.innerHTML = main()
   const search = document.getElementById('search')
   const fonts = document.getElementById('fontToggles')
+
+  const showTitle = document.getElementById('showTitle')
+  showTitle.checked = PackData.getData('showTitle') ?? true
+  const titles = document.querySelectorAll('h3.center, a.repo, div.spoiler')
+  if (!showTitle.checked) titles.forEach(el => el.style.display = 'none')
   const showSearch = document.getElementById('showSearch')
   showSearch.checked = PackData.getData('showSearch') ?? true
   const showFonts = document.getElementById('showFonts')
@@ -17,12 +22,17 @@ function init(el){
   showSearch.addEventListener('input', (e) => {
     search.parentNode.style.display = e.target.checked ? 'flex' : 'none'
     PackData.setData('showSearch', e.target.checked)
-
   })
 
   showFonts.addEventListener('input', (e) => {
     fonts.style.display = e.target.checked ? 'flex' : 'none'
     PackData.setData('showFonts', e.target.checked)
+  })
+
+  showTitle.addEventListener('input', (e) => {
+    const current = e.target.checked ? 'block' : 'none'
+    titles.forEach(el=>el.style.display=current)
+    PackData.setData('showTitle', e.target.checked)
   })
 
   const increaseButton = document.getElementById('increaseFont');
