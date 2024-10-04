@@ -163,7 +163,7 @@ function make_row(vis, answer, pattern) {
   if (pattern) pt = `data-pattern="${pattern}"`
   return `<div class="el" data-lang="${answer}" ${pt}>
 <span ondblclick="dblHandler(this,'${answer}')">${vis}</span>
-<span contenteditable="true" oninput="chHandler(this)" onblur="chHandler(this)" spellcheck="false" /></span></div>`
+<span class="editor" contenteditable="true" oninput="chHandler(this)" onblur="chHandler(this)" spellcheck="false" />&nbsp;</span></div>`
 }
 
 function dblHandler(el, ans) {

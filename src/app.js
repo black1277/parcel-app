@@ -246,3 +246,18 @@ document.getElementById('fontUpload').addEventListener('change', function(event)
       applyCustomFont(file, fontName);
     }
 });
+
+function escapeText(text) {
+  const map = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' };
+  return text.replace(/[&<>"']/g, function (m) {
+    return map[m];
+  });
+}
+
+document.body.addEventListener('paste', function (e) {
+  if (e.target.classList.contains('editor')) {
+    e.preventDefault();
+    const text = (e.clipboardData || window.clipboardData).getData('text/plain');
+    document.execCommand('insertHtml', false, escapeText(text));
+  }
+});
