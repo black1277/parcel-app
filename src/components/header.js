@@ -163,23 +163,23 @@ function make_row(vis, answer, pattern) {
   if (pattern) pt = `data-pattern="${pattern}"`
   return `<div class="el" data-lang="${answer}" ${pt}>
 <span ondblclick="dblHandler(this,'${answer}')">${vis}</span>
-<input oninput="chHandler(this)" onblur="chHandler(this)" type="text" /></div>`
+<span contenteditable="true" oninput="chHandler(this)" onblur="chHandler(this)" spellcheck="false" /></span></div>`
 }
 
 function dblHandler(el, ans) {
-  const thElement = el.parentNode.getElementsByTagName('input')[0]
-  thElement.title = thElement.value
-  thElement.value = ans
+  const thElement = el.parentNode.getElementsByTagName('span')[1]
+  thElement.title = thElement.innerText
+  thElement.innerText = ans
   chHandler(thElement)
   //thElement.readOnly = true
 }
 
 function chHandler(el) {
-  if (el.value.trim() === '') {
+  if (el.innerText.trim() === '') {
     el.classList.remove('err')
     return
   } // если инпут пустой
-  let input = el.value.trim().toLowerCase()
+  let input = el.innerText.trim().toLowerCase()
   input = input.replace(/\s+/g, ' ')
   if (el.parentNode.dataset.pattern) { // если есть шаблон работаем с ним
     let reg = el.parentNode.dataset.pattern.split('/')[1] // берем выражение между //

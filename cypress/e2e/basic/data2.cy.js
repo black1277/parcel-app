@@ -21,19 +21,19 @@ describe('Test for clicking links and checking input class with rerender', () =>
 
       // Проходим по всем элементам .el
       cy.get('#panel .el').each(($el) => {
-        // Двойной клик по span внутри .el
-        cy.wrap($el).find('span').dblclick();
+        // Внутри каждого div.el, сначала делаем double click по первому span
+        cy.wrap($el).find('span').first().dblclick();
 
-        // Проверяем, что в input появился класс 'done'
-        cy.wrap($el).find('input').should('have.class', 'done');
+        // Проверяем, что второй span получил класс done
+        cy.wrap($el).find('span[contenteditable="true"]').should('have.class', 'done');
 
-        // Заменяем значение в input на цифру
-        cy.wrap($el).find('input').clear().type('1');
+        // Изменяем содержимое второго span на "1"
+        cy.wrap($el).find('span[contenteditable="true"]').clear().type('1');
 
-        // Проверяем, что появился класс 'err' и исчез 'done'
-        cy.wrap($el).find('input')
-          .should('have.class', 'err')
-          .should('not.have.class', 'done');
+        // Проверяем, что класс done исчез, а класс err появился
+        cy.wrap($el).find('span[contenteditable="true"]')
+          .should('not.have.class', 'done')
+          .and('have.class', 'err');
       });
 
 
@@ -53,19 +53,19 @@ describe('Test for clicking links and checking input class with rerender', () =>
 
       // Проходим по всем элементам .el
       cy.get('#panel .el').each(($el) => {
-        // Двойной клик по span внутри .el
-        cy.wrap($el).find('span').dblclick();
+        // Внутри каждого div.el, сначала делаем double click по первому span
+        cy.wrap($el).find('span').first().dblclick();
 
-        // Проверяем, что в input появился класс 'done'
-        cy.wrap($el).find('input').should('have.class', 'done');
+        // Проверяем, что второй span получил класс done
+        cy.wrap($el).find('span[contenteditable="true"]').should('have.class', 'done');
 
-        // Заменяем значение в input на цифру
-        cy.wrap($el).find('input').clear().type('1');
+        // Изменяем содержимое второго span на "1"
+        cy.wrap($el).find('span[contenteditable="true"]').clear().type('1');
 
-        // Проверяем, что появился класс 'err' и исчез 'done'
-        cy.wrap($el).find('input')
-          .should('have.class', 'err')
-          .should('not.have.class', 'done');
+        // Проверяем, что класс done исчез, а класс err появился
+        cy.wrap($el).find('span[contenteditable="true"]')
+          .should('not.have.class', 'done')
+          .and('have.class', 'err');
       });
     }
   });

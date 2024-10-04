@@ -113,7 +113,7 @@ a {
   user-select: none;
   max-width: 54%;
 }
-.el input {
+.el span:last-child {
   position: relative;
   width: 45%;
   min-height: 1.63rem;
@@ -263,7 +263,7 @@ a {
     max-width: 99%;
     padding: 4px;
   }
-  .el input {
+  .el span:last-child {
     padding: 2px;
     width: 99%;
     min-height: 2.1rem;
@@ -309,10 +309,12 @@ a.active {
   }
   .el {
     padding: 1px;
+    border-radius: 4px;
   }
-  .el input {
+  .el span:last-child {
     width: 99%;
-    padding: 0;
+    padding: 1px;
+    border-radius: 4px;
   }
   .el span {
     max-width: 99%;

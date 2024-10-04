@@ -23,7 +23,7 @@ describe('Test for clicking links and checking input class with rerender', () =>
       cy.get('#show').click();
       cy.wait(90)
       // Проверяем, что все input с типом text, кроме input с id="search", имеют класс 'done'
-      cy.get('input[type="text"]:not(#search)').should('have.class', 'done');
+      cy.get('.el span:last-child').should('have.class', 'done');
     }
   });
 
@@ -42,7 +42,7 @@ describe('Test for clicking links and checking input class with rerender', () =>
       cy.get('#show').click();
       cy.wait(90)
       // Проверяем, что все input с типом text, кроме input с id="search", имеют класс 'done'
-      cy.get('input[type="text"]:not(#search)').should('have.class', 'done');
+      cy.get('.el span:last-child').should('have.class', 'done');
     }
   });
 
