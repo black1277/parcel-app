@@ -174,9 +174,10 @@ function dblHandler(el, ans) {
   //thElement.readOnly = true
 }
 
-function chHandler(el) {
+function chHandler(el,cf) {
   if (el.innerText.trim() === '') {
     el.classList.remove('err')
+    el.classList.remove('done')
     return
   } // если инпут пустой
   let input = el.innerText.trim().toLowerCase()
@@ -201,7 +202,7 @@ function get_links(len) {
   }).join(' ')
   return `
 <div class="flexrow" id="links">
-  [${cnt}]
+  ${cnt}
 </div>`
 }
 

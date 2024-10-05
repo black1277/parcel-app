@@ -270,6 +270,7 @@ a {
   }
 }
 .link-page {
+  position: relative;
   margin: 5px 1px 2px;
   padding: 2px 9px;
   text-decoration: none;
@@ -290,9 +291,33 @@ a {
   counter-reset: list1;
 }
 #links {
-  width: 96%;
+  width: 98%;
   margin: 5px auto;
   flex-wrap: wrap;
+}
+#links .link-page:first-child::before {
+  position: absolute;
+  top:0;
+  right: 1.6rem;
+  font-size: 1.3rem;
+  line-height: .9;
+  bottom: 0;
+  color: black;
+  pointer-events: none;
+  content: "["; /* Правая скобка после последней ссылки */
+  margin-right: 5px; /* Отступ между скобкой и ссылкой */
+}
+#links .link-page:last-child::after {
+  position: absolute;
+  top:0;
+  left: 2.85rem;
+  font-size: 1.3rem;
+  line-height: .9;
+  bottom: 0;
+  color: black;
+  pointer-events: none;
+  content: "]"; /* Правая скобка после последней ссылки */
+  margin-left: 5px; /* Отступ между ссылкой и скобкой */
 }
 a.active {
   color: #fff873;
@@ -319,7 +344,10 @@ a.active {
   .el span {
     max-width: 99%;
   }
-  .spoiler li:nth-child(7), .spoiler li:nth-child(8) {
+  #links .link-page:first-child::before,
+  #links .link-page:last-child::after,
+  .spoiler li:nth-child(7),
+  .spoiler li:nth-child(8) {
     display: none;
   }
 }
@@ -453,27 +481,30 @@ a.repo img {
     position: fixed;
     z-index: 999999;
     top: 0;
+    bottom: 0;
     left: -360px;
     background: #337AB7;
     transition: all 0.5s;
     width: 300px;
-    height: 100vh;
+    max-height: 100vh;
     box-shadow: 10px 0 20px rgba(0,0,0,0.4);
     color: #fafafa;
-    padding: 30px 15px;
+    padding: 4px .5rem;
     opacity: .94;
     font-family: Source Sans Pro, sans-serif;
+    overflow-y: auto;
+    overflow-x:hidden;
 }
 .side-panel label{
-  font-size: 0.84rem;
+  font-size: 20px;
 }
 .side-title {
-    font-size: 20px;
+    font-size: 24px;
     color: #ffdcb8;
     text-shadow: 1px 1px 2px black;
     padding-bottom: 4px;
     margin-bottom: 4px;
-    margin-top: 16px;
+    margin-top: .5rem;
     border-bottom: 2px solid #BFE2FF;
 }
 /* Оформление кнопки на странице */
@@ -544,21 +575,22 @@ a.repo img {
     left: 0;
 }
 /* Оформление кнопки на панеле */
-.side-button-2 {
-    font-size: 30px;
+label.side-button-2 {
+    font-size: 28px;
     border-radius: 20px;
     position: absolute;
     z-index: 1;
     top: 8px;
-    right: 8px;
+    right: max(8px, calc(308px - 100vw));
     cursor: pointer;
+    user-select: none;
     transform: rotate(45deg);
-    color: #BFE2FF;
+    color: #ffbfbf;
     transition: all 280ms ease-in-out;
 }
 .side-button-2:hover {
-    transform: rotate(45deg) scale(1.1);
-    color: #FFF;
+    transform: rotate(-45deg) scale(1.1);
+    color: #ea0000;
 }
 
 .icon-button {
@@ -573,11 +605,11 @@ a.repo img {
 
 .num {
   display: inline-block;
-  width: 45px;
+  width: 2.8rem;
   padding: 4px;
   margin: 2px;
   background-color: rgb(52, 52, 52);
-  font-size: 18px;
+  font-size: 1.125rem;
   border: 2px inset grey;
   border-radius: 8px;
 }
@@ -586,8 +618,8 @@ a.repo img {
 }
 
 .icon-button svg {
-    width: 52px;
-    height: 40px;
+    width: 2.3rem;
+    height: 1.8rem;
     fill: #333;
 }
 
@@ -604,7 +636,7 @@ a.repo img {
 .slider-container {
     display: flex;
     align-items: center;
-    margin-bottom: 10px;
+    margin-bottom: 4px;
     background-color: #1412424f;
     border-radius: 5px;
 }
@@ -630,6 +662,7 @@ svg {
 }
 textarea {
   resize: none;
+  width: 100%;
 }
 .userfont{
   font-family: initial;
@@ -648,4 +681,7 @@ textarea {
 }
 .gfonts svg{
   margin: 0;
+}
+.option {
+  font-size: 24px;
 }

@@ -247,17 +247,19 @@ document.getElementById('fontUpload').addEventListener('change', function(event)
     }
 });
 
-function escapeText(text) {
-  const map = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' };
-  return text.replace(/[&<>"']/g, function (m) {
-    return map[m];
-  });
-}
-
 document.body.addEventListener('paste', function (e) {
-  if (e.target.classList.contains('editor')) {
+  if (['editor', 'done', 'err'].some(cls => e.target.classList.contains(cls))) {
     e.preventDefault();
     const text = (e.clipboardData || window.clipboardData).getData('text/plain');
-    document.execCommand('insertHtml', false, escapeText(text));
+    const selection = window.getSelection();
+    if (!selection.rangeCount) return;
+    const range = selection.getRangeAt(0);
+    range.deleteContents(); // Удаляем текущий выбор, если есть
+    range.insertNode(document.createTextNode(escapeText(text))); // Вставляем новый текст
   }
 });
+
+function escapeText(text) {
+  const map = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' };
+  return text.replace(/[&<>"']/g, function (m) { return map[m]; });
+}
