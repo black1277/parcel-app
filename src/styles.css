@@ -108,7 +108,7 @@ a {
 }
 .el span {
   position: relative;
-  display: flex;
+  display: inline-block;
   align-items: center;
   user-select: none;
   max-width: 54%;
@@ -144,10 +144,13 @@ a {
 .el[data-pattern]:before {
   background: #dd92d8;
 }
-.done {
+.editor {
+  background: #f2f2f2;
+}
+.editor.done {
   background: #69fe48;
 }
-.err {
+.editor.err {
   background: #fed448;
 }
 .toggle-bg{
@@ -581,7 +584,7 @@ label.side-button-2 {
     position: absolute;
     z-index: 1;
     top: 8px;
-    right: max(8px, calc(308px - 100vw));
+    right: max(10px, calc(310px - 100vw));
     cursor: pointer;
     user-select: none;
     transform: rotate(45deg);

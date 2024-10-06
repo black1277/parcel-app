@@ -163,7 +163,7 @@ function make_row(vis, answer, pattern) {
   if (pattern) pt = `data-pattern="${pattern}"`
   return `<div class="el" data-lang="${answer}" ${pt}>
 <span ondblclick="dblHandler(this,'${answer}')">${vis}</span>
-<span class="editor" contenteditable="true" oninput="chHandler(this)" onblur="chHandler(this)" spellcheck="false" />&nbsp;</span></div>`
+<span class="editor" contenteditable="true" oninput="chHandler(this)" onblur="chHandler(this)" spellcheck="false" /></span></div>`
 }
 
 function dblHandler(el, ans) {
@@ -174,25 +174,26 @@ function dblHandler(el, ans) {
   //thElement.readOnly = true
 }
 
-function chHandler(el,cf) {
-  if (el.innerText.trim() === '') {
+function chHandler(el) {
+  if (el.innerText.trim() === '') { // если инпут пустой
     el.classList.remove('err')
     el.classList.remove('done')
     return
-  } // если инпут пустой
+  }
   let input = el.innerText.trim().toLowerCase()
   input = input.replace(/\s+/g, ' ')
+  let condition = el.parentNode.dataset.lang.trim().toLowerCase() === input
   if (el.parentNode.dataset.pattern) { // если есть шаблон работаем с ним
     let reg = el.parentNode.dataset.pattern.split('/')[1] // берем выражение между //
     reg = reg.trim().toLowerCase().replaceAll('’', '`') // меняем проклятый апостроф на нормальный
     const regExp = new RegExp(reg) // создаем шаблон регулярки
-    regExp.test(input)
-      ? el.className = 'done'
-      : el.className = 'err'
-  } else // нет шаблона сравниваем в лоб
-    el.parentNode.dataset.lang.trim().toLowerCase() === input
-      ? el.className = 'done'
-      : el.className = 'err'
+    condition = regExp.test(input)
+  }
+  // нет шаблона сравниваем в лоб
+  el.className = condition
+    ? 'done'
+    : 'err'
+  el.classList.add('editor')
 }
 
 function get_links(len) {
