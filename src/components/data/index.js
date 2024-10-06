@@ -111,6 +111,7 @@ import data108 from './data108'; data.push(data108)
 import data109 from './data109'; data.push(data109)
 import data110 from './data110'; data.push(data110)
 import data111 from './data111'; data.push(data111)
+import data112 from './data112'; data.push(data112)
 
 
 export default data

@@ -13,7 +13,7 @@ const data = [
   {
     rus: 'То были часы его дедушки?',
     eng: 'Was that his grandfather`s watch?',
-    regEng: '/Was that his (?:grandfather’s|grandpa’s) watch?/gm'
+    regEng: '/Was that his (?:grandfather’s|grandpa’s) watch\\?/gm'
   },
   {
     rus: 'Чьи то были часы?',

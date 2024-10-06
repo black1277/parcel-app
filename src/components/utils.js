@@ -17,10 +17,19 @@ function enableDisable(booln) {
 }
 
 function filterByString(array, searchString, lang) {
-  let str=searchString.toLowerCase()
+  const str = searchString.toLowerCase();
   return array
-    .map(innerArray => innerArray.filter(item => item[lang].toLowerCase().includes(str)))
-    .flat()
+    .map((innerArray, ind) =>
+      innerArray
+        .filter(item => item[lang].toLowerCase().includes(str))
+        .map(el => {
+          // Создаем поверхностную копию объекта, чтобы не мутировать оригинал
+          const newEl = { ...el };
+          newEl[lang] = newEl[lang] + ` [${ind + 1}]`;
+          return newEl;
+        })
+    )
+    .flat();
 }
 
 function mixArr(array) {
