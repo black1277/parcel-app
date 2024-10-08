@@ -25,7 +25,7 @@ function filterByString(array, searchString, lang) {
         .map(el => {
           // Создаем поверхностную копию объекта, чтобы не мутировать оригинал
           const newEl = { ...el };
-          newEl[lang] = newEl[lang] + ` [${ind + 1}]`;
+          newEl[lang] = newEl[lang] + ` <small>[${ind + 1}]</small>`;
           return newEl;
         })
     )

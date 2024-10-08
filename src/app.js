@@ -1,16 +1,55 @@
 import {main} from './components/header.js'
 import PackData from './components/locals.js'
-
+const hueSlider = document.getElementById('hue');
+const saturationSlider = document.getElementById('saturation');
+const lightnessSlider = document.getElementById('lightness');
 document.addEventListener("DOMContentLoaded", ()=>{
   const dom = document.getElementById('main')
-  init(dom)
+  init(dom);
+
+  if (PackData.getData('theme') === 'theme-dark') {
+    document.getElementById('slider').checked = false;
+    document.documentElement.className = 'theme-dark';
+  } else {
+    document.getElementById('slider').checked = true;
+  }
+
 })
+function setTheme(themeName) {
+  PackData.setData('theme', themeName);
+  document.documentElement.className = themeName;
+  if (themeName ==='theme-dark'){
+    hueSlider.value = 200
+    saturationSlider.value = 40
+    lightnessSlider.value = 12
+  } else {
+    hueSlider.value = 128
+    saturationSlider.value = 100
+    lightnessSlider.value = 90
+  }
+  SaveColor()
+}
+function SaveColor() {
+  const { value: h } = hueSlider;
+  const { value: s } = saturationSlider;
+  const { value: l } = lightnessSlider;
+
+  hueVal.textContent = h;
+  saturationVal.textContent = s;
+  lightnessVal.textContent = l;
+  PackData.setData('bgColor', { h, s, l })
+  document.body.style.backgroundColor = `hsl(${h}, ${s}%, ${l}%)`
+}
+// function to toggle between light and dark theme
+function toggleTheme() {
+  PackData.getData('theme') === 'theme-dark' ? setTheme('theme-light') : setTheme('theme-dark');
+}
+window.toggleTheme = toggleTheme
 
 function init(el){
   el.innerHTML = main()
   const search = document.getElementById('search')
   const fonts = document.getElementById('fontToggles')
-
   const showTitle = document.getElementById('showTitle')
   showTitle.checked = PackData.getData('showTitle') ?? true
   const titles = document.querySelectorAll('h3.center, a.repo, div.spoiler')
@@ -58,7 +97,6 @@ function init(el){
     const computedStyle = getComputedStyle(document.body);
     const bgColor = computedStyle.backgroundColor;
 
-
     // Преобразуем текущий цвет фона в HSL
     const rgb = bgColor.match(/\d+/g).map(Number);
     const r = rgb[0] / 255;
@@ -92,9 +130,6 @@ function init(el){
   // Устанавливаем начальные значения ползунков из текущего цвета фона
   const { h, s, l } = PackData.getData('bgColor') ?? getCurrentHSL()
 
-  const hueSlider = document.getElementById('hue');
-  const saturationSlider = document.getElementById('saturation');
-  const lightnessSlider = document.getElementById('lightness');
   const hueVal = document.getElementById('hueVal');
   const saturationVal = document.getElementById('saturationVal');
   const lightnessVal = document.getElementById('lightnessVal');
@@ -106,24 +141,14 @@ function init(el){
   lightnessVal.innerHTML = l
   document.body.style.backgroundColor = `hsl(${h}, ${s}%, ${l}%)`
 
-  function SaveColor(){
-    const h = hueSlider.value;
-    const s = saturationSlider.value;
-    const l = lightnessSlider.value;
-    hueVal.innerHTML = h
-    saturationVal.innerHTML = s
-    lightnessVal.innerHTML = l
-    PackData.setData('bgColor', { h, s, l })
-    document.body.style.backgroundColor = `hsl(${h}, ${s}%, ${l}%)`
-  }
-
   // Добавляем обработчики событий для ползунков
   hueSlider.addEventListener('input', SaveColor);
   saturationSlider.addEventListener('input', SaveColor);
   lightnessSlider.addEventListener('input', SaveColor);
   document.querySelector('button[title="Delete"]').addEventListener('click', ()=>{
     PackData.clearData()
-    location. reload()
+    location.reload()
+    //document.documentElement.className = 'theme-light';
   })
 
 }

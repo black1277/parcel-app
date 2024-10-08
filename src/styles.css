@@ -1,23 +1,47 @@
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&family=Philosopher&family=Literata&family=Lora&family=Vollkorn&family=Fira+Code&display=swap');
-
-.source, .source input {
+.theme-light {
+  --color-primary: #a6dcff;
+  --color-secondary: #7b0505;
+  --color-editor: #f2f2f2;
+  --font-color: #0a0a0a;
+  --color-marker1: #92dd9c;
+  --color-marker2: #dd92d8;
+}
+.theme-dark {
+  --color-primary: #002b48;
+  --color-secondary: #ffe2a0;
+  --color-editor: #6a6a6a;
+  --font-color: #e0e0e0;
+  --color-marker1: #005a0c;
+  --color-marker2: #4c0047;
+}
+.source {
   font-family: 'Source Sans Pro', sans-serif;
 }
-.lora, .lora input {
+.lora {
   font-family: 'Lora', serif;
 }
-.philosopher, .philosopher input {
+.philosopher {
   font-family: 'Philosopher', sans-serif;
 }
-.literata, .literata input {
+.literata {
   font-family: 'Literata', serif;
 }
-.vollkorn, .vollkorn input {
+.vollkorn {
   font-family: 'Vollkorn', serif;
 }
-.firacode, .firacode input {
+.firacode {
   font-family: 'Fira Code', monospace;
 }
+.source,
+.lora,
+.philosopher,
+.literata,
+.vollkorn,
+.firacode {
+  color:#000000;
+}
+
 :root {
   --min_size: 12;
   --max_size: 20;
@@ -47,6 +71,7 @@ body {
   transition: .15s opacity ease-in-out;
   padding: 5px 12px;
   font-size: 1.3rem;
+  color: var(--font-color);
 }
 
 .center {
@@ -113,7 +138,12 @@ a {
   user-select: none;
   max-width: 54%;
 }
-.el span:last-child {
+#panel div.el > span > small {
+  display: inline;
+  color: var(--color-secondary);
+}
+.el > span:last-child {
+  color: #000000;
   position: relative;
   width: 45%;
   min-height: 1.63rem;
@@ -130,7 +160,8 @@ a {
 }
 .el:before {
   position: absolute;
-  background: #92dd9c;
+  color: var(--font-color);
+  background: var(--color-marker1);
   border-radius: 20px;
   font-size: 1rem;
   padding: 2px 8px;
@@ -142,10 +173,10 @@ a {
   opacity: .6;
 }
 .el[data-pattern]:before {
-  background: #dd92d8;
+  background: var(--color-marker2);
 }
 .editor {
-  background: #f2f2f2;
+  background: var(--color-editor);
 }
 .editor.done {
   background: #69fe48;
@@ -277,9 +308,9 @@ a {
   margin: 5px 1px 2px;
   padding: 2px 9px;
   text-decoration: none;
-  background: #a6dcff;
+  background: var(--color-primary);
   border-radius: 425px 255px 25px 25px / 25px 25px 145px;
-  color: #7b0505;
+  color: var(--color-secondary);
   font-family: Verdana, sans-serif;
   font-size: 1rem;
   cursor: pointer;
@@ -292,6 +323,10 @@ a {
   position: relative;
   width: 100%;
   counter-reset: list1;
+}
+#panel div.el span:first-child,
+#panel span:first-child {
+  color: var(--font-color);
 }
 #links {
   width: 98%;
@@ -386,12 +421,8 @@ a.active {
 a.repo {
   position: absolute;
   top: 8px;
-  right: 14px;
-}
-a.repo img {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
+  right: 16px;
+  color: var(--font-color);
 }
 .w100 {
   width: 100%;
@@ -403,6 +434,8 @@ a.repo img {
   outline: none;
   border: 2px inset #333;
   border-radius: 25px 225px 25px / 225px 25px 255px 25px;
+  color: var(--font-color);
+  background-color: var(--color-editor);
 }
 .search:active, .search:focus {
   outline: rgb(4, 142, 80) solid 2px;
@@ -412,7 +445,9 @@ a.repo img {
   padding: 4px 10px;
   font-size: 1.15rem;
   color:darkgreen;
+  border-color: var(--color-editor);
   border-radius: 25px 225px 25px / 225px 25px 255px 25px;
+  background-color: color-mix(in oklab, var(--color-editor) 40%, #9f9f9f 60%) ;
 }
 .grey {
   color: grey;
@@ -601,7 +636,7 @@ label.side-button-2 {
     background-color: transparent;
     border: 2px outset grey;
     cursor: pointer;
-    padding: 4px;
+    padding: 2px;
     border-radius: 8px;
     transition: background-color 0.3s;
 }
@@ -687,4 +722,82 @@ textarea {
 }
 .option {
   font-size: 24px;
+}
+
+/* The switch - the box around the slider */
+.switch2 {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+  margin-left: 10px;
+}
+
+/* Hide default HTML checkbox */
+.switch2 input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider2 {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.slider2:before {
+  position: absolute;
+  content: "";
+  height: 40px;
+  width: 40px;
+  left: 0px;
+  bottom: 4px;
+  top: 0;
+  bottom: 0;
+  margin: auto 0;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  box-shadow: 0 0px 15px #2020203d;
+  background: white url('night.png');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+input:checked + .slider2 {
+  background-color: #2196f3;
+}
+
+input:focus + .slider2 {
+  box-shadow: 0 0 1px #2196f3;
+}
+
+input:checked + .slider2:before {
+  -webkit-transform: translateX(24px);
+  -ms-transform: translateX(24px);
+  transform: translateX(24px);
+  background: white url('sunny.png');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* Rounded sliders */
+.slider2.round {
+  border-radius: 34px;
+}
+
+.slider2.round:before {
+  border-radius: 50%;
+}
+
+.octicon {
+  display: inline-block;
+  fill: currentColor;
 }

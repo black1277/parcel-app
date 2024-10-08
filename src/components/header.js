@@ -100,12 +100,12 @@ function goHandler() {
   let txt = input.value.trim()
   input.focus()
   if (txt.length < 3) {
-    panel.innerHTML = 'Нужно минимум 3 символа для поиска!'
+    panel.innerHTML = '<span>Нужно минимум 3 символа для поиска!</span>'
     return
   }
   let answ = filterByString(data, input.value, prx.lang)
   if (!answ.length) {
-    panel.innerHTML = 'Ничего не найдено!'
+    panel.innerHTML = '<span>Ничего не найдено!</span>'
     return
   }
   let dt = []
