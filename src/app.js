@@ -267,7 +267,11 @@ function fontExists(fontName) {
 document.getElementById('fontUpload').addEventListener('change', function(event) {
     const file = event.target.files[0];
     if (file) {
-        const fontName = file.name.split('.')[0];
+      const fileTextElement = this.closest('.input-file').querySelector('.input-file-text');
+      if (fileTextElement) {
+        fileTextElement.textContent = file.name;
+      }
+      const fontName = file.name.split('.')[0];
       applyCustomFont(file, fontName);
     }
 });
