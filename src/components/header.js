@@ -18,6 +18,7 @@ const state = {
   lang: 'rus',
   font: PackData.getData('font') ?? fonts[0],
   mix: false,
+  links: PackData.getData('links') ?? false,
   currentPage: 1
 }
 
@@ -27,6 +28,11 @@ const prx = new Proxy(state, {
     if (target[key] === val) return
 
     target[key] = val
+    if(key === 'links'){
+      const lnk = document.getElementById('links')
+      lnk.innerHTML = get_links(data.length)
+      return true
+    }
     const panel = document.getElementById('panel')
 
     if (key === 'font') {
@@ -61,7 +67,7 @@ export function main() {
     + get_searchPanel()
     + get_fontToggle(fonts)
     + get_panel()
-    + get_links(data.length)
+    + get_full_links(data.length)
 }
 
 function get_langToggle() {
@@ -195,18 +201,61 @@ function chHandler(el) {
     : 'err'
   el.classList.add('editor')
 }
-
+function get_full_links(len){
+  const links = get_links(len)
+  return `
+<div class="flexrow" id="links">
+  ${links}
+</div>`
+}
 function get_links(len) {
+  if (!prx.links) return long_navigatio(len)
+  else return short_navigatio(len)
+}
+
+function long_navigatio(len){
   const cnt = new Array(len).fill(0).map((el, i) => {
     const cl = (i + 1) === state.currentPage ? 'link-page active' : 'link-page'
     return `<a class="${cl}" onclick="prx.currentPage=${i + 1}">${i + 1}</a>`
-  }).join(' ')
-  return `
-<div class="flexrow" id="links">
-  ${cnt}
-</div>`
+  }).join('')
+  return cnt
 }
+function short_navigatio(totalPages) {
+  const currentPage = prx.currentPage
+  const links = [];
+  const visiblePages = 4;
 
+  const createLink = (page, isActive = false) =>
+    `<a class="link-page${isActive ? ' active' : ''}" onclick="prx.currentPage=${page}">${page}</a>`;
+
+  const addRangeLinks = (start, end, activePage) => {
+    for (let i = start; i <= end; i++) {
+      links.push(createLink(i, i === activePage));
+    }
+  };
+
+  if (totalPages <= 4 * visiblePages - 1) {
+    addRangeLinks(1, totalPages, currentPage);
+  } else {
+    if (currentPage < visiblePages * 2) {
+      addRangeLinks(1, visiblePages + currentPage - 1, currentPage);
+      links.push('<span class="ellipsis">...</span>');
+      addRangeLinks(totalPages - visiblePages + 1, totalPages);
+    } else if (currentPage > totalPages - visiblePages * 2) {
+      addRangeLinks(1, visiblePages);
+      links.push('<span class="ellipsis">...</span>');
+      addRangeLinks(currentPage - visiblePages + 1, totalPages, currentPage);
+    } else {
+      addRangeLinks(1, visiblePages);
+      links.push('<span class="ellipsis">...</span>');
+      addRangeLinks(currentPage - visiblePages + 1, currentPage + visiblePages - 1, currentPage);
+      links.push('<span class="ellipsis">...</span>');
+      addRangeLinks(totalPages - visiblePages + 1, totalPages);
+    }
+  }
+
+  return links.join("");
+}
 document.addEventListener('keydown', function (event) {
   if (event.ctrlKey && event.altKey){
     if (event.key === 'ArrowLeft') {
@@ -234,3 +283,9 @@ window.onpopstate = function (event) {
     prx.currentPage = event.state.page
   }
 }
+
+document.getElementById('showLinks').addEventListener('change', function (event) {
+  console.log(event.target.checked);
+  PackData.setData('links', event.target.checked)
+  prx.links = event.target.checked
+})

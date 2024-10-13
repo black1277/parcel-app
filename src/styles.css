@@ -462,7 +462,7 @@ a.repo {
   position: absolute;
   left: 50%;
   top: 40%;
-  background: #f0dda5;
+  background: var(--color-primary);
   text-align: center;
   padding: 2.5rem 1rem;
   border: 3px outset #dbac7a;
@@ -862,4 +862,7 @@ input:checked + .slider2:before {
 
 #applyFontUrl {
   padding: 5px 10px;
+}
+.ellipsis {
+  margin: 0 10px;
 }
