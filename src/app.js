@@ -292,3 +292,31 @@ function escapeText(text) {
   const map = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' };
   return text.replace(/[&<>"']/g, function (m) { return map[m]; });
 }
+
+function handleKeyPress(event, element) {
+  if (event.key === 'Enter' || event.key === ' ') {
+    element.click();  // Активирует нажатие на элемент
+    event.preventDefault();  // Предотвращает прокрутку при нажатии пробела
+  }
+}
+
+// Панель настроек
+const settingsPanel = document.querySelector('.side-button-1-wr .icon-button');
+settingsPanel.addEventListener('keydown', function (event) {
+  handleKeyPress(event, settingsPanel);
+});
+
+// Переключение темы
+const themeSwitch = document.querySelector('#switch');
+themeSwitch.addEventListener('keydown', function (event) {
+  handleKeyPress(event, themeSwitch);
+});
+
+const tgArea = document.getElementById('spoiler-title')
+tgArea.addEventListener('click', toggleAria)
+function toggleAria(e) {
+  const summary = e.target
+  const details = summary.parentElement;
+  const isOpen = details.getAttribute('open') !== null;
+  details.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
+}

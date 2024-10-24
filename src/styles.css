@@ -153,7 +153,6 @@ a {
   min-height: 1.63rem;
   font-family: inherit;
   font-size: 1.27rem;
-  outline: none;
   padding: 2px 8px;
   border: 1px solid #2c2c2c;
   border-radius: 255px 25px 225px / 25px 225px 25px 255px;
@@ -230,6 +229,10 @@ a {
 .toggle-bg input:checked{ z-index: 0; }
 .blk {
   display: block;
+}
+.blk label:focus {
+  outline: auto;
+  border: 1px solid green;
 }
 .flexrow {
   display: flex;
@@ -533,6 +536,7 @@ a.repo {
     color: #fafafa;
     padding: 4px .5rem;
     opacity: .94;
+    visibility: hidden;
     font-family: Source Sans Pro, sans-serif;
     overflow-y: auto;
     overflow-x:hidden;
@@ -615,6 +619,7 @@ a.repo {
 }
 #side-checkbox:checked + .side-panel {
     left: 0;
+    visibility: visible;
 }
 /* Оформление кнопки на панеле */
 label.side-button-2 {

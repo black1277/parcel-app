@@ -24,9 +24,7 @@ const state = {
 
 const prx = new Proxy(state, {
   set(target, key, val) {
-
     if (target[key] === val) return
-
     target[key] = val
     if(key === 'links'){
       const lnk = document.getElementById('links')
@@ -73,17 +71,17 @@ export function main() {
 function get_langToggle() {
   return `
  <div class="flexrow">
-  <span class="blk"><label for="rus">rus</label></span>
+  <span class="blk"><label for="rus" tabindex="0" title="переключить на русский">rus</label></span>
   <div class="flexcol">
    <span class="toggle-bg" id="langToggles">
-     <input type="radio" name="toggle" value="rus" id="rus" onchange="prx.lang='rus'">
-     <input type="radio" name="toggle" value="eng" id="eng" onchange="prx.lang='eng'">
+     <input type="radio" name="toggle" value="rus" id="rus" onchange="prx.lang='rus'" tabindex="-1">
+     <input type="radio" name="toggle" value="eng" id="eng" onchange="prx.lang='eng'" tabindex="-1">
      <span class="switch"></span>
    </span>
   </div>
-  <span class="blk"><label for="eng">eng</label></span>
+  <span class="blk"><label for="eng" tabindex="0" title="переключить на английский">eng</label></span>
   <span class="blk">
-    <label for="mix">перемешать </label><input type="checkbox" id="mix" onchange="prx.mix=this.checked">
+    <label for="mix">перемешать <input type="checkbox" id="mix" onchange="prx.mix=this.checked"></label>
   </span>
   <span class="blk">
     <input value="показать" type="button" id="show" onclick="show()">
@@ -96,7 +94,7 @@ function get_searchPanel() {
   let style = 'style="display: flex"'
   if(flag === false) style = 'style="display: none"'
   return `<div class="flexrow w100" ${style}>
-  <input type="text" name="search" id="search" class="search"><button class="go"
+  <input type="text" name="search" id="search" class="search" aria-label="Введите текст для поиска" title="Введите текст для поиска"><button class="go"
   onclick="goHandler()">GO</button></div>`
 }
 
@@ -128,7 +126,7 @@ function get_fontToggle(fnt) {
     const ch = el === state.font ? 'checked' : ''
     return `
   <li><input type="radio" name="fonts" value="${el}" id="${el}" onchange="prx.font='${el}'" ${ch}>
-    <label class="${el} flexrow" for="${el}">${el}</label>
+    <label class="${el} flexrow" for="${el}" tabindex="0">${el}</label>
   </li>`
   }).join('')
 
@@ -204,9 +202,9 @@ function chHandler(el) {
 function get_full_links(len){
   const links = get_links(len)
   return `
-<div class="flexrow" id="links">
+<nav class="flexrow" id="links" aria-label="Панель навигации" role="navigation">
   ${links}
-</div>`
+</nav>`
 }
 function get_links(len) {
   if (!prx.links) return long_navigatio(len)
@@ -215,18 +213,27 @@ function get_links(len) {
 
 function long_navigatio(len){
   const cnt = new Array(len).fill(0).map((el, i) => {
-    const cl = (i + 1) === state.currentPage ? 'link-page active' : 'link-page'
-    return `<a class="${cl}" onclick="prx.currentPage=${i + 1}">${i + 1}</a>`
+    const activePage = (i + 1) === state.currentPage
+    return createLink(i + 1, activePage)
   }).join('')
   return cnt
 }
+
+  const createLink = (page, isActive = false) => {
+    let cls = '', aria = ''
+    if (isActive){
+      cls = ' active'
+      aria = 'aria-current="page"'
+    }
+    return `<a href="#" class="link-page${cls}" onclick="prx.currentPage=${page}" ${aria} aria-label="Страница ${page}">${page}</a>`;
+  }
+
 function short_navigatio(totalPages) {
   const currentPage = prx.currentPage
   const links = [];
   const visiblePages = 4;
 
-  const createLink = (page, isActive = false) =>
-    `<a class="link-page${isActive ? ' active' : ''}" onclick="prx.currentPage=${page}">${page}</a>`;
+
 
   const addRangeLinks = (start, end, activePage) => {
     for (let i = start; i <= end; i++) {
@@ -269,7 +276,22 @@ document.addEventListener('keydown', function (event) {
       arrayPages.splice(pg, 1) // страницы не должны повторяться
       showProgress(arrayPages, data)
     }
+    return
   }
+  if (event.key === 'Enter' && event.target.id === "search"){
+    goHandler()
+    return
+  }
+  if (event.key === ' ' || event.key === 'Enter'){
+    const labelFor = ['eng', 'rus', ...fonts]
+    const attrFor = event.target.getAttribute('for')
+    if (labelFor.includes(attrFor)){
+      event.target.click();
+      event.preventDefault();
+    }
+    return
+  }
+
 })
 
 window.goHandler = goHandler
@@ -283,9 +305,9 @@ window.onpopstate = function (event) {
     prx.currentPage = event.state.page
   }
 }
-
-document.getElementById('showLinks').addEventListener('change', function (event) {
-  console.log(event.target.checked);
+const showLinks = document.getElementById('showLinks')
+showLinks.checked = PackData.getData('links') ?? false
+showLinks.addEventListener('change', function (event) {
   PackData.setData('links', event.target.checked)
   prx.links = event.target.checked
 })
