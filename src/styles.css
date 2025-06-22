@@ -283,6 +283,12 @@ a {
   border-radius: 6px;
   font-size: 1.4rem;
 }
+a.repo {
+  position: absolute;
+  top: 8px;
+  right: 16px;
+  color: var(--font-color);
+}
 @media (max-width: 760px) {
   h3 {
     position: relative;
@@ -309,6 +315,10 @@ a {
     width: 99%;
     min-height: 2.1rem;
   }
+  a.repo {
+    top: 36px;
+    right: 16px;
+}
 }
 .link-page {
   position: relative;
@@ -395,6 +405,10 @@ a.active {
   .spoiler li:nth-child(8) {
     display: none;
   }
+  a.repo {
+    top: 26px;
+    right: 6px;
+}
 }
 .spoiler {
   border: 1px solid #e0e0e0;
@@ -424,12 +438,6 @@ a.active {
 .spoiler li {
 	padding: 3px 10px;
 	margin: 3px 0 0 5px;
-}
-a.repo {
-  position: absolute;
-  top: 8px;
-  right: 16px;
-  color: var(--font-color);
 }
 .w100 {
   width: 100%;

@@ -43,7 +43,7 @@ describe('Test search functionality', () => {
     cy.get('button.go').click();
 
     // Проверяем, что отображается сообщение об ошибке
-    cy.get('div#panel').should('contain.text', 'Нужно минимум 3 символа для поиска!');
+    cy.get('section#panel').should('contain.text', 'Нужно минимум 3 символа для поиска!');
   });
 
   it('Should show "nothing found"', () => {
@@ -54,7 +54,7 @@ describe('Test search functionality', () => {
     cy.get('button.go').click();
 
     // Проверяем, что появляется сообщение "Ничего не найдено!"
-    cy.get('div#panel').then(($panel) => {
+    cy.get('section#panel').then(($panel) => {
         cy.wrap($panel).should('contain.text', 'Ничего не найдено!');
     });
   });
@@ -67,8 +67,8 @@ describe('Test search functionality', () => {
     cy.get('button.go').click();
 
     // Проверяем, что есть элементы с классом .el и атрибутом data-lang
-    cy.get('div#panel').then(($panel) => {
-      cy.get('div.el[data-lang]').should('exist');
+    cy.get('section#panel').then(($panel) => {
+      cy.get('article.el[data-lang]').should('exist');
     });
   });
 });
@@ -159,7 +159,7 @@ describe('Test visibility of font toggles based on checkbox state', () => {
       .should('be.checked');
 
     // Проверяем, что элемент с id="fontToggles" виден
-    cy.get('div#fontToggles').should('be.visible');
+    cy.get('section#fontToggles').should('be.visible');
   });
 
   it('Should hide the font toggles div when checkbox is unchecked', () => {
@@ -169,7 +169,7 @@ describe('Test visibility of font toggles based on checkbox state', () => {
       .should('not.be.checked');
 
     // Проверяем, что элемент с id="fontToggles" не виден
-    cy.get('div#fontToggles').should('not.be.visible');
+    cy.get('section#fontToggles').should('not.be.visible');
   });
 });
 
@@ -195,7 +195,7 @@ describe('Test font change when radio button is checked', () => {
         .should('be.checked');
 
       // Проверяем, что элемент <div class="el" data-lang> имеет шрифт
-      cy.get('div.el[data-lang]')
+      cy.get('article.el[data-lang]')
         .should('have.css', 'font-family')
         .and('include', font.name);
     });

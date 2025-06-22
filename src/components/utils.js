@@ -50,7 +50,7 @@ function showProgress(arrayPages,data){
 }
 
 function show() {
-  let elm = document.querySelectorAll('div.el span')
+  let elm = document.querySelectorAll('.el span')
   let btnShow = document.getElementById('show')
   btnShow.disabled = true
   let event = new MouseEvent('dblclick', {

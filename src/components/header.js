@@ -39,13 +39,14 @@ const prx = new Proxy(state, {
       PackData.setData('font', val)
       return true
     }
-const body = document.querySelector('body')
-body.classList.add('hide')
-setTimeout(function(){
-  panel.innerHTML = get_rows(data, target.currentPage)
-  body.classList.remove('hide')
-}, 145);
-
+    const body = document.querySelector('body')
+    if (fade.checked){
+      body.classList.add('hide')
+      setTimeout(function(){
+        panel.innerHTML = get_rows(data, target.currentPage)
+        body.classList.remove('hide')
+      }, 145);
+    } else panel.innerHTML = get_rows(data, target.currentPage)
     PackData.setData('page', target.currentPage)
     enableDisable(false)
     if (key === 'currentPage') {
@@ -70,38 +71,39 @@ export function main() {
 
 function get_langToggle() {
   return `
- <div class="flexrow">
-  <span class="blk"><label for="rus" tabindex="0" title="переключить на русский">rus</label></span>
+ <section class="flexrow" aria-label="опции">
+  <span class="blk"><label for="rus" tabindex="0" title="переключить на русский" aria-label="переключить на русский">rus</label></span>
   <div class="flexcol">
-   <span class="toggle-bg" id="langToggles">
+   <span role="radiogroup" class="toggle-bg" id="langToggles">
      <input type="radio" name="toggle" value="rus" id="rus" onchange="prx.lang='rus'" tabindex="-1">
      <input type="radio" name="toggle" value="eng" id="eng" onchange="prx.lang='eng'" tabindex="-1">
      <span class="switch"></span>
    </span>
   </div>
-  <span class="blk"><label for="eng" tabindex="0" title="переключить на английский">eng</label></span>
+  <span class="blk"><label for="eng" tabindex="0" title="переключить на английский" aria-label="переключить на английский">eng</label></span>
   <span class="blk">
     <label for="mix">перемешать <input type="checkbox" id="mix" onchange="prx.mix=this.checked"></label>
   </span>
   <span class="blk">
-    <input value="показать" type="button" id="show" onclick="show()">
+    <button type="button" id="show" onclick="show()">показать</button>
   </span>
- </div>`
+ </section>`
 }
 
 function get_searchPanel() {
   let flag = PackData.getData('showSearch')
   let style = 'style="display: flex"'
   if(flag === false) style = 'style="display: none"'
-  return `<div class="flexrow w100" ${style}>
-  <input type="text" name="search" id="search" class="search" aria-label="Введите текст для поиска" title="Введите текст для поиска"><button class="go"
-  onclick="goHandler()">GO</button></div>`
+  return `<section class="flexrow w100" ${style}>
+  <input autocomplete="off" type="text" name="search" id="search" class="search" aria-label="Введите текст для поиска" title="Введите текст для поиска"><button class="go"
+  onclick="goHandler()" aria-label="Поиск">GO</button></section>`
 }
 
 function goHandler() {
   const input = document.getElementById('search')
   const panel = document.getElementById('panel')
   let txt = input.value.trim()
+  if (!txt.length) return
   input.focus()
   if (txt.length < 3) {
     panel.innerHTML = '<span>Нужно минимум 3 символа для поиска!</span>'
@@ -131,11 +133,11 @@ function get_fontToggle(fnt) {
   }).join('')
 
   return `
-<div class="flexcol" id="fontToggles" ${style}>
+<section class="flexcol" id="fontToggles" ${style}>
  <ul class="flexrow">
 ${li}
  </ul>
-</div>`
+</section>`
 }
 
 function get_panel() {
@@ -144,7 +146,7 @@ function get_panel() {
 
   let rw = get_rows(data, page)
   let font = prx.font
-  return `<div class="flexcol ${font}" id="panel">${rw}</div>`
+  return `<section class="flexcol ${font}" id="panel">${rw}</section>`
 }
 
 function get_rows(arr, page = 0) {
@@ -165,9 +167,9 @@ function get_rows(arr, page = 0) {
 function make_row(vis, answer, pattern) {
   let pt = ''
   if (pattern) pt = `data-pattern="${pattern}"`
-  return `<div class="el" data-lang="${answer}" ${pt}>
+  return `<article class="el" data-lang="${answer}" ${pt}>
 <span ondblclick="dblHandler(this,'${answer}')">${vis}</span>
-<span class="editor" contenteditable="true" oninput="chHandler(this)" onblur="chHandler(this)" spellcheck="false" /></span></div>`
+<span class="editor" contenteditable="true" oninput="chHandler(this)" onblur="chHandler(this)" spellcheck="false" /></span></article>`
 }
 
 function dblHandler(el, ans) {

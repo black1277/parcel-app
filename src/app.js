@@ -51,6 +51,11 @@ function init(el){
   const search = document.getElementById('search')
   const fonts = document.getElementById('fontToggles')
   const showTitle = document.getElementById('showTitle')
+  const fade = document.getElementById('fade')
+  fade.checked = PackData.getData('fade') ?? true
+  fade.addEventListener('input', (e)=>{
+    PackData.setData('fade', e.target.checked)
+  })
   showTitle.checked = PackData.getData('showTitle') ?? true
   const titles = document.querySelectorAll('h3.center, a.repo, div.spoiler')
   if (!showTitle.checked) titles.forEach(el => el.style.display = 'none')
