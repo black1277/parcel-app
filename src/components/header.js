@@ -227,7 +227,7 @@ function long_navigatio(len){
       cls = ' active'
       aria = 'aria-current="page"'
     }
-    return `<a href="#" class="link-page${cls}" onclick="prx.currentPage=${page}" ${aria} aria-label="Страница ${page}">${page}</a>`;
+    return `<a href="#" class="link-page${cls}" onclick="prx.currentPage=${page}; return false;" ${aria} aria-label="Страница ${page}">${page}</a>`;
   }
 
 function short_navigatio(totalPages) {
