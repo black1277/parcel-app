@@ -81,7 +81,7 @@ function get_langToggle() {
    </span>
   </div>
   <span class="blk"><label for="eng" tabindex="0" title="переключить на английский" aria-label="переключить на английский">eng</label></span>
-  <span class="blk">
+  <span class="blk side-margin">
     <label for="mix">перемешать <input type="checkbox" id="mix" onchange="prx.mix=this.checked"></label>
   </span>
   <span class="blk">
