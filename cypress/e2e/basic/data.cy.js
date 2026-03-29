@@ -1,9 +1,5 @@
 /// <reference types="cypress" />
-
-import  data  from '../../../src/components/data/index'
-const totalLinks = data.length; // Задаем количество ссылок
-const LastTap = 10 // будем проверять последние n
-const Start = LastTap > 0 ? totalLinks - LastTap : 1
+import { Start, totalLinks } from './constants'
 
 describe('Test for clicking links and checking input class with rerender', () => {
   beforeEach(() => {
@@ -18,11 +14,11 @@ describe('Test for clicking links and checking input class with rerender', () =>
 
       // Ждем, пока кнопка 'показать' станет видимой после клика
       cy.get('#show').should('be.visible');
-      cy.wait(90)
+      cy.wait(70)
       // Нажимаем на кнопку 'показать'
       cy.get('#show').click();
-      cy.wait(90)
-      // Проверяем, что все input с типом text, кроме input с id="search", имеют класс 'done'
+      cy.wait(70)
+      // Проверяем, что все последние span, имеют класс 'done'
       cy.get('.el span:last-child').should('have.class', 'done');
     }
   });
@@ -37,11 +33,11 @@ describe('Test for clicking links and checking input class with rerender', () =>
 
       // Ждем, пока кнопка 'показать' станет видимой после клика
       cy.get('#show').should('be.visible');
-      cy.wait(90)
+      cy.wait(70)
       // Нажимаем на кнопку 'показать'
       cy.get('#show').click();
-      cy.wait(90)
-      // Проверяем, что все input с типом text, кроме input с id="search", имеют класс 'done'
+      cy.wait(70)
+      // Проверяем, что все последние span, имеют класс 'done'
       cy.get('.el span:last-child').should('have.class', 'done');
     }
   });

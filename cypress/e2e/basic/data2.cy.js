@@ -1,9 +1,5 @@
 /// <reference types="cypress" />
-
-import  data  from '../../../src/components/data/index'
-const totalLinks = data.length; // Задаем количество ссылок
-const LastTap = 6 // будем проверять последние n
-const Start = LastTap > 0 ? totalLinks - LastTap : 1
+import { Start, totalLinks } from './constants'
 
 describe('Test for clicking links and checking input class with rerender', () => {
   beforeEach(() => {
@@ -15,7 +11,7 @@ describe('Test for clicking links and checking input class with rerender', () =>
     for (let i = Start; i <= totalLinks; i++) {
       // Ищем ссылку с текстом, соответствующим текущему номеру итерации
       cy.contains('a.link-page', `${i}`).click();
-      cy.wait(100)
+      cy.wait(120)
       // Ждем, пока кнопка 'показать' станет видимой после клика
       cy.get('#show').should('be.visible');
 
@@ -47,7 +43,7 @@ describe('Test for clicking links and checking input class with rerender', () =>
     for (let i = Start; i <= totalLinks; i++) {
       // Ищем ссылку с текстом, соответствующим текущему номеру итерации
       cy.contains('a.link-page', `${i}`).click();
-      cy.wait(100)
+      cy.wait(120)
       // Ждем, пока кнопка 'показать' станет видимой после клика
       cy.get('#show').should('be.visible');
 

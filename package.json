@@ -15,7 +15,7 @@
     "cy:open": "cypress open"
   },
   "devDependencies": {
-    "cypress": "^13.14.2",
+    "cypress": "^15.13.0",
     "parcel": "^2.5.0"
   }
 }

@@ -1,5 +1,5 @@
 /// <reference types="cypress" />
-
+import {fonts} from './constants'
 describe('Test localStorage with page reload', () => {
 
   beforeEach(() => {
@@ -17,15 +17,18 @@ describe('Test localStorage with page reload', () => {
     // 3. Проверяем, что активная ссылка после перезагрузки страницы всё ещё "3"
     cy.contains('a.link-page', `${linkToClick}`).should('have.class', 'active'); // Здесь "active" — это пример класса для активной ссылки
   });
-  it('Should select the "lora" radio button and verify it after reload', () => {
-    // 1. Находим и выбираем радио-кнопку с id="lora"
-    cy.get('input[type="radio"]#lora').check({ force: true }).should('be.checked')
-
+  it('Should select the fontName radio button and verify it after reload', () => {
+    fonts.forEach((font) => {
+    // 1. Находим и выбираем радио-кнопку с id="font.id"
+        cy.get(`label[for="${font.id}"]`)
+      .should('be.visible')
+      .click();
+        cy.get(`input#${font.id}`).should('be.checked');
     // 2. Перезагружаем страницу
-    cy.reload();
-
-    // 3. Проверяем, что радио-кнопка с id="lora" всё ещё выбрана после перезагрузки
-    cy.get('input[type="radio"]#lora').should('be.checked');
+        cy.reload();
+    // 3. Проверяем, что радио-кнопка с id="font.id" всё ещё выбрана после перезагрузки
+        cy.get(`input#${font.id}`).should('be.checked');
+    });
   });
 });
 
@@ -121,12 +124,17 @@ describe('Test search input and button visibility based on checkbox state', () =
   beforeEach(() => {
     // Переход на страницу перед каждым тестом
     cy.visit('/');
+    // 1. Находим и нажимаем кнопку настроек
+    cy.get(`label.icon-button[for="side-checkbox"]`)
+      .should('be.visible')
+      .click();
+    cy.wait(150)
   });
 
   it('Should show search input and button when checkbox is checked', () => {
-    // Находим чекбокс и устанавливаем его в checked, если он не установлен
+    // Находим чекбокс и проверяем что он checked и видим
     cy.get('input[type="checkbox"]#showSearch')
-      .check({ force: true }) // { force: true } используется, если чекбокс может быть скрыт или отключен
+      .should('be.visible')
       .should('be.checked');
 
     // Проверяем, что поле ввода и кнопка GO видны
@@ -137,7 +145,7 @@ describe('Test search input and button visibility based on checkbox state', () =
   it('Should hide search input and button when checkbox is unchecked', () => {
     // Находим чекбокс и снимаем его состояние checked, если он установлен
     cy.get('input[type="checkbox"]#showSearch')
-      .uncheck({ force: true }) // { force: true } используется, если чекбокс может быть скрыт или отключен
+      .uncheck()
       .should('not.be.checked');
 
     // Проверяем, что поле ввода и кнопка GO не видны
@@ -150,12 +158,17 @@ describe('Test visibility of font toggles based on checkbox state', () => {
   beforeEach(() => {
     // Переход на страницу перед каждым тестом
     cy.visit('/');
+    // 1. Находим и нажимаем кнопку настроек
+    cy.get(`label.icon-button[for="side-checkbox"]`)
+      .should('be.visible')
+      .click();
+    cy.wait(150)
   });
 
   it('Should show the font toggles div when checkbox is checked', () => {
-    // Находим чекбокс и устанавливаем его в checked, если он не установлен
+    // Находим чекбокс и проверяем что видим и checked
     cy.get('input[type="checkbox"]#showFonts')
-      .check({ force: true }) // { force: true } используется, если чекбокс может быть скрыт или отключен
+      .should('be.visible')
       .should('be.checked');
 
     // Проверяем, что элемент с id="fontToggles" виден
@@ -165,7 +178,7 @@ describe('Test visibility of font toggles based on checkbox state', () => {
   it('Should hide the font toggles div when checkbox is unchecked', () => {
     // Находим чекбокс и снимаем его состояние checked, если он установлен
     cy.get('input[type="checkbox"]#showFonts')
-      .uncheck({ force: true }) // { force: true } используется, если чекбокс может быть скрыт или отключен
+      .uncheck()
       .should('not.be.checked');
 
     // Проверяем, что элемент с id="fontToggles" не виден
@@ -174,13 +187,6 @@ describe('Test visibility of font toggles based on checkbox state', () => {
 });
 
 describe('Test font change when radio button is checked', () => {
-  const fonts = [
-    { id: 'lora', name: 'Lora' },
-    { id: 'philosopher', name: 'Philosopher' },
-    { id: 'literata', name: 'Literata' },
-    { id: 'vollkorn', name: 'Vollkorn' },
-    { id: 'firacode', name: 'Fira Code' },
-  ];
 
   beforeEach(() => {
     // Переход на страницу перед каждым тестом
@@ -189,11 +195,11 @@ describe('Test font change when radio button is checked', () => {
 
   fonts.forEach((font) => {
     it(`Should apply "${font.name}" font to text in the element with data-lang when the radio button is checked`, () => {
-      // Находим и выбираем радио-кнопку по id
-      cy.get(`input[type="radio"]#${font.id}`)
-        .check({ force: true }) // Используем { force: true } если элемент скрыт или отключен
-        .should('be.checked');
-
+      // 1. Находим и выбираем радио-кнопку с id="font.id"
+      cy.get(`label[for="${font.id}"]`)
+        .should('be.visible')
+        .click();
+      cy.get(`input#${font.id}`).should('be.checked');
       // Проверяем, что элемент <div class="el" data-lang> имеет шрифт
       cy.get('article.el[data-lang]')
         .should('have.css', 'font-family')
@@ -202,19 +208,24 @@ describe('Test font change when radio button is checked', () => {
   });
 });
 
-
 describe('Test page reload and active state of the first link after clicking the Delete button', () => {
   beforeEach(() => {
     // Переход на страницу перед каждым тестом
     cy.visit('/');
+    // 1. Находим и нажимаем кнопку настроек
+    cy.get(`label.icon-button[for="side-checkbox"]`)
+      .should('be.visible')
+      .click();
+    cy.wait(150);
   });
 
   it('Should reload the page and set the first link as active after clicking the Delete button', () => {
     // Сохраняем текущее состояние URL страницы
     cy.url().as('initialUrl');
 
-    // Находим и нажимаем на кнопку "Delete"
-    cy.get('button.icon-button.yellow[title="Delete"]').click({ force: true });
+    // Находим, прокручиваем и нажимаем на кнопку "Delete"
+    cy.get('button.icon-button.yellow[title="Delete"]').scrollIntoView();
+    cy.get('button.icon-button.yellow[title="Delete"]').should('be.visible').click();
 
     // Проверяем, что URL не изменился после перезагрузки, что подтверждает обновление страницы
     cy.get('@initialUrl').then((url) => {
