@@ -10,10 +10,12 @@
   },
   "scripts": {
     "start": "parcel",
+    "prebuild": "node prebuild/generateGlob.js",
     "build": "parcel build",
     "cy:run": "cypress run",
     "cy:open": "cypress open"
   },
+  "browserslist": "last 3 Chrome version",
   "devDependencies": {
     "cypress": "^15.13.0",
     "parcel": "^2.16.4"
