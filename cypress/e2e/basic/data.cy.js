@@ -14,10 +14,10 @@ describe('Test for clicking links and checking input class with rerender', () =>
 
       // Ждем, пока кнопка 'показать' станет видимой после клика
       cy.get('#show').should('be.visible');
-      cy.wait(70)
+      cy.wait(100)
       // Нажимаем на кнопку 'показать'
       cy.get('#show').click();
-      cy.wait(70)
+      cy.wait(100)
       // Проверяем, что все последние span, имеют класс 'done'
       cy.get('.el span:last-child').should('have.class', 'done');
     }
@@ -33,10 +33,10 @@ describe('Test for clicking links and checking input class with rerender', () =>
 
       // Ждем, пока кнопка 'показать' станет видимой после клика
       cy.get('#show').should('be.visible');
-      cy.wait(70)
+      cy.wait(100)
       // Нажимаем на кнопку 'показать'
       cy.get('#show').click();
-      cy.wait(70)
+      cy.wait(100)
       // Проверяем, что все последние span, имеют класс 'done'
       cy.get('.el span:last-child').should('have.class', 'done');
     }

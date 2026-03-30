@@ -10,3 +10,4 @@ public
 .vercel
 .idea
 cypress/downloads/
+cypress/screenshots/

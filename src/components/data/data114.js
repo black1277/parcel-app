@@ -8,7 +8,7 @@ const data = [
   {
     rus: 'Ищем ли мы часто интересные книги здесь?',
     eng: 'Do we often look for interesting books here?',
-    regEng: '/Do we often (?:look|search) for interesting books here?/gm'
+    regEng: '/Do we often (?:look|search) for interesting books here\\?/gm'
   },
   {
     rus: 'Твои ресницы длиннее моих',
