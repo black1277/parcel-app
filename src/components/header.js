@@ -273,6 +273,12 @@ document.addEventListener('keydown', function (event) {
       if (prx.currentPage < data.length) prx.currentPage++
     } else if (event.code === 'Space'){
       event.preventDefault()// нужно - иначе пробелом нажимаются кнопки в фокусе
+      event.stopImmediatePropagation();  // останавливаем всплытие
+
+      // 👇 Снимаем фокус с текущего элемента (label, input и т.д.)
+      if (document.activeElement && typeof document.activeElement.blur === 'function') {
+        document.activeElement.blur()
+      }
       let pg = getRandomPage()
       prx.currentPage = arrayPages[pg]
       arrayPages.splice(pg, 1) // страницы не должны повторяться
@@ -294,7 +300,7 @@ document.addEventListener('keydown', function (event) {
     return
   }
 
-})
+}, true)
 
 window.goHandler = goHandler
 window.show = show
