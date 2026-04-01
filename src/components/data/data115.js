@@ -18,7 +18,7 @@ const data = [
   {
     rus: 'Она без ума от своего нового парня',
     eng: 'She is crazy about her new boyfriend',
-    regEng: '/(?:She|She’s) is crazy about her new boyfriend/gm'
+    regEng: '/(?:She(?: is|`s) crazy about her new boyfriend/gm'
   },
   {
     rus: 'На столе лежали книги',
