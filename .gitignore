@@ -11,3 +11,4 @@ public
 .idea
 cypress/downloads/
 cypress/screenshots/
+*.bat
