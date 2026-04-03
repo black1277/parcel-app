@@ -146,7 +146,7 @@ a {
   display: inline;
   color: var(--color-secondary);
 }
-.el > span:last-child {
+.el > span:last-of-type {
   color: #000000;
   position: relative;
   width: 45%;
@@ -320,7 +320,7 @@ a.repo {
     max-width: 99%;
     padding: 5px;
   }
-  .el span:last-child {
+  .el span:last-of-type {
     padding: 2px;
     width: 99%;
     min-height: 2.1rem;
@@ -389,6 +389,16 @@ a.active {
   background: #e20b0b;
   cursor: default;
 }
+.help-btn {
+  position: absolute;
+  background-color: #ff9c4b;
+  border-radius: 50%;
+  border: 1px solid grey;
+  padding: 2px 7px;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+}
 @media (max-width: 600px) {
   body {
     padding: 0;
@@ -401,7 +411,7 @@ a.active {
     padding: 1px;
     border-radius: 4px;
   }
-  .el span:last-child {
+  .el span:last-of-type {
     width: 99%;
     padding: 1px;
     border-radius: 4px;
@@ -898,4 +908,9 @@ input:checked + .slider2:before {
 }
 .ellipsis {
   margin: 0 10px;
+}
+span u {
+  color:#005a0c;
+  font-weight: 700;
+  user-select: none;
 }

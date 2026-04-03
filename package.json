@@ -9,8 +9,9 @@
     }
   },
   "scripts": {
-    "start": "parcel",
-    "prebuild": "node prebuild/generateGlob.js",
+    "start": "npm run collect && parcel",
+    "prebuild": "node prebuild/collect.mjs",
+    "collect": "node prebuild/generateGlob.js",
     "build": "parcel build",
     "cy:run": "cypress run",
     "cy:open": "cypress open"

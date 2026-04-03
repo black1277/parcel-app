@@ -131,6 +131,5 @@ import data128 from './data128'; data.push(data128);
 import data129 from './data129'; data.push(data129);
 import data130 from './data130'; data.push(data130);
 import data131 from './data131'; data.push(data131);
-import data132 from './data132'; data.push(data132);
-import data133 from './data133'; data.push(data133)
+import data132 from './data132'; data.push(data132)
 export default data;

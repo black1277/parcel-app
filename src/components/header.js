@@ -181,14 +181,20 @@ function dblHandler(el, ans) {
 }
 
 function chHandler(el) {
+  // Удаляем кнопку help, если она есть
+  const existingHelp = el.parentNode.querySelector('.help-btn')
+  if (existingHelp) existingHelp.remove()
   if (el.innerText.trim() === '') { // если инпут пустой
     el.classList.remove('err')
     el.classList.remove('done')
     return
   }
-  let input = el.innerText.trim().toLowerCase()
-  input = input.replace(/\s+/g, ' ')
-  let condition = el.parentNode.dataset.lang.trim().toLowerCase() === input
+  let input = el.innerText
+    .trim()
+    .toLowerCase()
+    .replace(/\s+/g, ' ')
+  let answer = el.parentNode.dataset.lang.trim().toLowerCase()
+  let condition = answer === input
   if (el.parentNode.dataset.pattern) { // если есть шаблон работаем с ним
     let reg = el.parentNode.dataset.pattern.split('/')[1] // берем выражение между //
     reg = reg.trim().toLowerCase().replaceAll('’', '`') // меняем проклятый апостроф на нормальный
@@ -200,6 +206,36 @@ function chHandler(el) {
     ? 'done'
     : 'err'
   el.classList.add('editor')
+  if (!condition) {
+    const helpBtn = document.createElement('button')
+    helpBtn.type = 'button'
+    helpBtn.textContent = 'help'
+    helpBtn.classList.add('help-btn')
+    helpBtn.addEventListener('mouseover', ()=>{
+      el.blur()
+    })
+    helpBtn.addEventListener('click', function (e) {
+      e.stopPropagation() // предотвращаем всплытие события
+      compareMe(el, answer, input) // вызываем функцию, передавая элемент
+    })
+    el.parentNode.appendChild(helpBtn)
+  }
+}
+function compareMe(el, ans, inp) {
+  let matchLen = 0;
+  // Ограничиваем сравнение длиной первой строки (или второй, если она короче)
+  const limit = Math.min(ans.length, inp.length);
+
+  while (matchLen < limit && ans[matchLen] === inp[matchLen]) {
+    matchLen++;
+  }
+  let nwHTML
+  // Если первый символ не совпал — возвращаем вторую строку без изменений
+  if (matchLen === 0) nwHTML = inp;
+
+  // Возвращаем HTML по шаблону: <u>совпадение</u>остаток второй строки
+  nwHTML = `<u contenteditable="false">${inp.slice(0, matchLen)}</u>${inp.slice(matchLen)}`;
+  el.innerHTML = nwHTML
 }
 function get_full_links(len){
   const links = get_links(len)
