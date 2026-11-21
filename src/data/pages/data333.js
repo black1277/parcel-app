@@ -37,8 +37,8 @@ const data = [
   },
   {
     rus: 'Это временные трудности. Просто двигайтесь дальше и делайте всё возможное, чтобы решить любые проблемы. Оставайтесь позитивными!',
-    eng: 'These are temporary difficulties. Just move on and do your best to solve any problems. Stay positive! =)',
-    regEng: '/These are temporary difficulties. Just move on and do your best to solve any problems. Stay positive!(?: =\\))?/gm'
+    eng: 'These are temporary difficulties. Just move on and do your best to solve any problems. Stay positive!',
+    regEng: ''
   }
 ]
 export default data

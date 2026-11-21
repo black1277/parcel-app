@@ -36,7 +36,7 @@ const data = [
     regEng: '/He(?: is|[`’\']s) a very kind person. He treats everyone around him very well. He always behaves politely and acts right/gm'
   },
   {
-    rus: 'Это идеально написанное предложение! Твой английский становится лучше и лучше шаг за шагом! =',
+    rus: 'Это идеально написанное предложение! Твой английский становится лучше и лучше шаг за шагом!',
     eng: 'This is a perfectly written sentence! Your English is getting better and better step by step!',
     regEng: '/(?:(?:This|That|It) is|(?:That|It)[`’\']s) a perfectly written sentence! Your English is (?:becoming|getting) better and better step by step!/gm'
   }

@@ -36,9 +36,9 @@ const data = [
     regEng: '/When did you last talk to that person and what did he say about me\\? I last talked to him three days ago and he (?:did not|didn[`’\']t) say anything special about you/gm'
   },
   {
-    rus: 'Замечательная работа! Молодец! Ты справляешься просто превосходно! Продолжай в том же духе и никогда не сдавайся, потому что оно того стоит! =',
-    eng: 'Great job! Well done! You`re doing just fine! Keep it up and never give up, because it`s worth it! =)',
-    regEng: '/(?:Great job! Well done! You[`’\']re doing just fine! Keep it up and never give up, because it[`’\']s worth it! =\\)|Great job! Well done! You(?: are|[`’\']re) doing just fine! Keep it up and never give up, because it(?: is|[`’\']s) worth it!)/gm'
+    rus: 'Замечательная работа! Молодец! Ты справляешься просто превосходно! Продолжай в том же духе и никогда не сдавайся, потому что оно того стоит!',
+    eng: 'Great job! Well done! You`re doing just fine! Keep it up and never give up, because it`s worth it!',
+    regEng: '/(?:Great job! Well done! You[`’\']re doing just fine! Keep it up and never give up, because it[`’\']s worth it!|Great job! Well done! You(?: are|[`’\']re) doing just fine! Keep it up and never give up, because it(?: is|[`’\']s) worth it!)/gm'
   }
 ]
 export default data
