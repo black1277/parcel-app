@@ -1,0 +1,13 @@
+.gfonts {
+  display: inline-block;
+  background-color: #ffea76;
+  border-radius: 8px;
+  line-height: 0;
+  padding: 2px;
+}
+.gfonts svg{
+  margin: 0;
+}
+.option {
+  font-size: 24px;
+}

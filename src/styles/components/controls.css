@@ -1,0 +1,95 @@
+.icon-button {
+    display: inline-block;
+    background-color: transparent;
+    border: 2px outset grey;
+    cursor: pointer;
+    padding: 2px;
+    border-radius: 8px;
+    transition: background-color 0.3s;
+}
+
+.num {
+  display: inline-block;
+  width: 2.8rem;
+  padding: 4px;
+  margin: 2px;
+  background-color: rgb(52, 52, 52);
+  font-size: 1.125rem;
+  border: 2px inset grey;
+  border-radius: 8px;
+}
+.icon-button:hover {
+    background-color: #e0e0e0;
+}
+
+.icon-button svg {
+    width: 2.3rem;
+    height: 1.8rem;
+    fill: #333;
+}
+
+.icon-button:hover svg {
+    fill: #007BFF;
+}
+.upfont {
+  font-size: large;
+  font-weight: 600;
+}
+.bold {
+  font-weight: bold;
+}
+.slider-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 4px;
+    background-color: #1412424f;
+    border-radius: 5px;
+}
+.slider-label {
+    width: 30px;
+    text-align: right;
+    margin-right: 10px;
+}
+input[type="range"] {
+    flex: 1;
+}
+svg {
+  margin-top: 5px;
+}
+.green {
+  background-color: rgb(121, 253, 121);
+}
+.red {
+  background-color: rgb(255, 133, 133);
+}
+.yellow {
+  background-color: #ffea76;
+}
+
+.icon {
+  color: var(--color-svg);
+  transition: color 500ms ease-in-out;
+}
+
+/* Плавное переключение геометрий */
+.original,
+.straight {
+  transition: opacity 400ms ease-in-out;
+}
+
+.original {
+  opacity: 1;
+}
+
+.straight {
+  opacity: 0;
+}
+
+/* Чекбокс включён */
+label:has(#mix:checked) .original {
+  opacity: 0;
+}
+
+label:has(#mix:checked) .straight {
+  opacity: 1;
+}

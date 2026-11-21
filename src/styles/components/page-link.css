@@ -1,0 +1,40 @@
+.link-page {
+  position: relative;
+  margin: 5px 1px 2px;
+  padding: 2px 9px;
+  text-decoration: none;
+  background: var(--color-primary);
+  border-radius: 425px 255px 25px 25px / 25px 25px 145px;
+  color: var(--color-secondary);
+  font-family: Verdana, sans-serif;
+  font-size: 1rem;
+  cursor: pointer;
+  /*pointer-events: none;*/
+}
+.link-page:hover:not(.active) {
+  outline: 1px solid #6c0000;
+}
+
+.link-page:nth-child(6n + 1) {
+  border-radius: 255px 15px 225px / 15px 225px 15px 255px;
+}
+
+.link-page:nth-child(6n + 2) {
+  border-radius: 15px 225px 15px 255px / 255px 25px 225px 15px;
+}
+
+.link-page:nth-child(6n + 3) {
+  border-radius: 225px 25px 15px 105px / 25px 255px 15px 225px;
+}
+
+.link-page:nth-child(6n + 4) {
+  border-radius: 15px 255px 95px 25px / 225px 15px 85px 25px;
+}
+
+.link-page:nth-child(6n + 5) {
+  border-radius: 255px 25px 15px 225px / 15px 225px 255px 25px;
+}
+
+.link-page:nth-child(6n) {
+  border-radius: 25px 225px 105px 15px / 255px 15px 65px 25px;
+}

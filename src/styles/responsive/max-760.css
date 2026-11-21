@@ -1,0 +1,41 @@
+@media (max-width: 760px) {
+  h3 {
+    position: relative;
+    font-size: 1.5rem;
+  }
+  .el:before {
+    display: none;
+  }
+  .flexrow li {
+    list-style: none;
+    margin: 2px;
+    transition: all .3s ease-in-out;
+  }
+  .el {
+    width: 100%;
+    flex-direction: column;
+  }
+  .el span {
+    width: 99%;
+    padding: 5px;
+  }
+  .editor-wrap {
+    width: 99%;
+  } 
+  .editor-wrap span {
+    padding: 3px;
+    width: 99%;
+    min-height: 2.1rem;
+  }
+  .row-action {
+    width: 28px;
+    height: 28px;
+  }
+  .help-btn {
+    height: 28px;
+  }
+  a.repo {
+    top: 36px;
+    right: 16px;
+}
+}

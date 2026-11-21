@@ -1,0 +1,57 @@
+:root {
+  --min_size: 12;
+  --max_size: 20;
+  --minimum_size: calc(1px * var(--min_size));
+  --maximum_size: calc(1px * var(--max_size));
+  --minimum_viewport_width: 320;
+  --maximum_viewport_width: 1800;
+  --delta_size: calc(var(--max_size) - var(--min_size));
+  --delta_viewport: calc(var(--maximum_viewport_width) - var(--minimum_viewport_width));
+  --scale_factor: calc((100vw - (1px * var(--minimum_viewport_width))) / var(--delta_viewport));
+  --result: clamp(var(--minimum_size), calc(var(--minimum_size) + var(--delta_size) * var(--scale_factor)), var(--maximum_size));
+}
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: var(--result);
+}
+html, body {
+  min-height: 100vh;
+}
+
+body {
+  transition: .15s opacity ease-in-out;
+  padding: 5px 12px;
+  font-size: 1.3rem;
+  color: var(--font-color);
+}
+
+.center {
+  text-align: center;
+}
+h1 {
+  color: #de250d;
+  font-family: cursive;
+  font-size: 3.5rem;
+}
+h3 {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  color: #de250d;
+  font-family: cursive;
+  font-size: 2.25rem;
+}
+
+p {
+  font-family: Helvetica, Arial, sans-serif;
+  line-height: 1.5em;
+}
+
+a {
+  color: dodgerblue;
+}

@@ -1,0 +1,29 @@
+// 17-20 > 19.4 > 13
+const data = [
+  {
+    rus: 'Его бабушка с дедушкой болеют, но я надеюсь, что они поправятся скоро',
+    eng: 'His grandparents are sick but I hope that they`ll get well soon',
+    regEng: '/His grandparents are (?:(?:sick|ill) but I hope (?:that they(?: will|[`’\']ll)|they will|they[`’\']ll) get well soon|(?:sick|ill) but I hope (?:that they(?: will|[`’\']ll)|they will|they[`’\']ll) soon get well)/gm'
+  },
+  {
+    rus: 'Сколько раз ты ездила в ту страну в прошлом году? Я ездила туда всего несколько раз',
+    eng: 'How many times did you go to that country last year? I went there just a few times',
+    regEng: '/How many times did you go to that country last year\\? I (?:went there just|just went there) a few times/gm'
+  },
+  {
+    rus: 'Мне сложно концентрироваться и оставаться сфокусированным. Так что мне лучше не делать много разных вещей сразу же',
+    eng: 'It`s difficult for me to concentrate and stay focused. So it`s better for me not to do many different things at once',
+    regEng: '/(?:It is difficult for me to concentrate and (?:(?:(?:(?:(?:(?:to )?stay focused. So it is|(?:to )?stay focused. So it[`’\']s) better for me not to|(?:(?:to )?stay focused. So it is|(?:to )?stay focused. So it[`’\']s) better for me to not) do a lot|(?:(?:(?:to )?stay focused. So it is|(?:to )?stay focused. So it[`’\']s) better for me not to|(?:(?:to )?stay focused. So it is|(?:to )?stay focused. So it[`’\']s) better for me to not) do lots) of|(?:(?:(?:to )?stay focused. So it is|(?:to )?stay focused. So it[`’\']s) better for me not to|(?:(?:to )?stay focused. So it is|(?:to )?stay focused. So it[`’\']s) better for me to not) do many) different things at the same time|(?:(?:(?:(?:(?:to )?stay focused. So it is|(?:to )?stay focused. So it[`’\']s) better for me not to|(?:(?:to )?stay focused. So it is|(?:to )?stay focused. So it[`’\']s) better for me to not) do a lot|(?:(?:(?:to )?stay focused. So it is|(?:to )?stay focused. So it[`’\']s) better for me not to|(?:(?:to )?stay focused. So it is|(?:to )?stay focused. So it[`’\']s) better for me to not) do lots) of|(?:(?:(?:to )?stay focused. So it is|(?:to )?stay focused. So it[`’\']s) better for me not to|(?:(?:to )?stay focused. So it is|(?:to )?stay focused. So it[`’\']s) better for me to not) do many) different things simultaneously|(?:(?:(?:(?:(?:to )?stay focused. So it is|(?:to )?stay focused. So it[`’\']s) better for me not to|(?:(?:to )?stay focused. So it is|(?:to )?stay focused. So it[`’\']s) better for me to not) do a lot|(?:(?:(?:to )?stay focused. So it is|(?:to )?stay focused. So it[`’\']s) better for me not to|(?:(?:to )?stay focused. So it is|(?:to )?stay focused. So it[`’\']s) better for me to not) do lots) of|(?:(?:(?:to )?stay focused. So it is|(?:to )?stay focused. So it[`’\']s) better for me not to|(?:(?:to )?stay focused. So it is|(?:to )?stay focused. So it[`’\']s) better for me to not) do many) different things at once)|It[`’\']s difficult for me to concentrate and (?:(?:(?:(?:(?:(?:to )?stay focused. So it is|(?:to )?stay focused. So it[`’\']s) better for me not to|(?:(?:to )?stay focused. So it is|(?:to )?stay focused. So it[`’\']s) better for me to not) do a lot|(?:(?:(?:to )?stay focused. So it is|(?:to )?stay focused. So it[`’\']s) better for me not to|(?:(?:to )?stay focused. So it is|(?:to )?stay focused. So it[`’\']s) better for me to not) do lots) of|(?:(?:(?:to )?stay focused. So it is|(?:to )?stay focused. So it[`’\']s) better for me not to|(?:(?:to )?stay focused. So it is|(?:to )?stay focused. So it[`’\']s) better for me to not) do many) different things at the same time|(?:(?:(?:(?:(?:to )?stay focused. So it is|(?:to )?stay focused. So it[`’\']s) better for me not to|(?:(?:to )?stay focused. So it is|(?:to )?stay focused. So it[`’\']s) better for me to not) do a lot|(?:(?:(?:to )?stay focused. So it is|(?:to )?stay focused. So it[`’\']s) better for me not to|(?:(?:to )?stay focused. So it is|(?:to )?stay focused. So it[`’\']s) better for me to not) do lots) of|(?:(?:(?:to )?stay focused. So it is|(?:to )?stay focused. So it[`’\']s) better for me not to|(?:(?:to )?stay focused. So it is|(?:to )?stay focused. So it[`’\']s) better for me to not) do many) different things simultaneously|(?:(?:(?:(?:(?:to )?stay focused. So it is|(?:to )?stay focused. So it[`’\']s) better for me not to|(?:(?:to )?stay focused. So it is|(?:to )?stay focused. So it[`’\']s) better for me to not) do a lot|(?:(?:(?:to )?stay focused. So it is|(?:to )?stay focused. So it[`’\']s) better for me not to|(?:(?:to )?stay focused. So it is|(?:to )?stay focused. So it[`’\']s) better for me to not) do lots) of|(?:(?:(?:to )?stay focused. So it is|(?:to )?stay focused. So it[`’\']s) better for me not to|(?:(?:to )?stay focused. So it is|(?:to )?stay focused. So it[`’\']s) better for me to not) do many) different things at once))/gm'
+  },
+  {
+    rus: 'Ты собираешься прийти на вечеринку по случаю моего Дня Рождения? Я не уверена. Мне много работы делать в этом месяце',
+    eng: 'Are you going to come to my birthday party? I`m not sure. I have a lot of work to do this month',
+    regEng: '/(?:Are you going to come to my birthday party\\? I(?: am|[`’\']m) not sure. I(?:[`’\']ve got a lot|[`’\']ve got lots| have a lot| have lots|[`’\']ve a lot|[`’\']ve lots) of work to do this month|Are you going to come to my birthday party\\? I(?: am|[`’\']m) not sure. This month I(?:[`’\']ve got a lot|[`’\']ve got lots| have a lot| have lots|[`’\']ve a lot|[`’\']ve lots) of work to do)/gm'
+  },
+  {
+    rus: 'Где ключ? Я думаю, что я потерял его, когда я шёл в школу вчера',
+    eng: 'Where is the key? I think that I lost it when I was going to school yesterday',
+    regEng: '/Where is the key\\? I think (?:that )?I lost it when I was going to school yesterday/gm'
+  }
+]
+export default data

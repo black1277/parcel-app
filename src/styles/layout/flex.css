@@ -1,0 +1,25 @@
+.flexrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.flexrow .blk {
+  padding: .5rem;
+}
+.side-margin {
+  margin-left: 25px;
+  margin-right: 25px;
+  border-left: 1px solid grey;
+  border-right: 1px solid grey;
+}
+.flexrow .side-margin {
+  padding-left: 25px;
+  padding-right: 25px;
+}
+.flexcol {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

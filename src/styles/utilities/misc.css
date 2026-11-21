@@ -1,0 +1,13 @@
+textarea {
+  resize: none;
+  width: 100%;
+}
+.userfont {
+  font-family: var(--user-font, initial);
+}
+.hide {
+  opacity: 0;
+}
+.visible {
+  opacity: 1;
+}

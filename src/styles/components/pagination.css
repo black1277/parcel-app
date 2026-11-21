@@ -1,0 +1,34 @@
+#links {
+  width: 98%;
+  margin: 5px auto;
+  flex-wrap: wrap;
+}
+#links .link-page:first-child::before {
+  position: absolute;
+  top:0;
+  right: 1.6rem;
+  font-size: 1.3rem;
+  line-height: .9;
+  bottom: 0;
+  color: black;
+  pointer-events: none;
+  content: "["; /* Правая скобка после последней ссылки */
+  margin-right: 5px; /* Отступ между скобкой и ссылкой */
+}
+#links .link-page:last-child::after {
+  position: absolute;
+  top:0;
+  left: 2.85rem;
+  font-size: 1.3rem;
+  line-height: .9;
+  bottom: 0;
+  color: black;
+  pointer-events: none;
+  content: "]"; /* Правая скобка после последней ссылки */
+  margin-left: 5px; /* Отступ между ссылкой и скобкой */
+}
+a.active {
+  color: #fff873;
+  background: #e20b0b;
+  cursor: default;
+}

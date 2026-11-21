@@ -1,7 +1,5 @@
 node_modules
-node_modules.rar
 .parcel-cache
-src/components/data/shablon.js
 dist
 public
 /.pnp
@@ -12,3 +10,5 @@ public
 cypress/downloads/
 cypress/screenshots/
 *.bat
+# генерируется scripts/generate-data-index.mjs
+src/data/index.js

@@ -1,0 +1,47 @@
+.toggle-bg{
+  background: #222;
+  display: block; /* ...Чтобы можно было установить высоту и ширину */
+  float: left; /* ...Чтобы он не занимал всю ширину страницы */
+  height: 7px;
+  position: relative; /* Требуется, чтобы тумблер мог передвигаться */
+  width: 26px;
+  border-radius: 8px;
+}
+.toggle-bg input{
+  height: 28px;
+  left: 0;
+  margin: 0; /* Сбросьте поля и отступ */
+  opacity: 0; /* Невидим! */
+  padding: 0;
+  position: absolute;
+  top: -10px; /* Сдвиньте по вертикали */
+  width: 36px;
+  z-index: 2; /* Нам нужно, чтобы вход input находился сверху span.switch, которому мы назначим z-index в 1 */
+}
+.switch{
+  background: #ccc;
+  display: block;
+  float: left;
+  height: 14px;
+  left: -1px; /* Это – начальная точка. При добавлении border radius немного виден фон, если использовать left: 0;, поэтому лучше всего применить -1px.*/
+  position: relative;
+  top: -4px; /* ...Чтобы отцентрировать его по вертикали */
+  width: 14px;
+  border-radius: 8px;
+  z-index: 1; /* Помните, он должен быть под невидимыми input-ами */
+  transition: left .2s ease;
+  background: radial-gradient(ellipse at center, #faff6c 0%, #6d68fb 50%, #5e86ff 51%, #03006c 100%);
+  box-shadow: 0 1px 1px #65727b, 0 0 1px #b6bdc2;
+}
+.toggle-bg input:checked~.switch{ left: -1px; } /* Исходная позиция тумблера */
+.toggle-bg input~:checked~.switch{ left: 13px;
+  background: radial-gradient(ellipse at center, #14ff00 0%, #e35757 50%, #ff8686 51%, #8c0000 100%)
+} /*окончательная относительная позиция переключателя */
+.toggle-bg input:checked{ z-index: 0; }
+.blk {
+  display: block;
+}
+.blk label:focus {
+  outline: auto;
+  border: 1px solid green;
+}

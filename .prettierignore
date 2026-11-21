@@ -1,0 +1,7 @@
+public
+dist
+.parcel-cache
+node_modules
+src/data
+src/styles
+src/index.html

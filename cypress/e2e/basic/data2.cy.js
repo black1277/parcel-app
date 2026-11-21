@@ -1,9 +1,9 @@
 /// <reference types="cypress" />
-import { Start, totalLinks } from './constants'
+import { Start, totalLinks } from './constants';
 
 describe('Test for clicking links and checking input class with rerender', () => {
   beforeEach(() => {
-    cy.visit('/')
+    cy.visit('/');
   });
 
   it('Clicks on each dynamically found link and checks input class ENG', () => {
@@ -11,7 +11,7 @@ describe('Test for clicking links and checking input class with rerender', () =>
     for (let i = Start; i <= totalLinks; i++) {
       // Ищем ссылку с текстом, соответствующим текущему номеру итерации
       cy.contains('a.link-page', `${i}`).click();
-      cy.wait(120)
+      cy.wait(120);
       // Ждем, пока кнопка 'показать' станет видимой после клика
       cy.get('#show').should('be.visible');
 
@@ -27,23 +27,22 @@ describe('Test for clicking links and checking input class with rerender', () =>
         cy.wrap($el).find('span[contenteditable="true"]').clear().type('1');
 
         // Проверяем, что класс done исчез, а класс err появился
-        cy.wrap($el).find('span[contenteditable="true"]')
+        cy.wrap($el)
+          .find('span[contenteditable="true"]')
           .should('not.have.class', 'done')
           .and('have.class', 'err');
       });
-
-
     }
   });
 
   it('Clicks on each dynamically found link and checks input class RUS', () => {
     // Сначала находим и переключаем радио-кнопку с id="eng"
     cy.get('input[type="radio"]#eng').check().should('be.checked');
-    cy.wait(120)
+    cy.wait(120);
     for (let i = Start; i <= totalLinks; i++) {
       // Ищем ссылку с текстом, соответствующим текущему номеру итерации
       cy.contains('a.link-page', `${i}`).click();
-      cy.wait(120)
+      cy.wait(120);
       // Ждем, пока кнопка 'показать' станет видимой после клика
       cy.get('#show').should('be.visible');
 
@@ -59,11 +58,11 @@ describe('Test for clicking links and checking input class with rerender', () =>
         cy.wrap($el).find('span[contenteditable="true"]').clear().type('1');
 
         // Проверяем, что класс done исчез, а класс err появился
-        cy.wrap($el).find('span[contenteditable="true"]')
+        cy.wrap($el)
+          .find('span[contenteditable="true"]')
           .should('not.have.class', 'done')
           .and('have.class', 'err');
       });
     }
   });
-
 });

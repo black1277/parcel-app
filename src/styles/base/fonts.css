@@ -1,0 +1,26 @@
+.source {
+  font-family: 'Source Sans Pro', sans-serif;
+}
+.lora {
+  font-family: 'Lora', serif;
+}
+.philosopher {
+  font-family: 'Philosopher', sans-serif;
+}
+.literata {
+  font-family: 'Literata', serif;
+}
+.vollkorn {
+  font-family: 'Vollkorn', serif;
+}
+.firacode {
+  font-family: 'Fira Code', monospace;
+}
+.source,
+.lora,
+.philosopher,
+.literata,
+.vollkorn,
+.firacode {
+  color:#000000;
+}

@@ -1,6 +1,7 @@
 {
   "name": "parcel-app",
-  "private": "true",
+  "private": true,
+  "type": "module",
   "source": "src/index.html",
   "targets": {
     "default": {
@@ -9,16 +10,25 @@
     }
   },
   "scripts": {
-    "start": "npm run collect && parcel",
-    "prebuild": "node prebuild/collect.mjs",
-    "collect": "node prebuild/generateGlob.js",
+    "generate:data": "node scripts/generate-data-index.mjs",
+    "prestart": "npm run generate:data",
+    "start": "parcel",
+    "prebuild": "npm run generate:data",
     "build": "parcel build",
+    "test": "node --test \"tests/unit/**/*.test.js\"",
+    "data": "node --test \"tests/regEng.test.js\"",
+    "lint": "eslint .",
+    "format": "prettier --write .",
     "cy:run": "cypress run",
     "cy:open": "cypress open"
   },
   "browserslist": "last 3 Chrome version",
   "devDependencies": {
+    "@eslint/js": "^9.0.0",
     "cypress": "^15.13.0",
-    "parcel": "^2.16.4"
+    "eslint": "^9.0.0",
+    "globals": "^15.0.0",
+    "parcel": "^2.16.4",
+    "prettier": "^3.3.0"
   }
 }

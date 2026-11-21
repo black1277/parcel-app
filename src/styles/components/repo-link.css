@@ -1,0 +1,6 @@
+a.repo {
+  position: absolute;
+  top: 8px;
+  right: 16px;
+  color: var(--font-color);
+}

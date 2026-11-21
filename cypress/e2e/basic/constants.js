@@ -1,7 +1,7 @@
-import data from '../../../src/components/data/index'
+import data from '../../../src/data/index.js';
 const totalLinks = data.length; // Задаем количество ссылок
-const LastTap = 10 // будем проверять последние n
-const Start = LastTap > 0 ? totalLinks - LastTap : 1
+const LastTap = 10; // будем проверять последние n
+const Start = LastTap > 0 ? totalLinks - LastTap : 1;
 
 const fonts = [
   { id: 'lora', name: 'Lora' },
@@ -11,4 +11,4 @@ const fonts = [
   { id: 'firacode', name: 'Fira Code' },
 ];
 
-export { fonts, totalLinks, Start }
+export { fonts, totalLinks, Start };

@@ -1,0 +1,71 @@
+export function langToggleTemplate() {
+  return `
+ <section class="flexrow" aria-label="опции">
+  <span class="blk"><label for="rus" tabindex="0" title="переключить на русский" aria-label="переключить на русский">rus</label></span>
+  <div class="flexcol">
+   <span role="radiogroup" class="toggle-bg" id="langToggles">
+     <input type="radio" name="toggle" value="rus" id="rus" tabindex="-1">
+     <input type="radio" name="toggle" value="eng" id="eng" tabindex="-1">
+     <span class="switch"></span>
+   </span>
+  </div>
+  <span class="blk"><label for="eng" tabindex="0" title="переключить на английский" aria-label="переключить на английский">eng</label></span>
+  <span class="blk side-margin">
+    <label for="mix" title="перемешать строки" aria-label="перемешать строки">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="48"
+    height="48"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    class="icon"
+  >
+    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+
+    <path d="M18 4l3 3l-3 3" />
+    <path d="M18 20l3 -3l-3 -3" />
+
+    <!-- Исходные линии -->
+    <g class="straight">
+      <path d="M3 7h3a5 5 0 0 1 5 5a5 5 0 0 0 5 5h5" />
+      <path d="M21 7h-5a4.978 4.978 0 0 0 -3 1m-4 8a4.984 4.984 0 0 1 -3 1h-3" />
+    </g>
+
+    <!-- Прямые линии -->
+    <g class="original">
+      <path d="M21 17h-18" />
+      <path d="M21 7h-18" />
+    </g>
+  </svg>     
+      <input type="checkbox" id="mix" style="display: none">
+    </label>
+  </span>
+  <span class="blk">
+    <button type="button" id="show" title="показать все ответы">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="48px" height="48px" viewBox="0 0 32 32" enable-background="new 0 0 32 32" xml:space="preserve">
+<g id="eye">
+	<path fill="currentColor" d="M31.965,15.776c-0.01-0.042-0.004-0.087-0.02-0.128c-0.006-0.017-0.021-0.026-0.027-0.042
+		c-0.01-0.024-0.008-0.051-0.021-0.074c-2.9-5.551-9.213-9.528-15.873-9.528c-6.661,0-12.973,3.971-15.875,9.521
+		c-0.013,0.023-0.011,0.05-0.021,0.074c-0.007,0.016-0.021,0.025-0.027,0.042c-0.016,0.041-0.01,0.086-0.02,0.128
+		c-0.018,0.075-0.035,0.147-0.035,0.224s0.018,0.148,0.035,0.224c0.01,0.042,0.004,0.087,0.02,0.128
+		c0.006,0.017,0.021,0.026,0.027,0.042c0.01,0.024,0.008,0.051,0.021,0.074c2.901,5.551,9.214,9.528,15.875,9.528
+		c6.66,0,12.973-3.971,15.873-9.521c0.014-0.023,0.012-0.05,0.021-0.074c0.006-0.016,0.021-0.025,0.027-0.042
+		c0.016-0.041,0.01-0.086,0.02-0.128C31.982,16.148,32,16.076,32,16S31.982,15.851,31.965,15.776z M16.023,23.988
+		c-5.615,0-11.112-3.191-13.851-7.995c2.754-4.81,8.243-7.99,13.851-7.99c5.613,0,11.111,3.192,13.85,7.995
+		C27.119,20.809,21.631,23.988,16.023,23.988z"/>
+	<path fill="currentColor" d="M16.023,11.999c-0.002,0-0.004,0.001-0.006,0.001c-2.205,0.004-3.992,1.791-3.992,3.996
+		c0,0.276,0.224,0.5,0.5,0.5c0.275,0,0.499-0.224,0.499-0.5c0-1.652,1.345-2.997,2.999-2.997v-0.001
+		c0.275,0,0.498-0.224,0.498-0.499C16.521,12.222,16.299,11.999,16.023,11.999z"/>
+	<path fill="currentColor" d="M16,9c-3.867,0-7,3.134-7,7c0,3.866,3.134,7,7,7c3.865,0,7-3.135,7-7C23,12.133,19.865,9,16,9z M16,22
+		c-3.309,0-6-2.691-6-6c0-3.309,2.691-6,6-6c3.309,0,6,2.691,6,6C22,19.309,19.309,22,16,22z"/>
+</g>
+</svg>
+    </button>
+  </span>
+ </section>`;
+}

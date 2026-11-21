@@ -1,0 +1,25 @@
+.w100 {
+  width: 100%;
+}
+.search {
+  width: 50%;
+  font-size: 1.3rem;
+  padding: 2px 8px 4px;
+  outline: none;
+  border: 2px inset #333;
+  border-radius: 25px 225px 25px / 225px 25px 255px 25px;
+  color: var(--font-color);
+  background-color: var(--color-editor);
+}
+.search:active, .search:focus {
+  outline: rgb(4, 142, 80) solid 2px;
+  border: 2px inset #33333300;
+}
+.go {
+  padding: 4px 10px;
+  font-size: 1.15rem;
+  color:darkgreen;
+  border-color: var(--color-editor);
+  border-radius: 25px 225px 25px / 225px 25px 255px 25px;
+  background-color: color-mix(in oklab, var(--color-editor) 40%, #9f9f9f 60%) ;
+}

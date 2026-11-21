@@ -1,0 +1,18 @@
+.theme-light {
+  --color-primary: #a6dcff;
+  --color-secondary: #7b0505;
+  --color-editor: #f2f2f2;
+  --font-color: #0a0a0a;
+  --color-marker1: #92dd9c;
+  --color-marker2: #dd92d8;
+  --color-svg: #cd4d00;
+}
+.theme-dark {
+  --color-primary: #002b48;
+  --color-secondary: #ffe2a0;
+  --color-editor: #6a6a6a;
+  --font-color: #e0e0e0;
+  --color-marker1: #005a0c;
+  --color-marker2: #4c0047;
+  --color-svg: #00cd00;
+}

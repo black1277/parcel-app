@@ -1,0 +1,46 @@
+/*
+ * Кнопка действия у поля ответа (🔊 / +). Существует в разметке только на сенсорных устройствах;
+ * панель при этом получает класс .touch-actions (см. features/trainer/touchActions.js).
+ */
+.row-action {
+  position: absolute;
+  right: 8px;
+/*  bottom: 4px;*/
+  z-index: 1;
+  width: 38px;
+  height: 38px;
+  padding: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid gray;
+  border-radius: 50%;
+  background: #ff9c4b;
+  color: #000;
+  font-size: 1.1rem;
+  line-height: 1;
+  touch-action: manipulation;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.row-action:active {
+  background: #ddd;
+}
+/* у жёлтого поля справа стоит кнопка help — сдвигаем свою левее */
+.editor.err ~ .row-action {
+  right: 58px;
+}
+
+/* поле чуть выше, чтобы кнопка помещалась внутри, а текст не заходил под неё */
+#panel.touch-actions .el > span:last-of-type {
+  min-height: 40px;
+  padding-right: 10px;
+}
+#panel.touch-actions .el > span.err:last-of-type {
+  padding-right: 100px;
+}
+
+/* двойное касание по предложению показывает ответ, а не масштабирует страницу */
+.el {
+  touch-action: manipulation;
+}

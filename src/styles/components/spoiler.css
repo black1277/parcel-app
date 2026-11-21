@@ -1,0 +1,29 @@
+.spoiler {
+  border: 1px solid #e0e0e0;
+  padding: 0 0.6em;
+}
+.spoiler details {
+  padding: .9rem 0;
+}
+.spoiler details + details {
+  border-top: 1px solid #e0e0e0;
+}
+.spoiler summary {
+  color: #4d5895;
+  font-size: 1.3rem;
+}
+.spoiler details div {
+  overflow: hidden;
+  padding: 1em 1em 0;
+}
+.spoiler details[open] div {
+  animation: spoiler 1s;
+}
+@keyframes spoiler {
+  0%   {max-height: 0;}
+  100% {max-height: 30em;}
+}
+.spoiler li {
+	padding: 3px 10px;
+	margin: 3px 0 0 5px;
+}

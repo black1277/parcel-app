@@ -12,10 +12,15 @@
       content="Небольшое SPA для помощи в изучении английского | English language proficiency trainer"
     />
     <meta name="author" content="black1277" />
-    <link rel="icon" href="favicon.ico" />
-    <link rel="shortcut icon" href="favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="app.js"></script>
+    <link rel="icon" href="assets/icons/favicon.ico" />
+    <link rel="shortcut icon" href="assets/icons/favicon.svg" type="image/svg+xml" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&family=Philosopher&family=Literata&family=Lora&family=Vollkorn&family=Fira+Code&display=swap"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="styles/index.css" />
+    <script type="module" src="main.js"></script>
   </head>
   <body style="background-color: #ccffd3">
     <header>
@@ -82,7 +87,13 @@
                 правильных вариантов
               </li>
               <li>Количество пробелов - не влияет на правильность ответа</li>
-              <li>Иногда бывает, что ваш ответ отличается от правильного всего на 1-2 буквы. Тогда можно нажать кнопку Help и увидеть до какой буквы ваш ответ совпадает с шаблоном и попытаться исправить</li>
+              <li>Иногда бывает, что ваш ответ отличается от правильного всего на 1-2 буквы.
+                Тогда можно нажать кнопку Help и увидеть до какой буквы ваш ответ совпадает с
+                шаблоном и попытаться исправить</li>
+              <li>Зажатие клавиши Ctrl и клик  по желтому полю добавляет одно слово из ответа
+                (действует только если предыдущие слова набраны правильно)</li>
+              <li>Зажатие клавиши Ctrl и клик по зеленому полю - озвучивает ответ (если эта
+                возможность есть на вашем устройстве)</li>
             </ul>
           </div>
         </details>
@@ -189,11 +200,15 @@
         <span class="num" id="lightnessVal">40</span>
       </div>
       <div>
-        <div class="side-title">Выберите свой шрифт</div>
+      <div class="side-title">Выберите свой шрифт</div>
+        <label for="savedFonts" style="display: block; margin-bottom: 4px">
+          Сохранённые шрифты:
+        </label>
+        <select id="savedFonts" style="width: 100%; margin-bottom: 8px; font-size: 1rem; padding: 4px">
+          <!-- заполняется из localStorage -->
+        </select>
         <textarea
           id="fontUrlInput"
-          name=""
-          id=""
           cols="36"
           rows="4"
           placeholder="Введите ссылку на шрифт Google Fonts, например, https://fonts.googleapis.com/css2?family=Neucha"
@@ -224,7 +239,7 @@
         <div class="side-title">Загрузите файл шрифта</div>
         <!-- Кнопка для загрузки файла шрифта -->
         <label class="input-file">
-          <input id="fontUpload" type="file" name="file" />
+          <input id="fontUpload" type="file" name="file" accept=".ttf, .otf" />
           <span class="input-file-btn bold">Загрузить</span>
           <span class="input-file-text">.ttf, .otf</span>
         </label>
@@ -259,7 +274,7 @@
         class="switch2"
         tabindex="0"
       >
-        <input type="checkbox" onchange="toggleTheme()" id="slider" checked />
+        <input type="checkbox" id="slider" checked />
         <span class="slider2 round"></span>
       </label>
     </footer>

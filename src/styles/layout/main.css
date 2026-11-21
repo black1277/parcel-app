@@ -1,0 +1,12 @@
+#main {
+  min-height: calc(100vh - 180px);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  border: calc(var(--scale_factor) * 4) outset #808080;
+  border-radius: 10px;
+  max-width: 1800px;
+  margin: 5px auto;
+  background: #80808025;
+}

@@ -1,0 +1,15 @@
+#show {
+  color: var(--color-svg);
+  padding: 4px;
+  font-size: 1rem;
+  background: transparent;
+  border: none;
+  border-radius: 50%;
+  transition: color 0.3s ease;
+}
+#show:hover {
+  color: color-mix(in srgb, var(--color-svg), black 20%);
+}
+#show:disabled svg {
+    opacity: 0.3;
+}

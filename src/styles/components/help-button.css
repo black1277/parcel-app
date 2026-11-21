@@ -1,0 +1,11 @@
+.help-btn {
+  position: absolute;
+  height: 38px;
+  background-color: #ff9c4b;
+  border-radius: 50%;
+  border: 1px solid grey;
+  padding: 2px 7px;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+}

@@ -1,0 +1,40 @@
+#progress{
+  width: 12rem;
+  font-size: 2rem;
+  position: absolute;
+  left: 50%;
+  top: 40%;
+  background: var(--color-primary);
+  text-align: center;
+  padding: 2.5rem 1rem;
+  border: 3px outset #dbac7a;
+  border-radius: 8px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translate(-50%, 0%);
+}
+#progress span {
+  color: green;
+  font-size: 1rem;
+}
+.fadeOpacity {
+  opacity: .8;
+  animation: fadeOut 2.2s forwards;
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: .8;
+    visibility: visible;
+  }
+  40% {
+    opacity: .8;
+  }
+  99% {
+    visibility: visible;
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}

@@ -1,0 +1,8 @@
+#panel {
+  position: relative;
+  width: 100%;
+  counter-reset: list1;
+}
+#panel article.el > span:first-child {
+  color: var(--font-color);
+}
