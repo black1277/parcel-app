@@ -12,7 +12,7 @@ const data = [
   },
   {
     rus: 'Чей то родственник? То родственник его жены',
-    eng: 'Whose relative is that? That is his wife’s relative',
+    eng: 'Whose relative is that? That is his wife`s relative',
     regEng: ''
   },
   {

@@ -7,16 +7,26 @@ const PLAIN_APOSTROPHE = '`';
 /**
  * Строит регулярное выражение из шаблона вида `/выражение/gm`.
  * Берётся только текст между первыми двумя слэшами, флаги игнорируются.
+ * Кэширование скомпилированных регулярных выражений
  * @param {string} pattern
  * @returns {RegExp}
  */
+const patternCache = new Map();
+
 export function buildPatternRegExp(pattern) {
+  if (patternCache.has(pattern)) {
+    return patternCache.get(pattern);
+  }
+
   const source = pattern
     .split('/')[1]
     .trim()
     .toLowerCase()
     .replaceAll(TYPOGRAPHIC_APOSTROPHE, PLAIN_APOSTROPHE);
-  return new RegExp(source);
+
+  const re = new RegExp(source);
+  patternCache.set(pattern, re);
+  return re;
 }
 
 /**

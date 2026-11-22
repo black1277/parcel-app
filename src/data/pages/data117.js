@@ -7,7 +7,7 @@ const data = [
   },
   {
     rus: 'Результаты моего брата лучше, чем мои',
-    eng: 'My brother’s results are better than mine',
+    eng: 'My brother`s results are better than mine',
     regEng: ''
   },
   {
