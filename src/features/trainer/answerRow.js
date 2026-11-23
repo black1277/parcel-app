@@ -37,10 +37,12 @@ export function validateRow(row) {
 
 function applyValidation(row) {
   const editor = getEditor(row);
-  row.querySelector('.help-btn')?.remove();
+  const text = editor.innerText.trim();
+  const helpBtn = row.querySelector('.help-btn');
 
-  if (editor.innerText.trim() === '') {
+  if (!text) {
     editor.classList.remove('err', 'done');
+    helpBtn?.remove();
     return;
   }
 
@@ -48,35 +50,29 @@ function applyValidation(row) {
     input: editor.innerText,
     answer: row.dataset.lang,
     pattern: row.dataset.pattern,
-    compiledPattern: row._compiledPattern ?? null,   // ← добавлено
+    compiledPattern: row._compiledPattern ?? null,
   });
 
-  editor.className = isCorrect ? 'done' : 'err';
+  editor.classList.toggle('done', isCorrect);
+  editor.classList.toggle('err', !isCorrect);
+  // класс editor должен оставаться всегда
   editor.classList.add('editor');
-  if (!isCorrect) {
-    const div = row.querySelector('.editor-wrap');
-    div.append(
-      createHelpButton(
-        editor,
-        row.dataset.lang.trim().toLowerCase(),
-        normalizeInput(editor.innerText),
-      ),
-    );
+
+  if (isCorrect) {
+    helpBtn?.remove();
+  } else if (!helpBtn) {
+    // создаём кнопку только если её ещё нет
+    const wrap = row.querySelector('.editor-wrap');
+    wrap?.append(createHelpButton());
   }
 }
 
-function createHelpButton(editor, answer, input) {
+/** «Тупая» кнопка без собственных слушателей. */
+function createHelpButton() {
   const button = document.createElement('button');
   button.type = 'button';
   button.textContent = 'help';
   button.classList.add('help-btn');
-
-  // уводим фокус из поля, чтобы подсветка совпавшей части не конфликтовала с курсором
-  button.addEventListener('mouseover', () => editor.blur());
-  button.addEventListener('click', (event) => {
-    event.stopPropagation();
-    highlightMatchingPrefix(editor, answer, input);
-  });
   return button;
 }
 
@@ -103,6 +99,7 @@ function highlightMatchingPrefix(editor, answer, input) {
  * @param {HTMLElement} panel
  */
 export function bindRowInteractions(panel) {
+  // двойной клик по предложению → показать правильный ответ
   panel.addEventListener('dblclick', (event) => {
     const prompt = event.target.closest('.el > span:first-child');
     if (prompt && panel.contains(prompt)) {
@@ -110,6 +107,7 @@ export function bindRowInteractions(panel) {
     }
   });
 
+  // валидация при вводе и при уходе фокуса
   const validateOnEdit = (event) => {
     if (event.target.matches('span[contenteditable="true"]')) {
       validateRow(event.target.closest('.el'));
@@ -117,4 +115,29 @@ export function bindRowInteractions(panel) {
   };
   panel.addEventListener('input', validateOnEdit);
   panel.addEventListener('focusout', validateOnEdit);
+
+  // ——— делегирование для help-кнопок (без per-button listeners) ———
+
+  // уводим фокус из поля, чтобы подсветка совпавшей части не конфликтовала с курсором
+  panel.addEventListener('mouseover', (event) => {
+    if (!event.target.matches('.help-btn')) return;
+    const row = event.target.closest('.el');
+    getEditor(row)?.blur();
+  });
+
+  // клик по help → подсветить совпадающий префикс
+  panel.addEventListener('click', (event) => {
+    const btn = event.target.closest('.help-btn');
+    if (!btn || !panel.contains(btn)) return;
+
+    event.stopPropagation();
+
+    const row = btn.closest('.el');
+    const editor = getEditor(row);
+    if (!editor) return;
+
+    const answer = row.dataset.lang.trim().toLowerCase();
+    const input = normalizeInput(editor.innerText);
+    highlightMatchingPrefix(editor, answer, input);
+  });
 }

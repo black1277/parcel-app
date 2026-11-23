@@ -6,12 +6,16 @@ const entry = { rus: 'Привет', eng: 'Hello', regEng: '/hello|hi/gm', regRu
 
 test('русский показывается — ответ английский, шаблон regEng', () => {
   const [row] = buildRows([entry], 'rus');
-  assert.deepEqual(row, {
-    prompt: 'Привет',
-    answer: 'Hello',
-    pattern: '/hello|hi/gm',
-    pageNumber: undefined,
-  });
+  assert.equal(row.prompt, 'Привет');
+  assert.equal(row.answer, 'Hello');
+  assert.equal(row.pattern, '/hello|hi/gm');
+  assert.ok(row.compiledPattern instanceof RegExp);
+  assert.equal(row.pageNumber, undefined);
+
+  // проверяем, что скомпилированный паттерн реально работает
+  assert.ok(row.compiledPattern.test('hello'));
+  assert.ok(row.compiledPattern.test('hi'));
+  assert.ok(!row.compiledPattern.test('hey'));
 });
 
 test('английский показывается — ответ русский, пустой шаблон превращается в null', () => {
@@ -19,6 +23,7 @@ test('английский показывается — ответ русски�
   assert.equal(row.prompt, 'Hello');
   assert.equal(row.answer, 'Привет');
   assert.equal(row.pattern, null);
+  assert.equal(row.compiledPattern, null);
 });
 
 test('countEntries', () => {

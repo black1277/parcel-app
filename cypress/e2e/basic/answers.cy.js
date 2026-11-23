@@ -14,8 +14,8 @@
 import fixture from '../../../tests/variants.json'
 
 // Какие страницы тестировать (включительно)
-const START_PAGE = 287
-const END_PAGE = 300
+const START_PAGE = 331
+const END_PAGE = 373
 
 // любой апостроф -> обычный '
 const norm = (s) => s.replace(/[`’‘´]/g, "`");
@@ -52,7 +52,7 @@ describe('Варианты ответов из variants.json принимают�
       })
 
       info.items.forEach((fx, i) => {
-        const editor = () => cy.get('#panel .el').eq(i).find('span[contenteditable="true"]')
+        const editor = () => cy.get('#panel .el', { log: false }).eq(i, { log: false }).find('span[contenteditable="true"]', { log: false })
 
         fx.variants.forEach((variant) => {
           editor().then(() => {
@@ -60,10 +60,10 @@ describe('Варианты ответов из variants.json принимают�
           })
           const norm_variant = norm(variant)
           // Вводим вариант (parseSpecialCharSequences: false — чтобы "{" в тексте не считался командой)
-          editor().clear().type(norm_variant, { delay: 0, parseSpecialCharSequences: false })
+          editor().clear({ log: false }).type(norm_variant, { delay: 0, parseSpecialCharSequences: false, log: false })
 
           // Проверяем, что поле стало «верным»
-          editor().should('have.class', 'done')
+          editor().should('have.class', 'done', { log: false })
         })
       })
     })
