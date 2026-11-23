@@ -22,6 +22,7 @@ import { userStorage } from './services/storage.js';
 import { createAppState } from './state/appState.js';
 import { elements } from './ui/elements.js';
 import { renderShell } from './ui/shell.js';
+import { bindSwipeNavigation } from './features/trainer/swipeNavigation.js';
 
 function bootstrap() {
   console.log('Всего', countEntries(pages), ' выражений');
@@ -43,6 +44,7 @@ function bootstrap() {
   trainer.init();
   bindTrainerControls(trainer);
   bindHotkeys(trainer);
+  bindSwipeNavigation(trainer);
   const speaker = createAnswerSpeaker(state);
   initSpeakAnswer(speaker);
   initAddWordHint();
