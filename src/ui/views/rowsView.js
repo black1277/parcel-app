@@ -3,21 +3,27 @@ import { elements } from '../elements.js';
 /**
  * Строка тренажёра: предложение слева и поле для ответа справа.
  * Эталонный ответ и шаблон лежат в data-атрибутах строки.
+ * Скомпилированный RegExp хранится на элементе.
  * @param {import('../../core/rows.js').Row} row
  * @returns {HTMLElement}
  */
-export function createRow({ prompt, answer, pattern, pageNumber }) {
+export function createRow({ prompt, answer, pattern, compiledPattern, pageNumber }) {
   const article = document.createElement('article');
   article.className = 'el';
   article.dataset.lang = answer;
+
   if (pattern) {
-    article.dataset.pattern = pattern;
+    article.dataset.pattern = pattern; // оставляем для отладки / совместимости
+  }
+
+  // Предкомпилированный RegExp (не попадает в dataset)
+  if (compiledPattern) {
+    article._compiledPattern = compiledPattern;
   }
 
   const promptElement = document.createElement('span');
   promptElement.append(prompt);
   if (pageNumber !== undefined) {
-    // в результатах поиска показываем, на какой странице лежит предложение
     const pageMark = document.createElement('small');
     pageMark.textContent = `[${pageNumber}]`;
     promptElement.append(' ', pageMark);

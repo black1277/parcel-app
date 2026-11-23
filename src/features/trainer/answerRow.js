@@ -48,6 +48,7 @@ function applyValidation(row) {
     input: editor.innerText,
     answer: row.dataset.lang,
     pattern: row.dataset.pattern,
+    compiledPattern: row._compiledPattern ?? null,   // ← добавлено
   });
 
   editor.className = isCorrect ? 'done' : 'err';
