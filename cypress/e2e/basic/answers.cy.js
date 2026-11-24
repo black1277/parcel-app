@@ -14,7 +14,7 @@
 import fixture from '../../../tests/variants.json'
 
 // Какие страницы тестировать (включительно)
-const START_PAGE = 331
+const START_PAGE = 321
 const END_PAGE = 373
 
 // любой апостроф -> обычный '

@@ -44,7 +44,11 @@ function bootstrap() {
   trainer.init();
   bindTrainerControls(trainer);
   bindHotkeys(trainer);
-  bindSwipeNavigation(trainer);
+  bindSwipeNavigation(trainer, {
+    state,
+    totalPages: pages.length,
+    isFadeEnabled: visibility.isFadeEnabled,
+  });
   const speaker = createAnswerSpeaker(state);
   initSpeakAnswer(speaker);
   initAddWordHint();

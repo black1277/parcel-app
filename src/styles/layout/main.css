@@ -9,4 +9,5 @@
   max-width: 1800px;
   margin: 5px auto;
   background: #80808025;
+  touch-action: pan-y; /* браузеру — только вертикальная прокрутка */
 }

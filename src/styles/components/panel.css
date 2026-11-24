@@ -2,7 +2,6 @@
   position: relative;
   width: 100%;
   counter-reset: list1;
-  touch-action: pan-y; /* браузеру — только вертикальная прокрутка */
 }
 #panel article.el > span:first-child {
   color: var(--font-color);
