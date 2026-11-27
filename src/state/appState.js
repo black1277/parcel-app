@@ -6,6 +6,8 @@ import { BUILT_IN_FONTS, LANGS, STORAGE_FIELDS } from '../config/constants.js';
  */
 export function createAppState(storage) {
   return {
+/** 'train' — тренажёр, 'search' — показаны результаты поиска. */
+    mode: 'train',
     lang: LANGS.RUS,
     font: storage.get(STORAGE_FIELDS.FONT) ?? BUILT_IN_FONTS[0],
     mix: false,

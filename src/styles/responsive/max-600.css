@@ -40,4 +40,12 @@
   padding-left: 5px;
   padding-right: 5px;
 }
+  .done::before {
+    position: relative;
+    margin-right: 4px;
+    margin-left: 4px;
+    left: -4px;
+    top: 0%;
+    transform: translateY(0%);
+  }
 }

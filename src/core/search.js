@@ -15,3 +15,24 @@ export function searchPages(pages, query, lang) {
       .map((entry) => ({ ...entry, pageNumber: index + 1 })),
   );
 }
+
+/**
+ * Разбивает текст на фрагменты: обычные и совпавшие с запросом (без учёта регистра).
+ * @returns {Array<{ text: string, match: boolean }>}
+*/
+export function splitByMatch(text, query) {
+    if (!query) return [{ text, match: false }];
+    const lower = text.toLowerCase();
+    const needle = query.toLowerCase();
+    const parts = [];
+    let pos = 0;
+    let index = lower.indexOf(needle);
+    while (index !== -1) {
+        if (index > pos) parts.push({ text: text.slice(pos, index), match: false });
+        parts.push({ text: text.slice(index, index + needle.length), match: true });
+        pos = index + needle.length;
+        index = lower.indexOf(needle, pos);
+      }
+    if (pos < text.length) parts.push({ text: text.slice(pos), match: false });
+    return parts;
+  }

@@ -56,6 +56,9 @@ export const FONT_SIZE = Object.freeze({
 
 export const MIN_SEARCH_LENGTH = 3;
 
+/** Префикс хеша режима поиска — ссылку с запросом можно отправить другу. */
+export const SEARCH_HASH_PREFIX = '#search=';
+
 /** Пауза перед перерисовкой строк при включённом эффекте исчезновения. */
 export const FADE_DELAY_MS = 145;
 

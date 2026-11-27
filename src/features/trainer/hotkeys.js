@@ -26,7 +26,11 @@ export function bindHotkeys(trainer) {
         trainer.search();
         return;
       }
-
+      if (event.key === 'Escape' && event.target === elements.search) {
+        elements.search.value = '';
+        trainer.exitSearch();
+        return;
+      }
       if (event.key === ' ' || event.key === 'Enter') {
         const target = event.target;
         if (KEYBOARD_TOGGLE_TARGETS.includes(target.getAttribute?.('for'))) {

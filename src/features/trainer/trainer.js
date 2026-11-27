@@ -5,6 +5,7 @@ import {
   MIN_SEARCH_LENGTH,
   STORAGE_FIELDS,
   USER_FONT_CLASS,
+  SEARCH_HASH_PREFIX,
 } from '../../config/constants.js';
 import { buildPageItems } from '../../core/pagination.js';
 import { buildRows } from '../../core/rows.js';
@@ -81,7 +82,10 @@ export function createTrainer({ pages, state, storage, picker, isFadeEnabled }) 
    * @param {{ recordHistory?: boolean }} [options] false — при переходе по кнопкам браузера
    */
   function goToPage(page, { recordHistory = true } = {}) {
-    if (state.currentPage === page) return;
+    const wasSearch = state.mode === 'search';
+    if (!wasSearch && state.currentPage === page) return;
+
+    state.mode = 'train';
 
     state.currentPage = page;
     refreshPanel();
@@ -142,28 +146,35 @@ export function createTrainer({ pages, state, storage, picker, isFadeEnabled }) 
   }
 
   /** Поиск по всем страницам на текущем языке. */
-  function search() {
-    const { search: input } = elements;
-    const trimmedLength = input.value.trim().length;
-    if (!trimmedLength) return;
+function search(rawQuery = elements.search.value) {
+    const query = String(rawQuery).trim();
+    if (!query) return;
 
-    input.focus();
-    if (trimmedLength < MIN_SEARCH_LENGTH) {
+      elements.search.focus();
+    if (query.length < MIN_SEARCH_LENGTH) {
       renderMessage(MESSAGES.SEARCH_TOO_SHORT);
       return;
     }
 
-    const results = searchPages(pages, input.value, state.lang);
-    if (!results.length) {
-      renderMessage(MESSAGES.NOT_FOUND);
-      return;
-    }
-    renderEntries(results);
+    const results = searchPages(pages, query, state.lang);
+    state.mode = 'search';
+    if (results.length) renderRows(buildRows(results, state.lang), query);
+    else renderMessage(MESSAGES.NOT_FOUND);
     setControlsDisabled(true);
+    history.pushState({ search: query, lang: state.lang }, '',
+        SEARCH_HASH_PREFIX + encodeURIComponent(query));
   }
-
+    /** Выходит из режима поиска и возвращает текущую страницу. */
+function exitSearch() {
+    if (state.mode !== 'search') return;
+    state.mode = 'train';
+    renderCurrentPage();
+    setControlsDisabled(false);
+    history.pushState({ page: state.currentPage }, '', `#${state.currentPage}`);
+}
   return {
     init,
+    exitSearch,
     goToPage,
     goToPreviousPage,
     goToNextPage,

@@ -3,3 +3,10 @@ span u {
   font-weight: 700;
   user-select: none;
 }
+/* Совпадение поискового запроса в найденной строке */
+mark {
+  background: var(--color-marker1);
+  color: var(--font-color);
+  border-radius: 4px;
+  padding: 0 3px;
+}

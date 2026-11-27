@@ -53,7 +53,7 @@ export function isAnswerCorrect({ input, answer, pattern, compiledPattern }) {
     return buildPatternRegExp(pattern).test(normalizedInput);
   }
 
-  return answer.trim().toLowerCase() === normalizedInput;
+  return normalizeInput(answer) === normalizedInput;
 }
 
 /**

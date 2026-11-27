@@ -7,6 +7,7 @@ const storageWith = (data = {}) => ({ get: (key) => data[key] });
 
 test('значения по умолчанию при пустом хранилище', () => {
   assert.deepEqual(createAppState(storageWith()), {
+    mode: 'train',
     lang: LANGS.RUS,
     font: BUILT_IN_FONTS[0],
     mix: false,

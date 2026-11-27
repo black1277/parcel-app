@@ -3,7 +3,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 98%;
+  width: 100%;
   padding: 2px 2px 3px 8px;
   margin: 1px auto;
   border: 1px dotted grey;
@@ -13,7 +13,7 @@
 .el:nth-child(odd){
   background: #80808030;
 }
-.el span {
+.el > span {
   width: 49%;
   position: relative;
   display: flex;
@@ -69,7 +69,7 @@
   border-radius: 20px;
   font-size: 1rem;
   padding: 2px 8px;
-  left: 51%;
+  left: calc(50% - 14px);
   top: 50%;
   transform: translateY(-50%);
   counter-increment: list1; /* Увеличиваем значение счетчика */
@@ -84,6 +84,15 @@
 }
 .editor.done {
   background: #69fe48;
+}
+.done::before {
+  content: "✓"; /* Также можно использовать "\2713" или "\2714" */
+  color: #28a745;
+  font-weight: bold;
+  position: absolute;
+  left: calc(-1 * var(--result) - 4px);
+  top: 50%;
+  transform: translateY(-50%);
 }
 .editor.err {
   background: #fed448;
