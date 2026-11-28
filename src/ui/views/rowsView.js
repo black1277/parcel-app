@@ -24,6 +24,7 @@ export function createRow({ prompt, answer, pattern, compiledPattern, pageNumber
 
   const promptElement = document.createElement('span');
   const strong = document.createElement('span');
+  //console.log(strong, prompt, query);
   appendHighlighted(strong, prompt, query);
   promptElement.append(strong);
   if (pageNumber !== undefined) {

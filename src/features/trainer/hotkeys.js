@@ -44,8 +44,10 @@ export function bindHotkeys(trainer) {
 
   // кнопки «назад/вперёд» браузера возвращают на ранее посещённые страницы
   window.addEventListener('popstate', (event) => {
-    if (event.state?.page) {
-      trainer.goToPage(event.state.page, { recordHistory: false });
+    // стартовое состояние истории создаётся replaceState без state.page — берём из хеша
+    const page = event.state?.page ?? Number(location.hash.slice(1));
+    if (Number.isFinite(page) && page >= 1) {
+      trainer.goToPage(page, { recordHistory: false });
     }
   });
 }

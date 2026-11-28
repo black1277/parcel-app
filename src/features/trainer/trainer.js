@@ -2,6 +2,7 @@ import {
   BUILT_IN_FONTS,
   FADE_DELAY_MS,
   MESSAGES,
+  LANGS,
   MIN_SEARCH_LENGTH,
   STORAGE_FIELDS,
   USER_FONT_CLASS,
@@ -56,10 +57,13 @@ export function createTrainer({ pages, state, storage, picker, isFadeEnabled }) 
   }
 
   /** Перерисовывает строки (с эффектом исчезновения, если он включён) и запоминает страницу. */
+  let fadeTimer = null;
   function refreshPanel() {
+    if (fadeTimer) clearTimeout(fadeTimer); // перелистывание подряд не наслаивает отрисовки
     if (isFadeEnabled()) {
       document.body.classList.add('hide');
-      setTimeout(() => {
+      fadeTimer = setTimeout(() => {
+        fadeTimer = null;
         renderCurrentPage();
         document.body.classList.remove('hide');
       }, FADE_DELAY_MS);
@@ -69,13 +73,47 @@ export function createTrainer({ pages, state, storage, picker, isFadeEnabled }) 
     storage.set(STORAGE_FIELDS.PAGE, state.currentPage);
     setControlsDisabled(false);
   }
+  /** Активирует флажок rus/eng по состоянию: установка checked событие change не вызывает. */
+  function syncLangToggle() {
+    (state.lang === LANGS.ENG ? elements.eng : elements.rus).checked = true;
+  }
 
-  /** Первая отрисовка: страница берётся из сохранённых настроек. */
+  /** Честная ссылка на результаты: запрос + направление перевода. */
+  function buildSearchHash(query) {
+    return `${SEARCH_HASH_PREFIX}${encodeURIComponent(query.trim())}&lang=${state.lang}`;
+  }
+  /** Первая отрисовка: страница берётся из хеша, затем из сохранённых настроек. */
+  /** Первая отрисовка: разбираем URL — ссылка на поиск или на страницу. */
   function init() {
-    state.currentPage = Number(storage.get(STORAGE_FIELDS.PAGE) ?? 1);
+    state.mode = 'train';
+
+    const params = new URLSearchParams(
+      location.hash.startsWith(SEARCH_HASH_PREFIX) ? location.hash.slice(1) : '',
+    );
+
+    if (params.has('search')) {
+      // 1. СНАЧАЛА направление перевода: searchPages ищет ровно по одному полю (rus или eng).
+      state.lang = params.get('lang') === LANGS.ENG ? LANGS.ENG : LANGS.RUS;
+      syncLangToggle();
+
+      // 2. ТЕПЕРЬ поиск. URLSearchParams уже раскодировал %XX — decodeURIComponent не нужен.
+      const query = params.get('search').trim();
+      elements.search.value = query;
+      search(query);
+
+      // 3. Страница — сохранённая: из поиска можно уйти навигацией на «своё» место.
+      state.currentPage = clampPage(Number(storage.get(STORAGE_FIELDS.PAGE) ?? 1));
+      renderPageNavigation();
+      return;
+    }
+
+    // #<страница> — прямая ссылка, иначе сохранённая страница
+    state.currentPage = clampPage(Number(location.hash.slice(1)) || Number(storage.get(STORAGE_FIELDS.PAGE) ?? 1));
+    history.replaceState({ page: state.currentPage }, '', `#${state.currentPage}`);
     renderCurrentPage();
     renderPageNavigation();
   }
+  const clampPage = (page) => Math.min(Math.max(Math.trunc(page) || 1, 1), pages.length);
 
   /**
    * @param {number} page номер страницы с единицы
@@ -120,8 +158,25 @@ export function createTrainer({ pages, state, storage, picker, isFadeEnabled }) 
   function setLang(lang) {
     if (state.lang === lang) return;
     state.lang = lang;
+    syncLangToggle();
+
+    // Показаны результаты поиска: тот же запрос в новом направлении, ссылка обновится в search().
+    if (location.hash.startsWith(SEARCH_HASH_PREFIX)) {
+      const query = new URLSearchParams(location.hash.slice(1)).get('search')?.trim();
+      if (query) {
+        search(query);
+        return;
+      }
+    }
+
     refreshPanel();
+    history.replaceState({ page: state.currentPage }, '', `#${state.currentPage}`);
   }
+  // function setLang(lang) {
+  //   if (state.lang === lang) return;
+  //   state.lang = lang;
+  //   refreshPanel();
+  // }
 
   function setMix(mix) {
     if (state.mix === mix) return;
@@ -146,24 +201,49 @@ export function createTrainer({ pages, state, storage, picker, isFadeEnabled }) 
   }
 
   /** Поиск по всем страницам на текущем языке. */
-function search(rawQuery = elements.search.value) {
-    const query = String(rawQuery).trim();
-    if (!query) return;
+  /** Поиск по всем страницам на текущем языке; query можно передать сразу (из ссылки в init). */
+  function search(query) {
+    const { search: input } = elements;
+    const value = (query ?? input.value).trim();
+    if (!value.length) return;
 
-      elements.search.focus();
-    if (query.length < MIN_SEARCH_LENGTH) {
+    if (!query) input.focus(); // фокус — только при поиске с клавиатуры, не при открытии ссылки
+
+    if (value.length < MIN_SEARCH_LENGTH) {
       renderMessage(MESSAGES.SEARCH_TOO_SHORT);
       return;
     }
 
-    const results = searchPages(pages, query, state.lang);
+    const results = searchPages(pages, value, state.lang);
     state.mode = 'search';
-    if (results.length) renderRows(buildRows(results, state.lang), query);
-    else renderMessage(MESSAGES.NOT_FOUND);
-    setControlsDisabled(true);
-    history.pushState({ search: query, lang: state.lang }, '',
-        SEARCH_HASH_PREFIX + encodeURIComponent(query));
+    if (!results.length) {
+      renderMessage(MESSAGES.NOT_FOUND);
+    } else {
+      renderRows(buildRows(results, state.lang), value);
+      setControlsDisabled(true);
+    }
+
+    // Ссылка обновляется при каждом поиске — в т.ч. после «ничего не найдено».
+    history.replaceState({ search: value }, '', buildSearchHash(value));
   }
+// function search(rawQuery = elements.search.value) {
+//     const query = String(rawQuery).trim();
+//     if (!query) return;
+
+//       elements.search.focus();
+//     if (query.length < MIN_SEARCH_LENGTH) {
+//       renderMessage(MESSAGES.SEARCH_TOO_SHORT);
+//       return;
+//     }
+
+//     const results = searchPages(pages, query, state.lang);
+//     state.mode = 'search';
+//     if (results.length) renderRows(buildRows(results, state.lang), query);
+//     else renderMessage(MESSAGES.NOT_FOUND);
+//     setControlsDisabled(true);
+//     history.pushState({ search: query, lang: state.lang }, '',
+//         SEARCH_HASH_PREFIX + encodeURIComponent(query));
+//   }
     /** Выходит из режима поиска и возвращает текущую страницу. */
 function exitSearch() {
     if (state.mode !== 'search') return;

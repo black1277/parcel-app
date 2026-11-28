@@ -42,13 +42,13 @@ export function initAddWordHint() {
 
     const editor = event.target.closest('span[contenteditable="true"]');
     if (!editor || editor.classList.contains('done')) return;
+    addNextWord(editor.closest('.el'), { keepFocus: true });
+    // const row = editor.closest('.el');
+    // const hint = nextWordHint({ input: editor.innerText, answer: row.dataset.lang });
+    // if (hint === null) return;
 
-    const row = editor.closest('.el');
-    const hint = nextWordHint({ input: editor.innerText, answer: row.dataset.lang });
-    if (hint === null) return;
-
-    editor.innerText = hint;
-    validateRow(row);
-    moveCaretToEnd(editor);
+    // editor.innerText = hint;
+    // validateRow(row);
+    // moveCaretToEnd(editor);
   });
 }
